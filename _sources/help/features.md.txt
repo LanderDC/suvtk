@@ -6,7 +6,7 @@ This command creates feature tables for sequences by predicting open reading fra
 ## Required Input
 - **-i, -\\\-input**: Input FASTA file with sequences. *(Required)*
 - **-o, -\\\-output**: Output directory where the results will be saved. *(Required)*
-- **-d, -\\\-database**: Path to the BFVD diamond database. *(Required)*
+- **-d, -\\\-database**: Path to the suvtk database folder. *(Required)*
 
 ## Optional Parameters
 - **-g, -\\\-translation-table**: Translation table (default: 1). Valid codes: 1–6, 9–16, 21–31.

@@ -6,7 +6,7 @@ Assigns virus taxonomy to sequences by comparing input sequences against an ICTV
 ## Required Input
 - **-i, -\\\-input**: Input FASTA file with sequences. *(Required)*
 - **-o, -\\\-output**: Output directory where results will be saved. *(Required)*
-- **-d, -\\\-database**: Path to the ICTV MMseqs database. *(Required)*
+- **-d, -\\\-database**: Path to the suvtk database folder. *(Required)*
 
 ## Optional Parameters
 - **-s, -\\\-identity**: Minimum sequence identity threshold for hits (default: 0.7).
