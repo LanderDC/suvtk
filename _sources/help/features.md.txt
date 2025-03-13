@@ -15,6 +15,11 @@ This command creates feature tables for sequences by predicting open reading fra
 - **-\\\-separate-files**: Flag to save feature tables into separate files rather than one combined file.
 - **-t, -\\\-threads**: Number of threads to use (default: 4).
 
+```{admonition} Warning
+:class: warning
+For now only coding complete sequences (>50% coding capacity) will have predicted features and be present in the feature table (.tbl).
+```
+
 ## Output
 - `proteins.faa`: Protein sequences in FASTA format.
 - `miuvig_features.tsv`: MIUVIG-related features details (ie. prediction tool, reference database and search method).
