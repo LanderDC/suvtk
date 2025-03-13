@@ -8,7 +8,7 @@ After determining the taxonomy, this subcommand also gives you information on an
 Finally, `suvtk taxonomy` also outputs the mandatory MIUVIG parameters predicted genome type (segmented, non-segmented, uncharacterized) and genome structure (ssDNA, dsDNA, ssRNA(+), etc.) based on the predicted taxonomy in the `miuvig_taxonomy.tsv` file. This file is a required input of `suvtk comments` but can be generated yourself following subsequent tsv file format:
 | contig | pred_genome_type | pred_genome_struc |
 |--------|----------|-------|
-| <sequence_name_as_in_fasta> | <value> | <value> |
+| <sequence_name_as_in_fasta> | <allowed_value> | <allowed_value> |
 
 ```{admonition} Allowed MIUVIG values
 :class: info
