@@ -1,7 +1,47 @@
 # taxonomy
 
 ## Overview
-Assigns virus taxonomy to sequences by comparing input sequences against an ICTV MMseqs database. The command outputs taxonomy assignments and additional details such as segmented virus information.
+This submodule of `suvtk` assigns virus taxonomy to your nucleotide sequences based on the <a href="https://static-content.springer.com/esm/art%3A10.1038%2Fs41587-023-01844-2/MediaObjects/41587_2023_1844_MOESM1_ESM.pdf" target="_blank">ICTV guidelines</a> (ie. classification to the lowest fitting taxon appended with "sp.", eg. “Coronavirus sp.”). It uses an <a href="https://github.com/apcamargo/ictv-mmseqs2-protein-database" target="_blank">MMseqs2 database</a> with all proteins of ICTV ratified viruses downloaded from NCBI. After `mmseqs2` alignment, the taxonomy is then decided with a lowest common ancestor approach (LCA) based on the best hits as implemented with `mmseqs easy-taxonomy`.
+
+After determining the taxonomy, this subcommand also gives you information on any possible segmented viruses in your data. This could be interesting to look more into your data and try to group segments of the same virus together. For this, the [`suvtk co-occurrence`](co-occurrence.md) module can be helpful.
+
+Finally, `suvtk taxonomy` also outputs the mandatory MIUVIG parameters predicted genome type (segmented, non-segmented, uncharacterized) and genome structure (ssDNA, dsDNA, ssRNA(+), etc.) based on the predicted taxonomy in the `miuvig_taxonomy.tsv` file. This file is a required input of `suvtk comments` but can be generated yourself following subsequent tsv file format:
+| contig | pred_genome_type | pred_genome_struc |
+|--------|----------|-------|
+| <sequence_name_as_in_fasta> | <value> | <value> |
+
+```{admonition} Allowed MIUVIG values
+:class: info
+
+::::{grid} 
+:gutter: 2
+
+:::{grid-item-card} 
+:columns: 12 12 4 4 
+genome_pred_type 
+^^^ 
+segmented | non-segmented | undetermined 
+:::
+
+:::{grid-item-card} 
+:columns: 12 12 4 4 
+genome_pred_type 
+^^^ 
+DNA | dsDNA | ssDNA | RNA | dsRNA | ssRNA | ssRNA (+) | ssRNA (-) | mixed | uncharacterized 
+:::
+
+::::
+
+```
+
+```{admonition} Info
+:class: info
+You can provide your own taxonomy to the other submodules (eg. `suvtk features`, `suvtk comments`), if it is a tsv file in following format:
+| contig | taxonomy | taxid |
+|--------|----------|-------:|
+| <sequence_name_as_in_fasta> | <lowest fitting taxon> sp. | <taxid> |
+|...|...|...|
+```
 
 ## Required Input
 - **-i, -\\\-input**: Input FASTA file with sequences. *(Required)*
