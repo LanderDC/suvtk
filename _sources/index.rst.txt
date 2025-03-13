@@ -21,11 +21,15 @@ To install the package, run:
    mamba activate suvtk
    pip install .
 
-Idea
-----
+Background
+----------
 
 The idea behind this package is to provide a toolkit to more easily submit viral sequences to Genbank. The package is designed to be user-friendly and provide a simpler experience by combining multiple resources. 
 For example, ``suvtk`` follows |MIUVIG| and |ICTV_guidelines| for the submission of uncultivated viral genomes and provides the ``suvtk table2asn`` subcommand as a wrapper around NCBI's |table2asn| that only uses the necessary functionality for UViG submissions.
+
+.. image:: _static/suvtk_diagram.svg
+   :alt: suvtk workflow diagram
+   :align: center
 
 Submission
 ----------
