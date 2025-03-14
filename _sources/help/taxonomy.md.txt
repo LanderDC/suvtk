@@ -23,7 +23,7 @@ segmented | non-segmented | undetermined
 :::
 
 :::{grid-item-card} 
-genome_pred_type 
+genome_pred_struc
 ^^^ 
 DNA | dsDNA | ssDNA | RNA | dsRNA | ssRNA | ssRNA (+) | ssRNA (-) | mixed | uncharacterized 
 :::
