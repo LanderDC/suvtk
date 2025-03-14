@@ -37,7 +37,7 @@ This command creates an <a href="https://www.ncbi.nlm.nih.gov/WebSub/html/help/f
 
 ```{admonition} Reorientation of sequences
 :class: tip
-Additionally, if a taxonomy file is provided, `suvtk features` will reorient the input nucleotide sequences based on their taxonomy. This means that ssRNA(-) virus sequences (ie. part of the *Negarnaviricota*) will get a negative orientation (3' &rarr; 5') and all other sequences, including unclassified sequences, a positive orientation (5' &rarr; 3').
+Additionally, if a taxonomy file is provided, `suvtk features` will reorient the input nucleotide sequences based on their taxonomy. This means that ssRNA(-) virus sequences (ie. part of the *Negarnaviricota*) will get a negative orientation (3' &rarr; 5') and all other sequences, including unclassified sequences, a positive orientation (5' &rarr; 3'). This reorientation is based on the strand on which the majority of ORFs are found by `pyrodigal`.
 ```
 
 ## Required Input
