@@ -4,7 +4,7 @@
 This command generates a <a href="https://www.ncbi.nlm.nih.gov/genbank/structuredcomment/" target="_blank">structured comment</a> file based on MIUVIG standards. It merges taxonomy, features, MIUVIG, and assembly data into a unified output file that will add structured comments to the GenBank submission.
 
 ### MIUVIG tsv
-The MIUVIG tsv file should contain global parameters of your study that apply to all your sequences. It should be a tsv file with two columns: *MIUVIG_parameter* and *value*. The following parameters are mandatory and their allowed values can be found [here](https://static-content.springer.com/esm/art%3A10.1038%2Fnbt.4306/MediaObjects/41587_2019_BFnbt4306_MOESM36_ESM.xlsx).
+The MIUVIG tsv file should contain global parameters of your study that apply to all your sequences. It should be a tsv file with two columns: *MIUVIG_parameter* and *value*. Allowed parameters and their values, including which parameters are mandatory, can be found [here](https://static-content.springer.com/esm/art%3A10.1038%2Fnbt.4306/MediaObjects/41587_2019_BFnbt4306_MOESM36_ESM.xlsx).
 
 ```{dropdown} Example
 :open:
