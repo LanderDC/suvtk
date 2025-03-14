@@ -255,7 +255,49 @@
 <h1>features<a class="headerlink" href="#features" title="Permalink to this heading">¶</a></h1>
 <section id="overview">
 <h2>Overview<a class="headerlink" href="#overview" title="Permalink to this heading">¶</a></h2>
-<p>This command creates feature tables for sequences by predicting open reading frames (ORFs) from an input FASTA file. It also generates protein translations and, if necessary, reorients sequences based on taxonomy.</p>
+<p>This command creates an <a href="https://www.ncbi.nlm.nih.gov/WebSub/html/help/feature-table.html" target="_blank">NCBI feature table</a> by predicting open reading frames (ORFs) from an input FASTA file with <a href="https://github.com/althonos/pyrodigal" target="_blank"><code class="docutils literal notranslate"><span class="pre">pyrodigal</span></code></a>. Subsequently, the ORFs get annotated by aligning the protein translations to the <a href="https://bfvd.steineggerlab.workers.dev/" target="_blank">Big Fantastic Virus Database</a> with <code class="docutils literal notranslate"><span class="pre">mmseqs2</span></code> and selecting the protein name of the top hit.</p>
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3" open="open">
+<summary class="sd-summary-title sd-card-header">
+Example<div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>&gt;Feature Seq1
+73	3537	CDS
+			product	RNA-directed RNA polymerase 
+			inference	ab initio prediction:pyrodigal-gv:0.3.2
+			inference	alignment:MMseqs2:17.b804f:UniProtKB:A5Y5A1,BFVD:A5Y5A1_unrelaxed_rank_001_alphafold2_ptm_model_3_seed_000
+&gt;Feature Seq2
+92	1645	CDS
+			product	Maturation protein
+			inference	ab initio prediction:pyrodigal-gv:0.3.2
+			inference	alignment:MMseqs2:17.b804f:UniProtKB:A0A8K1XYM6,BFVD:A0A8K1XYM6_unrelaxed_rank_001_alphafold2_ptm_model_3_seed_000
+1664	2035	CDS
+			product	hypothetical protein
+			inference	ab initio prediction:pyrodigal-gv:0.3.2
+2037	3962	CDS
+			product	RNA-directed RNA polymerase 
+			inference	ab initio prediction:pyrodigal-gv:0.3.2
+			inference	alignment:MMseqs2:17.b804f:UniProtKB:A0A8S5L3Y1,BFVD:A0A8S5L3Y1_unrelaxed_rank_001_alphafold2_ptm_model_2_seed_000
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<ol class="arabic simple">
+<li><p class="sd-card-text">When there is no hit for the predicted ORF, the ORF will be annotated with ‘hypothetical protein’.</p></li>
+<li><p class="sd-card-text">The /inference <a href="https://www.ncbi.nlm.nih.gov/genbank/evidence/" target="_blank">evidence qualifier</a> is further used to add support for the annotation in the feature table:</p></li>
+</ol>
+<ul class="simple">
+<li><p class="sd-card-text">ORF prediction: <code class="docutils literal notranslate"><span class="pre">ab</span> <span class="pre">initio</span> <span class="pre">prediction:&lt;prediction_software&gt;:&lt;version&gt;</span></code></p></li>
+<li><p class="sd-card-text">ORF annotation: <code class="docutils literal notranslate"><span class="pre">alignment:&lt;alignment_software&gt;:&lt;version&gt;[:&lt;reference_db1&gt;:&lt;reference_accession1&gt;,&lt;reference_db2&gt;:&lt;reference_accession2&gt;,...]</span></code></p></li>
+</ul>
+</div>
+</div>
+</details><div class="tip admonition">
+<p class="admonition-title">Reorientation of sequences</p>
+<p>Additionally, if a taxonomy file is provided, <code class="docutils literal notranslate"><span class="pre">suvtk</span> <span class="pre">features</span></code> will reorient the input nucleotide sequences based on their taxonomy. This means that ssRNA(-) virus sequences (ie. part of the <em>Negarnaviricota</em>) will get a negative orientation (3’ → 5’) and all other sequences, including unclassified sequences, a positive orientation (5’ → 3’).</p>
+</div>
 </section>
 <section id="required-input">
 <h2>Required Input<a class="headerlink" href="#required-input" title="Permalink to this heading">¶</a></h2>
@@ -274,6 +316,7 @@
 <li><p><strong>--separate-files</strong>: Flag to save feature tables into separate files rather than one combined file.</p></li>
 <li><p><strong>-t, --threads</strong>: Number of threads to use (default: 4).</p></li>
 </ul>
+<div style="margin-top: 2em;"></div>
 <div class="warning admonition">
 <p class="admonition-title">Warning</p>
 <p>For now only coding complete sequences (&gt;50% coding capacity) will have predicted features and be present in the feature table (.tbl).</p>
@@ -292,7 +335,7 @@
 </section>
 <section id="example-usage">
 <h2>Example Usage<a class="headerlink" href="#example-usage" title="Permalink to this heading">¶</a></h2>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>suvtk<span class="w"> </span>features<span class="w"> </span>-i<span class="w"> </span>sequences.fasta<span class="w"> </span>-o<span class="w"> </span>output_dir<span class="w"> </span>-d<span class="w"> </span>/path/to/database<span class="w"> </span>-g<span class="w"> </span><span class="m">1</span><span class="w"> </span>-<span class="se">\\\-</span>coding-complete<span class="w"> </span>-<span class="se">\\\-</span>taxonomy<span class="w"> </span>taxonomy.tsv<span class="w"> </span>-<span class="se">\\\-</span>separate-files<span class="w"> </span>-t<span class="w"> </span><span class="m">4</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>suvtk<span class="w"> </span>features<span class="w"> </span>-i<span class="w"> </span>sequences.fasta<span class="w"> </span>-o<span class="w"> </span>output_dir<span class="w"> </span>-d<span class="w"> </span>/path/to/database<span class="w"> </span>-g<span class="w"> </span><span class="m">1</span><span class="w"> </span>--coding-complete<span class="w"> </span>--taxonomy<span class="w"> </span>taxonomy.tsv<span class="w"> </span>-t<span class="w"> </span><span class="m">4</span>
 </pre></div>
 </div>
 </section>

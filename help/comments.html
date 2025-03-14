@@ -259,78 +259,88 @@
 <section id="miuvig-tsv">
 <h3>MIUVIG tsv<a class="headerlink" href="#miuvig-tsv" title="Permalink to this heading">¶</a></h3>
 <p>The MIUVIG tsv file should contain global parameters of your study that apply to all your sequences. It should be a tsv file with two columns: <em>MIUVIG_parameter</em> and <em>value</em>. The following parameters are mandatory and their allowed values can be found <a class="reference external" href="https://static-content.springer.com/esm/art%3A10.1038%2Fnbt.4306/MediaObjects/41587_2019_BFnbt4306_MOESM36_ESM.xlsx">here</a>.</p>
-<div class="admonition-example admonition">
-<p class="admonition-title">Example</p>
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3" open="open">
+<summary class="sd-summary-title sd-card-header">
+Example<div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
 <div class="table-wrapper colwidths-auto docutils container">
 <table class="docutils align-default">
 <thead>
-<tr class="row-odd"><th class="head"><p>MIUVIG_parameter</p></th>
-<th class="head"><p>value</p></th>
+<tr class="row-odd"><th class="head"><p class="sd-card-text">MIUVIG_parameter</p></th>
+<th class="head"><p class="sd-card-text">value</p></th>
 </tr>
 </thead>
 <tbody>
-<tr class="row-even"><td><p>source_uvig</p></td>
-<td><p>viral fraction metagenome (virome)</p></td>
+<tr class="row-even"><td><p class="sd-card-text">source_uvig</p></td>
+<td><p class="sd-card-text">viral fraction metagenome (virome)</p></td>
 </tr>
-<tr class="row-odd"><td><p>assembly_software</p></td>
-<td><p>metaSPAdes;v3.15.3;kmer set 21,33,55,77, default otherwise</p></td>
+<tr class="row-odd"><td><p class="sd-card-text">assembly_software</p></td>
+<td><p class="sd-card-text">metaSPAdes;v3.15.3;kmer set 21,33,55,77, default otherwise</p></td>
 </tr>
-<tr class="row-even"><td><p>vir_ident_software</p></td>
-<td><p>genomad;1.7.0;score-calibration, default otherwise</p></td>
+<tr class="row-even"><td><p class="sd-card-text">vir_ident_software</p></td>
+<td><p class="sd-card-text">genomad;1.7.0;score-calibration, default otherwise</p></td>
 </tr>
-<tr class="row-odd"><td><p>detec_type</p></td>
-<td><p>independent sequence (UViG)</p></td>
+<tr class="row-odd"><td><p class="sd-card-text">detec_type</p></td>
+<td><p class="sd-card-text">independent sequence (UViG)</p></td>
 </tr>
-<tr class="row-even"><td><p>assembly_qual</p></td>
-<td><p>Genome fragment(s)</p></td>
+<tr class="row-even"><td><p class="sd-card-text">assembly_qual</p></td>
+<td><p class="sd-card-text">Genome fragment(s)</p></td>
 </tr>
-<tr class="row-odd"><td><p>number_contig</p></td>
-<td><p>1</p></td>
+<tr class="row-odd"><td><p class="sd-card-text">number_contig</p></td>
+<td><p class="sd-card-text">1</p></td>
 </tr>
-<tr class="row-even"><td><p>size_frac</p></td>
-<td><p>0-0.8 um</p></td>
+<tr class="row-even"><td><p class="sd-card-text">size_frac</p></td>
+<td><p class="sd-card-text">0-0.8 um</p></td>
 </tr>
-<tr class="row-odd"><td><p>virus_enrich_appr</p></td>
-<td><p>filtration + centrifugation + DNAse + RNAse</p></td>
+<tr class="row-odd"><td><p class="sd-card-text">virus_enrich_appr</p></td>
+<td><p class="sd-card-text">filtration + centrifugation + DNAse + RNAse</p></td>
 </tr>
-<tr class="row-even"><td><p>nucl_acid_ext</p></td>
-<td><p>10.1038/srep16532</p></td>
+<tr class="row-even"><td><p class="sd-card-text">nucl_acid_ext</p></td>
+<td><p class="sd-card-text">10.1038/srep16532</p></td>
 </tr>
-<tr class="row-odd"><td><p>wga_amp_appr</p></td>
-<td><p>mda based</p></td>
+<tr class="row-odd"><td><p class="sd-card-text">wga_amp_appr</p></td>
+<td><p class="sd-card-text">mda based</p></td>
 </tr>
 </tbody>
 </table>
 </div>
 </div>
-</section>
+</details></section>
 <section id="assembly-comment">
 <h3>Assembly comment<a class="headerlink" href="#assembly-comment" title="Permalink to this heading">¶</a></h3>
 <p>The assembly comment file is essentially a tsv file that contains the necessary information on the Assembly structured comment. It should again contain two columns: <em>Assembly_parameter</em> and <em>value</em>. There are three possible <em>Assembly_parameter</em> values: <em>StructuredCommentPrefix</em> which should always be <em>Assembly-Data</em>, <em>Assembly Method</em> which contains the assembly software you used and <em>Sequencing Technology</em> which should include the sequencing platform used to generate your data.</p>
-<div class="admonition-example admonition">
-<p class="admonition-title">Example</p>
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3" open="open">
+<summary class="sd-summary-title sd-card-header">
+Example<div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
 <div class="table-wrapper colwidths-auto docutils container">
 <table class="docutils align-default">
 <thead>
-<tr class="row-odd"><th class="head"><p>Assembly_parameter</p></th>
-<th class="head"><p>value</p></th>
+<tr class="row-odd"><th class="head"><p class="sd-card-text">Assembly_parameter</p></th>
+<th class="head"><p class="sd-card-text">value</p></th>
 </tr>
 </thead>
 <tbody>
-<tr class="row-even"><td><p>StructuredCommentPrefix</p></td>
-<td><p>Assembly-Data</p></td>
+<tr class="row-even"><td><p class="sd-card-text">StructuredCommentPrefix</p></td>
+<td><p class="sd-card-text">Assembly-Data</p></td>
 </tr>
-<tr class="row-odd"><td><p>Assembly Method</p></td>
-<td><p>metaSPAdes v. 3.15.3</p></td>
+<tr class="row-odd"><td><p class="sd-card-text">Assembly Method</p></td>
+<td><p class="sd-card-text">metaSPAdes v. 3.15.3</p></td>
 </tr>
-<tr class="row-even"><td><p>Sequencing Technology</p></td>
-<td><p>Illumina NovaSeq 6000</p></td>
+<tr class="row-even"><td><p class="sd-card-text">Sequencing Technology</p></td>
+<td><p class="sd-card-text">Illumina NovaSeq 6000</p></td>
 </tr>
 </tbody>
 </table>
 </div>
 </div>
-</section>
+</details></section>
 </section>
 <section id="required-input">
 <h2>Required Input<a class="headerlink" href="#required-input" title="Permalink to this heading">¶</a></h2>

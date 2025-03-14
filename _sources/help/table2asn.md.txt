@@ -20,11 +20,12 @@ This file contains the metadata of your sequences as required by <a href="https:
 - *Metagenome_source* (origin of sample, eg. human gut metagenome, soil metagenome, etc.)
 
 The order of the columns does not matter. <br>
-```{admonition} Example
+```{dropdown} Example
+:open:
 | Sequence_ID                              | Organism              | Isolate          | Collection_date | geo_loc_name | Metagenome_source    | Lat_Lon             | Biosample    | SRA         | Segment | Metagenomic |
 |------------------------------------------|-----------------------|------------------|-----------------:|--------------|----------------------|---------------------|--------------|-------------|---------:|-------------|
 | Seq1 | Riboviria&nbsp;sp.         | Sample1_bazTh | Jul-21          | Cameroon     | blackfly metagenome  | 4.352433&nbsp;N&nbsp;11.63255&nbsp;E | SAMN40472416 | SRR28387210 |         | TRUE        |
-| Seq2 | Victorivirus&nbsp;sp.     | Sample2_8xzwR | Jul-21          | Cameroon     | blackfly metagenome  | 4.352433&nbsp;N&nbsp;11.63255&nbsp;E | SAMN40472429 | SRR28387198 |         | TRUE        |
+| Seq2 | Leviviricetes&nbsp;sp.     | Sample2_8xzwR | Jul-21          | Cameroon     | blackfly metagenome  | 4.352433&nbsp;N&nbsp;11.63255&nbsp;E | SAMN40472429 | SRR28387198 |         | TRUE        |
 | Seq3 | unclassified&nbsp;viruses  | Sample3_xliVj | Jul-21          | Cameroon     | blackfly metagenome  | 4.352433&nbsp;N&nbsp;11.63255&nbsp;E | SAMN40472417 | SRR28387209 |         | TRUE        |
 | Seq4 | Chrysoviridae&nbsp;sp.     | Sample4_qC6AD | Jul-21          | Cameroon     | blackfly metagenome  | 4.352433&nbsp;N&nbsp;11.63255&nbsp;E | SAMN40472428 | SRR28387197 |    1    | TRUE        |
 | Seq5 | Chrysoviridae&nbsp;sp.     | Sample4_qC6AD | Jul-21          | Cameroon     | blackfly metagenome  | 4.352433&nbsp;N&nbsp;11.63255&nbsp;E | SAMN40472428 | SRR28387197 |    2    | TRUE        |
