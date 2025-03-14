@@ -11,20 +11,18 @@ Finally, `suvtk taxonomy` also outputs the mandatory MIUVIG parameters predicted
 | <sequence_name_as_in_fasta> | <allowed_value> | <allowed_value> |
 
 ```{admonition} Allowed MIUVIG values
-:class: info
+:class: note
 
 ::::{grid} 
 :gutter: 2
 
 :::{grid-item-card} 
-:columns: 12 12 4 4 
 genome_pred_type 
 ^^^ 
 segmented | non-segmented | undetermined 
 :::
 
 :::{grid-item-card} 
-:columns: 12 12 4 4 
 genome_pred_type 
 ^^^ 
 DNA | dsDNA | ssDNA | RNA | dsRNA | ssRNA | ssRNA (+) | ssRNA (-) | mixed | uncharacterized 
@@ -34,12 +32,13 @@ DNA | dsDNA | ssDNA | RNA | dsRNA | ssRNA | ssRNA (+) | ssRNA (-) | mixed | unch
 
 ```
 
-```{admonition} Info
-:class: info
+```{admonition} Adding your own taxonomy
+:class: tip
+
 You can provide your own taxonomy to the other submodules (eg. `suvtk features`, `suvtk comments`), if it is a tsv file in following format:
 | contig | taxonomy | taxid |
 |--------|----------|-------:|
-| <sequence_name_as_in_fasta> | <lowest fitting taxon> sp. | <taxid> |
+| \<sequence_name_as_in_fasta\> | \<lowest fitting taxon\> sp. | \<taxid\> |
 |...|...|...|
 ```
 
