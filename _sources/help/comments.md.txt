@@ -6,7 +6,8 @@ This command generates a <a href="https://www.ncbi.nlm.nih.gov/genbank/structure
 ### MIUVIG tsv
 The MIUVIG tsv file should contain global parameters of your study that apply to all your sequences. It should be a tsv file with two columns: *MIUVIG_parameter* and *value*. The following parameters are mandatory and their allowed values can be found [here](https://static-content.springer.com/esm/art%3A10.1038%2Fnbt.4306/MediaObjects/41587_2019_BFnbt4306_MOESM36_ESM.xlsx).
 
-Example:
+```{admonition} Example
+
 | MIUVIG_parameter     | value                                                                 |
 |----------------------|-----------------------------------------------------------------------|
 | source_uvig          | viral fraction metagenome (virome)                                    |
@@ -19,17 +20,19 @@ Example:
 | virus_enrich_appr    | filtration + centrifugation + DNAse + RNAse                           |
 | nucl_acid_ext        | 10.1038/srep16532                                                     |
 | wga_amp_appr         | mda based                                                             |
-
+```
 
 ### Assembly comment
 The assembly comment file is essentially a tsv file that contains the necessary information on the Assembly structured comment. It should again contain two columns: *Assembly_parameter* and *value*. There are three possible *Assembly_parameter* values: *StructuredCommentPrefix* which should always be *Assembly-Data*, *Assembly Method* which contains the assembly software you used and *Sequencing Technology* which should include the sequencing platform used to generate your data.
 
-Example:
+```{admonition} Example
+
 | Assembly_parameter       | value                    |
 |--------------------------|--------------------------|
 | StructuredCommentPrefix  | Assembly-Data            |
 | Assembly Method          | metaSPAdes v. 3.15.3     |
 | Sequencing Technology    | Illumina NovaSeq 6000    |
+```
 
 ## Required Input
 - **-t, -\\\-taxonomy**: MIUVIG TSV file produced by the `taxonomy` subcommand. *(Required)*

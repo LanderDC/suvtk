@@ -20,18 +20,22 @@ This file contains the metadata of your sequences as required by <a href="https:
 - *Metagenome_source* (origin of sample, eg. human gut metagenome, soil metagenome, etc.)
 
 The order of the columns does not matter. <br>
-Example:
+```{admonition} Example
 | Sequence_ID                              | Organism              | Isolate          | Collection_date | geo_loc_name | Metagenome_source    | Lat_Lon             | Biosample    | SRA         | Segment | Metagenomic |
 |------------------------------------------|-----------------------|------------------|-----------------:|--------------|----------------------|---------------------|--------------|-------------|---------:|-------------|
-| NODE_A73_length_3582_cov_43.001141_BlackFly36 | Riboviria&nbsp;sp.         | BlackFly36_bazTh | Jul-21          | Cameroon     | blackfly metagenome  | 4.352433&nbsp;N&nbsp;11.63255&nbsp;E | SAMN40472428 | SRR28387197 |         | TRUE        |
-| NODE_A75_length_3505_cov_41.815636_BlackFly36 | Chrysoviridae&nbsp;sp.     | BlackFly36_8xzwR | Jul-21          | Cameroon     | blackfly metagenome  | 4.352433&nbsp;N&nbsp;11.63255&nbsp;E | SAMN40472428 | SRR28387197 |         | TRUE        |
-| NODE_A83_length_3264_cov_59.004079_BlackFly36 | unclassified&nbsp;viruses  | BlackFly36_xliVj | Jul-21          | Cameroon     | blackfly metagenome  | 4.352433&nbsp;N&nbsp;11.63255&nbsp;E | SAMN40472428 | SRR28387197 |         | TRUE        |
-| NODE_A87_length_3161_cov_62.407912_BlackFly36 | Chrysoviridae&nbsp;sp.     | BlackFly36_qC6AD | Jul-21          | Cameroon     | blackfly metagenome  | 4.352433&nbsp;N&nbsp;11.63255&nbsp;E | SAMN40472428 | SRR28387197 |    1    | TRUE        |
-| NODE_A94_length_3096_cov_54.536933_BlackFly36 | Chrysoviridae&nbsp;sp.     | BlackFly36_M1XGF | Jul-21          | Cameroon     | blackfly metagenome  | 4.352433&nbsp;N&nbsp;11.63255&nbsp;E | SAMN40472428 | SRR28387197 |    2    | TRUE        |
-| NODE_A96_length_3065_cov_54.700469_BlackFly36 | Chrysoviridae&nbsp;sp.     | BlackFly36_M0xJc | Jul-21          | Cameroon     | blackfly metagenome  | 4.352433&nbsp;N&nbsp;11.63255&nbsp;E | SAMN40472428 | SRR28387197 |    3    | TRUE        |
-| NODE_A102_length_2949_cov_37.451950_BlackFly36 | Chrysoviridae&nbsp;sp.     | BlackFly36_T0QlA | Jul-21          | Cameroon     | blackfly metagenome  | 4.352433&nbsp;N&nbsp;11.63255&nbsp;E | SAMN40472428 | SRR28387197 |    4    | TRUE        |
-| NODE_A254_length_1010_cov_2.266881_BlackFly24 | Negarnaviricota&nbsp;sp.   | BlackFly24_IowNh | Jul-21          | Cameroon     | blackfly metagenome  | 4.352433&nbsp;N&nbsp;11.63255&nbsp;E | SAMN40472416 | SRR28387210 |         | TRUE        |
-| NODE_A8_length_3774_cov_333.669191_BlackFly25 | Riboviria&nbsp;sp.         | BlackFly25_o7K62 | Jul-21          | Cameroon     | blackfly metagenome  | 4.352433&nbsp;N&nbsp;11.63255&nbsp;E | SAMN40472417 | SRR28387209 |         | TRUE        |
+| Seq1 | Riboviria&nbsp;sp.         | Sample1_bazTh | Jul-21          | Cameroon     | blackfly metagenome  | 4.352433&nbsp;N&nbsp;11.63255&nbsp;E | SAMN40472416 | SRR28387210 |         | TRUE        |
+| Seq2 | Victorivirus&nbsp;sp.     | Sample2_8xzwR | Jul-21          | Cameroon     | blackfly metagenome  | 4.352433&nbsp;N&nbsp;11.63255&nbsp;E | SAMN40472429 | SRR28387198 |         | TRUE        |
+| Seq3 | unclassified&nbsp;viruses  | Sample3_xliVj | Jul-21          | Cameroon     | blackfly metagenome  | 4.352433&nbsp;N&nbsp;11.63255&nbsp;E | SAMN40472417 | SRR28387209 |         | TRUE        |
+| Seq4 | Chrysoviridae&nbsp;sp.     | Sample4_qC6AD | Jul-21          | Cameroon     | blackfly metagenome  | 4.352433&nbsp;N&nbsp;11.63255&nbsp;E | SAMN40472428 | SRR28387197 |    1    | TRUE        |
+| Seq5 | Chrysoviridae&nbsp;sp.     | Sample4_qC6AD | Jul-21          | Cameroon     | blackfly metagenome  | 4.352433&nbsp;N&nbsp;11.63255&nbsp;E | SAMN40472428 | SRR28387197 |    2    | TRUE        |
+| Seq6 | Chrysoviridae&nbsp;sp.     | Sample4_qC6AD | Jul-21          | Cameroon     | blackfly metagenome  | 4.352433&nbsp;N&nbsp;11.63255&nbsp;E | SAMN40472428 | SRR28387197 |    3    | TRUE        |
+| Seq7 | Chrysoviridae&nbsp;sp.     | Sample4_qC6AD | Jul-21          | Cameroon     | blackfly metagenome  | 4.352433&nbsp;N&nbsp;11.63255&nbsp;E | SAMN40472428 | SRR28387197 |    4    | TRUE        |
+| Seq8 | Negarnaviricota&nbsp;sp.   | Sample1_IowNh | Jul-21          | Cameroon     | blackfly metagenome  | 4.352433&nbsp;N&nbsp;11.63255&nbsp;E | SAMN40472416 | SRR28387210 |         | TRUE        |
+| Seq9 | Riboviria&nbsp;sp.         | Sample3_o7K62 | Jul-21          | Cameroon     | blackfly metagenome  | 4.352433&nbsp;N&nbsp;11.63255&nbsp;E | SAMN40472417 | SRR28387209 |         | TRUE        |
+:::{note}
+Note that for the segmented virus, the **Isolate** value is the same for all segments.
+:::
+```
 
 ### Template file
 You can generate a template file <a href="https://submit.ncbi.nlm.nih.gov/genbank/template/submission/" target="_blank">here</a> to include sequence author information in the Genbank submission.
