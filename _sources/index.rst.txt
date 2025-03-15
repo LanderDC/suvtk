@@ -34,7 +34,7 @@ For example, ``suvtk`` follows |MIUVIG| and |ICTV_guidelines| for the submission
       :align: center
       :class: only-light
 
-   .. image:: _static/suvtk_diagram.svg
+   .. image:: _static/suvtk_diagram_dark.svg
       :alt: suvtk workflow diagram
       :align: center
       :class: only-dark
