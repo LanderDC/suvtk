@@ -1,16 +1,16 @@
 <!doctype html>
-<html class="no-js" lang="en" data-content_root="">
+<html class="no-js" lang="en" data-content_root="../">
   <head><meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
     <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
 <link rel="index" title="Index" href="../genindex.html" /><link rel="search" title="Search" href="../search.html" /><link rel="next" title="table2asn" href="table2asn.html" /><link rel="prev" title="gbk2tbl" href="gbk2tbl.html" />
 
-    <!-- Generated with Sphinx 7.1.2 and Furo 2024.08.06 -->
+    <!-- Generated with Sphinx 8.2.3 and Furo 2024.08.06 -->
         <title>comments - suvtk 0.1</title>
-      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=8f2a1f02" />
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=a746c00c" />
     <link rel="stylesheet" type="text/css" href="../_static/styles/furo.css?v=354aac6f" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
     <link rel="stylesheet" type="text/css" href="../_static/styles/furo-extensions.css?v=302659d7" />
     
     
@@ -260,20 +260,16 @@
         </div>
         <article role="main" id="furo-main-content">
           <section id="comments">
-<h1>comments<a class="headerlink" href="#comments" title="Permalink to this heading">¶</a></h1>
+<h1>comments<a class="headerlink" href="#comments" title="Link to this heading">¶</a></h1>
 <section id="overview">
-<h2>Overview<a class="headerlink" href="#overview" title="Permalink to this heading">¶</a></h2>
+<h2>Overview<a class="headerlink" href="#overview" title="Link to this heading">¶</a></h2>
 <p>This command generates a <a href="https://www.ncbi.nlm.nih.gov/genbank/structuredcomment/" target="_blank">structured comment</a> file based on MIUVIG standards. It merges taxonomy, features, MIUVIG, and assembly data into a unified output file that will add structured comments to the GenBank submission.</p>
 <section id="miuvig-taxonomy">
-<h3>MIUVIG taxonomy<a class="headerlink" href="#miuvig-taxonomy" title="Permalink to this heading">¶</a></h3>
+<h3>MIUVIG taxonomy<a class="headerlink" href="#miuvig-taxonomy" title="Link to this heading">¶</a></h3>
 <p>The <code class="docutils literal notranslate"><span class="pre">--taxonomy</span></code> file should contain info on the genome structure and type of your viral sequences. These are mandatory parameters in the MIUVIG standard and can be obtained with the <a class="reference internal" href="virus-info.html"><span class="std std-doc"><code class="docutils literal notranslate"><span class="pre">suvtk</span> <span class="pre">virus-info</span></code></span></a> if you determined your own taxonomy, or <a class="reference internal" href="taxonomy.html"><span class="std std-doc"><code class="docutils literal notranslate"><span class="pre">suvtk</span> <span class="pre">taxonomy</span></code></span></a> to get both the taxonomy and predicted genome structure and type for your sequences. These commands will output <code class="docutils literal notranslate"><span class="pre">miuvig_taxonomy.tsv</span></code> containing this info for all sequences.</p>
 <details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
 <summary class="sd-summary-title sd-card-header">
-Example<div class="sd-summary-down docutils">
-<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
-<div class="sd-summary-up docutils">
-<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
-</summary><div class="sd-summary-content sd-card-body docutils">
+<span class="sd-summary-text">Example</span><span class="sd-summary-state-marker sd-summary-chevron-right"><svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-right" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"></path></svg></span></summary><div class="sd-summary-content sd-card-body docutils">
 <div class="table-wrapper colwidths-auto docutils container">
 <table class="docutils align-default">
 <thead>
@@ -305,15 +301,11 @@ Example<div class="sd-summary-down docutils">
 </div>
 </details></section>
 <section id="miuvig-features">
-<h3>MIUVIG features<a class="headerlink" href="#miuvig-features" title="Permalink to this heading">¶</a></h3>
+<h3>MIUVIG features<a class="headerlink" href="#miuvig-features" title="Link to this heading">¶</a></h3>
 <p>The <code class="docutils literal notranslate"><span class="pre">--features</span></code> input file should contain info on the software, database and method that is used to annotate the features in your viral sequences. The <a class="reference internal" href="features.html"><span class="std std-doc"><code class="docutils literal notranslate"><span class="pre">suvtk</span> <span class="pre">features</span></code></span></a> generates <code class="docutils literal notranslate"><span class="pre">miuvig_features.tsv</span></code> containing all tool and databases with their versions and parameters used by <code class="docutils literal notranslate"><span class="pre">suvtk</span></code>.</p>
 <details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
 <summary class="sd-summary-title sd-card-header">
-Example<div class="sd-summary-down docutils">
-<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
-<div class="sd-summary-up docutils">
-<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
-</summary><div class="sd-summary-content sd-card-body docutils">
+<span class="sd-summary-text">Example</span><span class="sd-summary-state-marker sd-summary-chevron-right"><svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-right" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"></path></svg></span></summary><div class="sd-summary-content sd-card-body docutils">
 <div class="table-wrapper colwidths-auto docutils container">
 <table class="docutils align-default">
 <thead>
@@ -337,15 +329,11 @@ Example<div class="sd-summary-down docutils">
 </div>
 </details></section>
 <section id="miuvig-tsv">
-<h3>MIUVIG tsv<a class="headerlink" href="#miuvig-tsv" title="Permalink to this heading">¶</a></h3>
+<h3>MIUVIG tsv<a class="headerlink" href="#miuvig-tsv" title="Link to this heading">¶</a></h3>
 <p>The MIUVIG tsv file should contain global parameters of your study that apply to all your sequences. It should be a tsv file with two columns: <em>MIUVIG_parameter</em> and <em>value</em>. Allowed parameters and their values, including which parameters are mandatory, can be found <a class="reference external" href="https://static-content.springer.com/esm/art%3A10.1038%2Fnbt.4306/MediaObjects/41587_2019_BFnbt4306_MOESM36_ESM.xlsx">here</a> and the corresponding MIUVIG_parameter strings can be found <a href="https://genomicsstandardsconsortium.github.io/mixs/0010012/" target="_blank">here</a>.</p>
 <details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3" open="open">
 <summary class="sd-summary-title sd-card-header">
-Example<div class="sd-summary-down docutils">
-<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
-<div class="sd-summary-up docutils">
-<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
-</summary><div class="sd-summary-content sd-card-body docutils">
+<span class="sd-summary-text">Example</span><span class="sd-summary-state-marker sd-summary-chevron-right"><svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-right" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"></path></svg></span></summary><div class="sd-summary-content sd-card-body docutils">
 <div class="table-wrapper colwidths-auto docutils container">
 <table class="docutils align-default">
 <thead>
@@ -390,15 +378,11 @@ Example<div class="sd-summary-down docutils">
 </div>
 </details></section>
 <section id="assembly-comment">
-<h3>Assembly comment<a class="headerlink" href="#assembly-comment" title="Permalink to this heading">¶</a></h3>
+<h3>Assembly comment<a class="headerlink" href="#assembly-comment" title="Link to this heading">¶</a></h3>
 <p>The assembly comment file is essentially a tsv file that contains the necessary information on the Assembly structured comment. It should again contain two columns: <em>Assembly_parameter</em> and <em>value</em>. There are three possible <em>Assembly_parameter</em> values: <em>StructuredCommentPrefix</em> which should always be <em>Assembly-Data</em>, <em>Assembly Method</em> which contains the assembly software you used and <em>Sequencing Technology</em> which should include the sequencing platform used to generate your data.</p>
 <details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3" open="open">
 <summary class="sd-summary-title sd-card-header">
-Example<div class="sd-summary-down docutils">
-<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
-<div class="sd-summary-up docutils">
-<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
-</summary><div class="sd-summary-content sd-card-body docutils">
+<span class="sd-summary-text">Example</span><span class="sd-summary-state-marker sd-summary-chevron-right"><svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-right" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"></path></svg></span></summary><div class="sd-summary-content sd-card-body docutils">
 <div class="table-wrapper colwidths-auto docutils container">
 <table class="docutils align-default">
 <thead>
@@ -422,7 +406,7 @@ Example<div class="sd-summary-down docutils">
 </div>
 </details></section>
 <section id="checkv-quality-summary-tsv">
-<h3>CheckV quality_summary.tsv<a class="headerlink" href="#checkv-quality-summary-tsv" title="Permalink to this heading">¶</a></h3>
+<h3>CheckV quality_summary.tsv<a class="headerlink" href="#checkv-quality-summary-tsv" title="Link to this heading">¶</a></h3>
 <p>Providing the <code class="docutils literal notranslate"><span class="pre">quality_summary.tsv</span></code> output of <a href="https://bitbucket.org/berkeleylab/checkv/src/master/" target="_blank">CheckV</a> is optional, but will add more information in the MIUVIG structured comment. For example, the quality will be taken from CheckV’s quality estimation (High-quality or Genome-fragment) and also the completeness score will be added. Also if the sequence is a provirus (UpViG) will be taken into account. If you do not provide this file, sequences are considered to be ‘Genome fragments’ and ‘independent sequences (UViG) by default.</p>
 <div class="admonition attention">
 <p class="admonition-title">Attention</p>
@@ -431,7 +415,7 @@ Example<div class="sd-summary-down docutils">
 </section>
 </section>
 <section id="required-input">
-<h2>Required Input<a class="headerlink" href="#required-input" title="Permalink to this heading">¶</a></h2>
+<h2>Required Input<a class="headerlink" href="#required-input" title="Link to this heading">¶</a></h2>
 <ul class="simple">
 <li><p><strong>-t, --taxonomy</strong>: MIUVIG TSV file produced by the <code class="docutils literal notranslate"><span class="pre">taxonomy</span></code> subcommand. <em>(Required)</em></p></li>
 <li><p><strong>-f, --features</strong>: MIUVIG TSV file produced by the <code class="docutils literal notranslate"><span class="pre">features</span></code> subcommand. <em>(Required)</em></p></li>
@@ -441,19 +425,19 @@ Example<div class="sd-summary-down docutils">
 </ul>
 </section>
 <section id="optional-parameters">
-<h2>Optional Parameters<a class="headerlink" href="#optional-parameters" title="Permalink to this heading">¶</a></h2>
+<h2>Optional Parameters<a class="headerlink" href="#optional-parameters" title="Link to this heading">¶</a></h2>
 <ul class="simple">
 <li><p><strong>-c, --checkv</strong>: CheckV’s quality_summary.tsv file.</p></li>
 </ul>
 </section>
 <section id="output">
-<h2>Output<a class="headerlink" href="#output" title="Permalink to this heading">¶</a></h2>
+<h2>Output<a class="headerlink" href="#output" title="Link to this heading">¶</a></h2>
 <ul class="simple">
 <li><p>A structured comment file (e.g., <code class="docutils literal notranslate"><span class="pre">output.cmt</span></code>) that consolidates various data fields and meets MIUVIG standards.</p></li>
 </ul>
 </section>
 <section id="example-usage">
-<h2>Example Usage<a class="headerlink" href="#example-usage" title="Permalink to this heading">¶</a></h2>
+<h2>Example Usage<a class="headerlink" href="#example-usage" title="Link to this heading">¶</a></h2>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>suvtk<span class="w"> </span>comments<span class="w"> </span>-t<span class="w"> </span>taxonomy.tsv<span class="w"> </span>-f<span class="w"> </span>features.tsv<span class="w"> </span>-m<span class="w"> </span>miuvig.tsv<span class="w"> </span>-a<span class="w"> </span>assembly.tsv<span class="w"> </span>-o<span class="w"> </span>structured_comment
 </pre></div>
 </div>
@@ -546,12 +530,12 @@ Example<div class="sd-summary-down docutils">
       
     </aside>
   </div>
-</div><script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js?v=f485fb33"></script>
-    <script src="../_static/doctools.js?v=888ff710"></script>
-    <script src="../_static/sphinx_highlight.js?v=4825356b"></script>
+</div><script src="../_static/documentation_options.js?v=1b390748"></script>
+    <script src="../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/scripts/furo.js?v=5fa4622c"></script>
     <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
     <script src="../_static/copybutton.js?v=f281be69"></script>
-    <script src="../_static/design-tabs.js?v=36754332"></script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
     </body>
 </html>

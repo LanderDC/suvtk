@@ -3,6 +3,12 @@
 ## Overview
 This command identifies co-occurring sequences in an abundance table based on specified thresholds. It calculates correlation matrices and can output pairwise related contigs or segment-specific correlations.
 
+### Abundance table
+
+### Segment list
+
+### Length file
+
 ## Required Input
 - **-i, -\\\-input**: Abundance table file (TSV format). *(Required)*
 - **-o, -\\\-output**: Prefix for output files. *(Required)*

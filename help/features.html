@@ -1,16 +1,16 @@
 <!doctype html>
-<html class="no-js" lang="en" data-content_root="">
+<html class="no-js" lang="en" data-content_root="../">
   <head><meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
     <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
 <link rel="index" title="Index" href="../genindex.html" /><link rel="search" title="Search" href="../search.html" /><link rel="next" title="virus-info" href="virus-info.html" /><link rel="prev" title="taxonomy" href="taxonomy.html" />
 
-    <!-- Generated with Sphinx 7.1.2 and Furo 2024.08.06 -->
+    <!-- Generated with Sphinx 8.2.3 and Furo 2024.08.06 -->
         <title>features - suvtk 0.1</title>
-      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=8f2a1f02" />
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=a746c00c" />
     <link rel="stylesheet" type="text/css" href="../_static/styles/furo.css?v=354aac6f" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
     <link rel="stylesheet" type="text/css" href="../_static/styles/furo-extensions.css?v=302659d7" />
     
     
@@ -260,17 +260,13 @@
         </div>
         <article role="main" id="furo-main-content">
           <section id="features">
-<h1>features<a class="headerlink" href="#features" title="Permalink to this heading">¶</a></h1>
+<h1>features<a class="headerlink" href="#features" title="Link to this heading">¶</a></h1>
 <section id="overview">
-<h2>Overview<a class="headerlink" href="#overview" title="Permalink to this heading">¶</a></h2>
+<h2>Overview<a class="headerlink" href="#overview" title="Link to this heading">¶</a></h2>
 <p>This command creates an <a href="https://www.ncbi.nlm.nih.gov/WebSub/html/help/feature-table.html" target="_blank">NCBI feature table</a> by predicting open reading frames (ORFs) from an input FASTA file with <a href="https://github.com/althonos/pyrodigal" target="_blank"><code class="docutils literal notranslate"><span class="pre">pyrodigal</span></code></a>. Subsequently, the ORFs get annotated by aligning the protein translations to the <a href="https://bfvd.steineggerlab.workers.dev/" target="_blank">Big Fantastic Virus Database</a> with <code class="docutils literal notranslate"><span class="pre">mmseqs2</span></code> and selecting the protein name of the top hit.</p>
 <details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3" open="open">
 <summary class="sd-summary-title sd-card-header">
-Example<div class="sd-summary-down docutils">
-<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
-<div class="sd-summary-up docutils">
-<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
-</summary><div class="sd-summary-content sd-card-body docutils">
+<span class="sd-summary-text">Example</span><span class="sd-summary-state-marker sd-summary-chevron-right"><svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-right" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"></path></svg></span></summary><div class="sd-summary-content sd-card-body docutils">
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>&gt;Feature Seq1
 73	3537	CDS
 			product	RNA-directed RNA polymerase 
@@ -308,7 +304,7 @@ Example<div class="sd-summary-down docutils">
 </div>
 </section>
 <section id="required-input">
-<h2>Required Input<a class="headerlink" href="#required-input" title="Permalink to this heading">¶</a></h2>
+<h2>Required Input<a class="headerlink" href="#required-input" title="Link to this heading">¶</a></h2>
 <ul class="simple">
 <li><p><strong>-i, --input</strong>: Input FASTA file with sequences. <em>(Required)</em></p></li>
 <li><p><strong>-o, --output</strong>: Output directory where the results will be saved. <em>(Required)</em></p></li>
@@ -316,7 +312,7 @@ Example<div class="sd-summary-down docutils">
 </ul>
 </section>
 <section id="optional-parameters">
-<h2>Optional Parameters<a class="headerlink" href="#optional-parameters" title="Permalink to this heading">¶</a></h2>
+<h2>Optional Parameters<a class="headerlink" href="#optional-parameters" title="Link to this heading">¶</a></h2>
 <ul class="simple">
 <li><p><strong>-g, --translation-table</strong>: Translation table (default: 1). Valid codes: 1–6, 9–16, 21–31.</p></li>
 <li><p><strong>--coding-complete</strong>: Flag to keep only genomes with &gt;50% coding capacity.</p></li>
@@ -331,7 +327,7 @@ Example<div class="sd-summary-down docutils">
 </div>
 </section>
 <section id="output">
-<h2>Output<a class="headerlink" href="#output" title="Permalink to this heading">¶</a></h2>
+<h2>Output<a class="headerlink" href="#output" title="Link to this heading">¶</a></h2>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">proteins.faa</span></code>: Protein sequences in FASTA format.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">miuvig_features.tsv</span></code>: MIUVIG-related features details (ie. prediction tool, reference database and search method).</p></li>
@@ -342,7 +338,7 @@ Example<div class="sd-summary-down docutils">
 </ul>
 </section>
 <section id="example-usage">
-<h2>Example Usage<a class="headerlink" href="#example-usage" title="Permalink to this heading">¶</a></h2>
+<h2>Example Usage<a class="headerlink" href="#example-usage" title="Link to this heading">¶</a></h2>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>suvtk<span class="w"> </span>features<span class="w"> </span>-i<span class="w"> </span>sequences.fasta<span class="w"> </span>-o<span class="w"> </span>output_dir<span class="w"> </span>-d<span class="w"> </span>/path/to/database<span class="w"> </span>-g<span class="w"> </span><span class="m">1</span><span class="w"> </span>--coding-complete<span class="w"> </span>--taxonomy<span class="w"> </span>taxonomy.tsv<span class="w"> </span>-t<span class="w"> </span><span class="m">4</span>
 </pre></div>
 </div>
@@ -428,12 +424,12 @@ Example<div class="sd-summary-down docutils">
       
     </aside>
   </div>
-</div><script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js?v=f485fb33"></script>
-    <script src="../_static/doctools.js?v=888ff710"></script>
-    <script src="../_static/sphinx_highlight.js?v=4825356b"></script>
+</div><script src="../_static/documentation_options.js?v=1b390748"></script>
+    <script src="../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/scripts/furo.js?v=5fa4622c"></script>
     <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
     <script src="../_static/copybutton.js?v=f281be69"></script>
-    <script src="../_static/design-tabs.js?v=36754332"></script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
     </body>
 </html>

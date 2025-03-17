@@ -1,16 +1,16 @@
 <!doctype html>
-<html class="no-js" lang="en" data-content_root="">
+<html class="no-js" lang="en" data-content_root="../">
   <head><meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
     <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
 <link rel="index" title="Index" href="../genindex.html" /><link rel="search" title="Search" href="../search.html" /><link rel="next" title="suvtk" href="../source/modules.html" /><link rel="prev" title="comments" href="comments.html" />
 
-    <!-- Generated with Sphinx 7.1.2 and Furo 2024.08.06 -->
+    <!-- Generated with Sphinx 8.2.3 and Furo 2024.08.06 -->
         <title>table2asn - suvtk 0.1</title>
-      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=8f2a1f02" />
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=a746c00c" />
     <link rel="stylesheet" type="text/css" href="../_static/styles/furo.css?v=354aac6f" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
     <link rel="stylesheet" type="text/css" href="../_static/styles/furo-extensions.css?v=302659d7" />
     
     
@@ -260,16 +260,16 @@
         </div>
         <article role="main" id="furo-main-content">
           <section id="table2asn">
-<h1>table2asn<a class="headerlink" href="#table2asn" title="Permalink to this heading">¶</a></h1>
+<h1>table2asn<a class="headerlink" href="#table2asn" title="Link to this heading">¶</a></h1>
 <section id="overview">
-<h2>Overview<a class="headerlink" href="#overview" title="Permalink to this heading">¶</a></h2>
+<h2>Overview<a class="headerlink" href="#overview" title="Link to this heading">¶</a></h2>
 <p>Generates a submission file (.sqn) for GenBank by integrating sequence data, feature tables, and structured comment files. It leverages the table2asn utility and validates the submission file.</p>
 <section id="fasta-file">
-<h3>Fasta file<a class="headerlink" href="#fasta-file" title="Permalink to this heading">¶</a></h3>
+<h3>Fasta file<a class="headerlink" href="#fasta-file" title="Link to this heading">¶</a></h3>
 <p>Your input sequences, preferably the <code class="docutils literal notranslate"><span class="pre">reoriented_nucleotide_sequences.fna</span></code> from the <a class="reference internal" href="features.html"><span class="std std-doc"><code class="docutils literal notranslate"><span class="pre">features</span></code></span></a> subcommand.</p>
 </section>
 <section id="source-file">
-<h3>Source file<a class="headerlink" href="#source-file" title="Permalink to this heading">¶</a></h3>
+<h3>Source file<a class="headerlink" href="#source-file" title="Link to this heading">¶</a></h3>
 <p>This file contains the metadata of your sequences as required by <a href="https://www.ncbi.nlm.nih.gov/WebSub/html/help/genbank-source-table.html" target="_blank">NCBI</a>. You will have to generate this file yourself from the output of the <a class="reference internal" href="taxonomy.html"><span class="std std-doc"><code class="docutils literal notranslate"><span class="pre">suvtk</span> <span class="pre">taxonomy</span></code></span></a> subcommand and the metadata of your study. The <code class="docutils literal notranslate"><span class="pre">taxonomy.tsv</span></code>file contains the <em>Sequence_ID</em> and the <em>Organism</em> values, you will have to provide:</p>
 <ul class="simple">
 <li><p><em>Isolate</em> (required; unique identifiers for each sequence, preferably as a single string of at least six alphanumerical characters (e.g., blue53F), using hyphens and underscores to tie separate elements together, e.g., “0815_Eier-kuchen”)</p></li>
@@ -286,11 +286,7 @@
 <p>The order of the columns does not matter. <br></p>
 <details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3" open="open">
 <summary class="sd-summary-title sd-card-header">
-Example<div class="sd-summary-down docutils">
-<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
-<div class="sd-summary-up docutils">
-<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
-</summary><div class="sd-summary-content sd-card-body docutils">
+<span class="sd-summary-text">Example</span><span class="sd-summary-state-marker sd-summary-chevron-right"><svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-right" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"></path></svg></span></summary><div class="sd-summary-content sd-card-body docutils">
 <div class="table-wrapper colwidths-auto docutils container">
 <table class="docutils align-default">
 <thead>
@@ -426,16 +422,16 @@ Example<div class="sd-summary-down docutils">
 </div>
 </details></section>
 <section id="template-file">
-<h3>Template file<a class="headerlink" href="#template-file" title="Permalink to this heading">¶</a></h3>
+<h3>Template file<a class="headerlink" href="#template-file" title="Link to this heading">¶</a></h3>
 <p>You can generate a template file <a href="https://submit.ncbi.nlm.nih.gov/genbank/template/submission/" target="_blank">here</a> to include sequence author information in the Genbank submission.</p>
 </section>
 <section id="comments-file">
-<h3>Comments file<a class="headerlink" href="#comments-file" title="Permalink to this heading">¶</a></h3>
+<h3>Comments file<a class="headerlink" href="#comments-file" title="Link to this heading">¶</a></h3>
 <p>This file contains structured comments that provide additional metadata for your submission. It should be generated from the <a class="reference internal" href="comments.html"><span class="std std-doc"><code class="docutils literal notranslate"><span class="pre">comments</span></code></span></a> subcommand.</p>
 </section>
 </section>
 <section id="required-input">
-<h2>Required Input<a class="headerlink" href="#required-input" title="Permalink to this heading">¶</a></h2>
+<h2>Required Input<a class="headerlink" href="#required-input" title="Link to this heading">¶</a></h2>
 <ul class="simple">
 <li><p><strong>-i, --input</strong>: Input FASTA file. <em>(Required)</em></p></li>
 <li><p><strong>-o, --output</strong>: Output prefix (the resulting file will have a <code class="docutils literal notranslate"><span class="pre">.sqn</span></code> extension). <em>(Required)</em></p></li>
@@ -446,14 +442,14 @@ Example<div class="sd-summary-down docutils">
 </ul>
 </section>
 <section id="output">
-<h2>Output<a class="headerlink" href="#output" title="Permalink to this heading">¶</a></h2>
+<h2>Output<a class="headerlink" href="#output" title="Link to this heading">¶</a></h2>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">&lt;output&gt;.sqn</span></code>: The submission file ready for GenBank.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">&lt;output&gt;.val</span></code>: A validation file listing warnings, info, or errors from the submission check.</p></li>
 </ul>
 </section>
 <section id="example-usage">
-<h2>Example Usage<a class="headerlink" href="#example-usage" title="Permalink to this heading">¶</a></h2>
+<h2>Example Usage<a class="headerlink" href="#example-usage" title="Link to this heading">¶</a></h2>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>suvtk<span class="w"> </span>table2asn<span class="w"> </span>-i<span class="w"> </span>sequences.fasta<span class="w"> </span>-o<span class="w"> </span>submission<span class="w"> </span>-s<span class="w"> </span>source.src<span class="w"> </span>-f<span class="w"> </span>features.tbl<span class="w"> </span>-t<span class="w"> </span>template.sbt<span class="w"> </span>-c<span class="w"> </span>comments.cmt
 </pre></div>
 </div>
@@ -544,12 +540,12 @@ Example<div class="sd-summary-down docutils">
       
     </aside>
   </div>
-</div><script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js?v=f485fb33"></script>
-    <script src="../_static/doctools.js?v=888ff710"></script>
-    <script src="../_static/sphinx_highlight.js?v=4825356b"></script>
+</div><script src="../_static/documentation_options.js?v=1b390748"></script>
+    <script src="../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/scripts/furo.js?v=5fa4622c"></script>
     <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
     <script src="../_static/copybutton.js?v=f281be69"></script>
-    <script src="../_static/design-tabs.js?v=36754332"></script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
     </body>
 </html>

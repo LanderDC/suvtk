@@ -1,16 +1,16 @@
 <!doctype html>
-<html class="no-js" lang="en" data-content_root="">
+<html class="no-js" lang="en" data-content_root="../">
   <head><meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
     <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
 <link rel="index" title="Index" href="../genindex.html" /><link rel="search" title="Search" href="../search.html" /><link rel="next" title="features" href="features.html" /><link rel="prev" title="suvtk documentation" href="../index.html" />
 
-    <!-- Generated with Sphinx 7.1.2 and Furo 2024.08.06 -->
+    <!-- Generated with Sphinx 8.2.3 and Furo 2024.08.06 -->
         <title>taxonomy - suvtk 0.1</title>
-      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=8f2a1f02" />
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=a746c00c" />
     <link rel="stylesheet" type="text/css" href="../_static/styles/furo.css?v=354aac6f" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
     <link rel="stylesheet" type="text/css" href="../_static/styles/furo-extensions.css?v=302659d7" />
     
     
@@ -260,9 +260,9 @@
         </div>
         <article role="main" id="furo-main-content">
           <section id="taxonomy">
-<h1>taxonomy<a class="headerlink" href="#taxonomy" title="Permalink to this heading">¶</a></h1>
+<h1>taxonomy<a class="headerlink" href="#taxonomy" title="Link to this heading">¶</a></h1>
 <section id="overview">
-<h2>Overview<a class="headerlink" href="#overview" title="Permalink to this heading">¶</a></h2>
+<h2>Overview<a class="headerlink" href="#overview" title="Link to this heading">¶</a></h2>
 <p>This submodule of <code class="docutils literal notranslate"><span class="pre">suvtk</span></code> assigns virus taxonomy to your nucleotide sequences based on the <a href="https://static-content.springer.com/esm/art%3A10.1038%2Fs41587-023-01844-2/MediaObjects/41587_2023_1844_MOESM1_ESM.pdf" target="_blank">ICTV guidelines</a> (ie. classification to the lowest fitting taxon appended with “sp.”, eg. “Coronavirus sp.”). It uses an <a href="https://github.com/apcamargo/ictv-mmseqs2-protein-database" target="_blank">MMseqs2 database</a> with all proteins of ICTV ratified viruses downloaded from NCBI. After <code class="docutils literal notranslate"><span class="pre">mmseqs2</span></code> alignment, the taxonomy is then decided with a lowest common ancestor approach (LCA) based on the best hits as implemented with <code class="docutils literal notranslate"><span class="pre">mmseqs</span> <span class="pre">easy-taxonomy</span></code>.</p>
 <p>After determining the taxonomy, this subcommand also gives you information on any possible segmented viruses in your data. This could be interesting to look more into your data and try to group segments of the same virus together. For this, the <a class="reference internal" href="co-occurrence.html"><span class="std std-doc"><code class="docutils literal notranslate"><span class="pre">suvtk</span> <span class="pre">co-occurrence</span></code></span></a> module can be helpful.</p>
 <p>Finally, <code class="docutils literal notranslate"><span class="pre">suvtk</span> <span class="pre">taxonomy</span></code> also outputs the mandatory MIUVIG parameters predicted genome structure (segmented, non-segmented, undetermined) and genome type (ssDNA, dsDNA, ssRNA(+), etc.) based on the predicted taxonomy in the <code class="docutils literal notranslate"><span class="pre">miuvig_taxonomy.tsv</span></code> file. This file is a required input of <code class="docutils literal notranslate"><span class="pre">suvtk</span> <span class="pre">comments</span></code> but can be generated yourself following subsequent tsv file format:</p>
@@ -335,7 +335,7 @@
 </div>
 </section>
 <section id="required-input">
-<h2>Required Input<a class="headerlink" href="#required-input" title="Permalink to this heading">¶</a></h2>
+<h2>Required Input<a class="headerlink" href="#required-input" title="Link to this heading">¶</a></h2>
 <ul class="simple">
 <li><p><strong>-i, --input</strong>: Input FASTA file with sequences. <em>(Required)</em></p></li>
 <li><p><strong>-o, --output</strong>: Output directory where results will be saved. <em>(Required)</em></p></li>
@@ -343,14 +343,14 @@
 </ul>
 </section>
 <section id="optional-parameters">
-<h2>Optional Parameters<a class="headerlink" href="#optional-parameters" title="Permalink to this heading">¶</a></h2>
+<h2>Optional Parameters<a class="headerlink" href="#optional-parameters" title="Link to this heading">¶</a></h2>
 <ul class="simple">
 <li><p><strong>-s, --identity</strong>: Minimum sequence identity threshold for hits (default: 0.7).</p></li>
 <li><p><strong>-t, --threads</strong>: Number of threads to use (default: 4).</p></li>
 </ul>
 </section>
 <section id="output">
-<h2>Output<a class="headerlink" href="#output" title="Permalink to this heading">¶</a></h2>
+<h2>Output<a class="headerlink" href="#output" title="Link to this heading">¶</a></h2>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">taxonomy.tsv</span></code>: Main file with taxonomy assignments for each sequence.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">miuvig_taxonomy.tsv</span></code>: MIUVIG-related taxonomy details (ie. predicted genome structure and type).</p></li>
@@ -358,7 +358,7 @@
 </ul>
 </section>
 <section id="example-usage">
-<h2>Example Usage<a class="headerlink" href="#example-usage" title="Permalink to this heading">¶</a></h2>
+<h2>Example Usage<a class="headerlink" href="#example-usage" title="Link to this heading">¶</a></h2>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>suvtk<span class="w"> </span>taxonomy<span class="w"> </span>-i<span class="w"> </span>sequences.fasta<span class="w"> </span>-o<span class="w"> </span>taxonomy_output<span class="w"> </span>-d<span class="w"> </span>/path/to/ICTV_db<span class="w"> </span>-s<span class="w"> </span><span class="m">0</span>.7<span class="w"> </span>-t<span class="w"> </span><span class="m">4</span>
 </pre></div>
 </div>
@@ -444,12 +444,12 @@
       
     </aside>
   </div>
-</div><script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js?v=f485fb33"></script>
-    <script src="../_static/doctools.js?v=888ff710"></script>
-    <script src="../_static/sphinx_highlight.js?v=4825356b"></script>
+</div><script src="../_static/documentation_options.js?v=1b390748"></script>
+    <script src="../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/scripts/furo.js?v=5fa4622c"></script>
     <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
     <script src="../_static/copybutton.js?v=f281be69"></script>
-    <script src="../_static/design-tabs.js?v=36754332"></script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
     </body>
 </html>
