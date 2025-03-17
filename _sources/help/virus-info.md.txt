@@ -1,8 +1,8 @@
-# segment-info
+# virus-info
 
 ## Overview
 
-The `segment-info` subcommand identifies and reports details on potential segmented viruses based on their taxonomy. It cross-references a user-supplied taxonomy file with a segmented viruses database and a genome type database to predict the genome structure and type for each contig. Additionally, it outputs information for further investigation if a high fraction of viruses within a taxon are segmented.
+The `virus-info` subcommand identifies and reports details on potential segmented viruses based on their taxonomy. It cross-references a user-supplied taxonomy file with a segmented viruses database and a genome type database to predict the genome structure and type for each contig. Additionally, it outputs information for further investigation if a high fraction of viruses within a taxon are segmented.
 
 ## Required Input
 
@@ -55,7 +55,7 @@ The `segment-info` subcommand identifies and reports details on potential segmen
 Below is an example command-line invocation:
 
 ```bash
-suvtk segment_info --taxonomy taxonomy.tsv --database /path/to/database --output output_dir
+suvtk virus-info --taxonomy taxonomy.tsv --database /path/to/database --output output_dir
 ```
 
 This command will process the `taxonomy.tsv` file, using the databases in `/path/to/database`, and write the results (e.g., `miuvig_taxonomy.tsv` and `segmented_viruses_info.tsv`) to the `output_dir`.

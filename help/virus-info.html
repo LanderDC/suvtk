@@ -6,7 +6,7 @@
 <link rel="index" title="Index" href="../genindex.html" /><link rel="search" title="Search" href="../search.html" /><link rel="next" title="co-occurrence" href="co-occurrence.html" /><link rel="prev" title="features" href="features.html" />
 
     <!-- Generated with Sphinx 7.1.2 and Furo 2024.08.06 -->
-        <title>segment-info - suvtk 0.1</title>
+        <title>virus-info - suvtk 0.1</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=8f2a1f02" />
     <link rel="stylesheet" type="text/css" href="../_static/styles/furo.css?v=354aac6f" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
@@ -207,7 +207,7 @@
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="taxonomy.html">taxonomy</a></li>
 <li class="toctree-l1"><a class="reference internal" href="features.html">features</a></li>
-<li class="toctree-l1 current current-page"><a class="current reference internal" href="#">segment-info</a></li>
+<li class="toctree-l1 current current-page"><a class="current reference internal" href="#">virus-info</a></li>
 <li class="toctree-l1"><a class="reference internal" href="co-occurrence.html">co-occurrence</a></li>
 <li class="toctree-l1"><a class="reference internal" href="gbk2tbl.html">gbk2tbl</a></li>
 <li class="toctree-l1"><a class="reference internal" href="comments.html">comments</a></li>
@@ -232,7 +232,7 @@
         </a>
         <div class="content-icon-container">
           <div class="view-this-page">
-  <a class="muted-link" href="../_sources/help/segment-info.md.txt" title="View this page">
+  <a class="muted-link" href="../_sources/help/virus-info.md.txt" title="View this page">
     <svg><use href="#svg-eye"></use></svg>
     <span class="visually-hidden">View this page</span>
   </a>
@@ -252,11 +252,11 @@
           </label>
         </div>
         <article role="main" id="furo-main-content">
-          <section id="segment-info">
-<h1>segment-info<a class="headerlink" href="#segment-info" title="Permalink to this heading">¶</a></h1>
+          <section id="virus-info">
+<h1>virus-info<a class="headerlink" href="#virus-info" title="Permalink to this heading">¶</a></h1>
 <section id="overview">
 <h2>Overview<a class="headerlink" href="#overview" title="Permalink to this heading">¶</a></h2>
-<p>The <code class="docutils literal notranslate"><span class="pre">segment-info</span></code> subcommand identifies and reports details on potential segmented viruses based on their taxonomy. It cross-references a user-supplied taxonomy file with a segmented viruses database and a genome type database to predict the genome structure and type for each contig. Additionally, it outputs information for further investigation if a high fraction of viruses within a taxon are segmented.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">virus-info</span></code> subcommand identifies and reports details on potential segmented viruses based on their taxonomy. It cross-references a user-supplied taxonomy file with a segmented viruses database and a genome type database to predict the genome structure and type for each contig. Additionally, it outputs information for further investigation if a high fraction of viruses within a taxon are segmented.</p>
 </section>
 <section id="required-input">
 <h2>Required Input<a class="headerlink" href="#required-input" title="Permalink to this heading">¶</a></h2>
@@ -332,7 +332,7 @@ For each contig in the taxonomy file:</p>
 <section id="example-usage">
 <h2>Example Usage<a class="headerlink" href="#example-usage" title="Permalink to this heading">¶</a></h2>
 <p>Below is an example command-line invocation:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>suvtk<span class="w"> </span>segment_info<span class="w"> </span>--taxonomy<span class="w"> </span>taxonomy.tsv<span class="w"> </span>--database<span class="w"> </span>/path/to/database<span class="w"> </span>--output<span class="w"> </span>output_dir
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>suvtk<span class="w"> </span>virus-info<span class="w"> </span>--taxonomy<span class="w"> </span>taxonomy.tsv<span class="w"> </span>--database<span class="w"> </span>/path/to/database<span class="w"> </span>--output<span class="w"> </span>output_dir
 </pre></div>
 </div>
 <p>This command will process the <code class="docutils literal notranslate"><span class="pre">taxonomy.tsv</span></code> file, using the databases in <code class="docutils literal notranslate"><span class="pre">/path/to/database</span></code>, and write the results (e.g., <code class="docutils literal notranslate"><span class="pre">miuvig_taxonomy.tsv</span></code> and <code class="docutils literal notranslate"><span class="pre">segmented_viruses_info.tsv</span></code>) to the <code class="docutils literal notranslate"><span class="pre">output_dir</span></code>.</p>
@@ -408,7 +408,7 @@ For each contig in the taxonomy file:</p>
         <div class="toc-tree-container">
           <div class="toc-tree">
             <ul>
-<li><a class="reference internal" href="#">segment-info</a><ul>
+<li><a class="reference internal" href="#">virus-info</a><ul>
 <li><a class="reference internal" href="#overview">Overview</a></li>
 <li><a class="reference internal" href="#required-input">Required Input</a></li>
 <li><a class="reference internal" href="#what-it-does">What It Does</a></li>
