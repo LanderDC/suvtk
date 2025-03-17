@@ -264,35 +264,355 @@
 <section id="submodules">
 <h2>Submodules<a class="headerlink" href="#submodules" title="Link to this heading">¶</a></h2>
 </section>
-<section id="suvtk-cli-module">
-<h2>suvtk.cli module<a class="headerlink" href="#suvtk-cli-module" title="Link to this heading">¶</a></h2>
+<section id="module-suvtk.cli">
+<span id="suvtk-cli-module"></span><h2>suvtk.cli module<a class="headerlink" href="#module-suvtk.cli" title="Link to this heading">¶</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="suvtk.cli.FullHelpGroup">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">suvtk.cli.</span></span><span class="sig-name descname"><span class="pre">FullHelpGroup</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">commands</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">attrs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/suvtk/cli.html#FullHelpGroup"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#suvtk.cli.FullHelpGroup" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Group</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="suvtk.cli.FullHelpGroup.format_commands">
+<span class="sig-name descname"><span class="pre">format_commands</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ctx</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">formatter</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/suvtk/cli.html#FullHelpGroup.format_commands"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#suvtk.cli.FullHelpGroup.format_commands" title="Link to this definition">¶</a></dt>
+<dd><p>Formats and displays commands in the correct order.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="suvtk.cli.FullHelpGroup.list_commands">
+<span class="sig-name descname"><span class="pre">list_commands</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ctx</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/suvtk/cli.html#FullHelpGroup.list_commands"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#suvtk.cli.FullHelpGroup.list_commands" title="Link to this definition">¶</a></dt>
+<dd><p>Return commands in the order they were added.</p>
+</dd></dl>
+
+</dd></dl>
+
 </section>
-<section id="suvtk-co-occurrence-module">
-<h2>suvtk.co_occurrence module<a class="headerlink" href="#suvtk-co-occurrence-module" title="Link to this heading">¶</a></h2>
+<section id="module-suvtk.co_occurrence">
+<span id="suvtk-co-occurrence-module"></span><h2>suvtk.co_occurrence module<a class="headerlink" href="#module-suvtk.co_occurrence" title="Link to this heading">¶</a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="suvtk.co_occurrence.calculate_proportion">
+<span class="sig-prename descclassname"><span class="pre">suvtk.co_occurrence.</span></span><span class="sig-name descname"><span class="pre">calculate_proportion</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/suvtk/co_occurrence.html#calculate_proportion"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#suvtk.co_occurrence.calculate_proportion" title="Link to this definition">¶</a></dt>
+<dd><p>Calculate the proportion of samples for each contig in a dataframe.</p>
+<p>Parameters:
+df (DataFrame): A pandas DataFrame where rows represent contigs and columns represent samples.</p>
+<p>Returns:
+DataFrame: The original DataFrame with two additional columns: ‘sample_count’, the total number of samples a contig is present in, and ‘proportion_samples’, the proportion of samples a contig is present in.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="suvtk.co_occurrence.create_correlation_matrix">
+<span class="sig-prename descclassname"><span class="pre">suvtk.co_occurrence.</span></span><span class="sig-name descname"><span class="pre">create_correlation_matrix</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df_transposed</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/suvtk/co_occurrence.html#create_correlation_matrix"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#suvtk.co_occurrence.create_correlation_matrix" title="Link to this definition">¶</a></dt>
+<dd><p>Calculate a Spearman correlation matrix for the transposed dataframe and mask the upper triangle.</p>
+<p>Parameters:
+df_transposed (DataFrame): A transposed pandas DataFrame where rows represent samples and columns represent variables.</p>
+<p>Returns:
+DataFrame: A masked correlation matrix with the upper triangle set to NaN, and the axes renamed to ‘Contig1’ and ‘Contig2’.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="suvtk.co_occurrence.create_segment_list">
+<span class="sig-prename descclassname"><span class="pre">suvtk.co_occurrence.</span></span><span class="sig-name descname"><span class="pre">create_segment_list</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">segment_file</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/suvtk/co_occurrence.html#create_segment_list"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#suvtk.co_occurrence.create_segment_list" title="Link to this definition">¶</a></dt>
+<dd><p>Reads a file containing segment identifiers and returns them as a list.</p>
+<p>Parameters:
+segment_file (str): The path to a file containing segment identifiers, one per line.</p>
+<p>Returns:
+list: A list of segment identifiers with whitespace stripped.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="suvtk.co_occurrence.segment_correlation_matrix">
+<span class="sig-prename descclassname"><span class="pre">suvtk.co_occurrence.</span></span><span class="sig-name descname"><span class="pre">segment_correlation_matrix</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">segment_list</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/suvtk/co_occurrence.html#segment_correlation_matrix"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#suvtk.co_occurrence.segment_correlation_matrix" title="Link to this definition">¶</a></dt>
+<dd><p>Calculate the correlation of each segment in the segment list with all rows in the DataFrame.</p>
+<p>Parameters:
+df (DataFrame): A pandas DataFrame with rows representing samples and columns representing variables.
+segment_list (list): A list of segment indices to calculate correlations with.</p>
+<p>Returns:
+DataFrame: A DataFrame where each column represents a segment from the segment_list and each value</p>
+<blockquote>
+<div><p>is the Spearman correlation with the corresponding row in the original DataFrame.</p>
+</div></blockquote>
+</dd></dl>
+
 </section>
-<section id="suvtk-comments-module">
-<h2>suvtk.comments module<a class="headerlink" href="#suvtk-comments-module" title="Link to this heading">¶</a></h2>
+<section id="module-suvtk.comments">
+<span id="suvtk-comments-module"></span><h2>suvtk.comments module<a class="headerlink" href="#module-suvtk.comments" title="Link to this heading">¶</a></h2>
 </section>
-<section id="suvtk-features-module">
-<h2>suvtk.features module<a class="headerlink" href="#suvtk-features-module" title="Link to this heading">¶</a></h2>
+<section id="module-suvtk.features">
+<span id="suvtk-features-module"></span><h2>suvtk.features module<a class="headerlink" href="#module-suvtk.features" title="Link to this heading">¶</a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="suvtk.features.calculate_coding_capacity">
+<span class="sig-prename descclassname"><span class="pre">suvtk.features.</span></span><span class="sig-name descname"><span class="pre">calculate_coding_capacity</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">genes</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seq_length</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/suvtk/features.html#calculate_coding_capacity"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#suvtk.features.calculate_coding_capacity" title="Link to this definition">¶</a></dt>
+<dd><p>Calculate the total coding capacity for a list of genes.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="suvtk.features.extract_gene_results">
+<span class="sig-prename descclassname"><span class="pre">suvtk.features.</span></span><span class="sig-name descname"><span class="pre">extract_gene_results</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">genes</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">record_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seq_length</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/suvtk/features.html#extract_gene_results"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#suvtk.features.extract_gene_results" title="Link to this definition">¶</a></dt>
+<dd><p>Extract gene prediction results for a sequence.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="suvtk.features.find_orientation">
+<span class="sig-prename descclassname"><span class="pre">suvtk.features.</span></span><span class="sig-name descname"><span class="pre">find_orientation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">genes</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/suvtk/features.html#find_orientation"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#suvtk.features.find_orientation" title="Link to this definition">¶</a></dt>
+<dd><p>Calculate the sum of the strand orientations for a list of genes.
+If the sum is zero, return the orientation of the largest gene.</p>
+<p>Parameters:
+genes (list): A list of gene objects, each having ‘strand’, ‘begin’, and ‘end’ attributes.</p>
+<p>Returns:
+int: The sum of strand orientations across all genes, or the orientation of the largest gene if the sum is zero.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="suvtk.features.get_lineage">
+<span class="sig-prename descclassname"><span class="pre">suvtk.features.</span></span><span class="sig-name descname"><span class="pre">get_lineage</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">record_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">taxonomy_data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">taxdb</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/suvtk/features.html#get_lineage"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#suvtk.features.get_lineage" title="Link to this definition">¶</a></dt>
+<dd><p>Retrieve the lineage of a given record from the taxonomy table.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="suvtk.features.predict_orfs">
+<span class="sig-prename descclassname"><span class="pre">suvtk.features.</span></span><span class="sig-name descname"><span class="pre">predict_orfs</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">orf_finder</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seq</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/suvtk/features.html#predict_orfs"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#suvtk.features.predict_orfs" title="Link to this definition">¶</a></dt>
+<dd><p>Find genes, compute coding capacity, and determine orientation.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="suvtk.features.save_ncbi_feature_tables">
+<span class="sig-prename descclassname"><span class="pre">suvtk.features.</span></span><span class="sig-name descname"><span class="pre">save_ncbi_feature_tables</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">output_dir</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'.'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">single_file</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/suvtk/features.html#save_ncbi_feature_tables"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#suvtk.features.save_ncbi_feature_tables" title="Link to this definition">¶</a></dt>
+<dd><p>Generate and save NCBI feature tables for sequences in a DataFrame.</p>
+<p>This function creates a single feature table file by default, but can
+also save separate files for each unique sequence ID when specified.</p>
+<p>Parameters:
+df (pd.DataFrame): DataFrame containing sequence data with columns</p>
+<blockquote>
+<div><dl class="simple">
+<dt>[‘seqid’, ‘accession’, ‘start’, ‘end’, ‘strand’, ‘type’,</dt><dd><p>‘Protein names’, ‘source’, ‘start_codon’, ‘partial_begin’, ‘partial_end’].</p>
+</dd>
+</dl>
+</div></blockquote>
+<p>output_dir (str): Directory path to save the feature tables. Defaults to “.”.
+single_file (bool): If True, saves all features to one file; otherwise, saves separate files.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="suvtk.features.select_top_structure">
+<span class="sig-prename descclassname"><span class="pre">suvtk.features.</span></span><span class="sig-name descname"><span class="pre">select_top_structure</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/suvtk/features.html#select_top_structure"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#suvtk.features.select_top_structure" title="Link to this definition">¶</a></dt>
+<dd><p>Select the top structure for each query based on the bitscore.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>df</strong> (<em>pandas.DataFrame</em>) – A DataFrame with columns ‘query’, ‘bits’.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A DataFrame with the top structure for each query.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>pandas.DataFrame</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="suvtk.features.validate_translation_table">
+<span class="sig-prename descclassname"><span class="pre">suvtk.features.</span></span><span class="sig-name descname"><span class="pre">validate_translation_table</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ctx</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">param</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/suvtk/features.html#validate_translation_table"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#suvtk.features.validate_translation_table" title="Link to this definition">¶</a></dt>
+<dd><p>Validate that the given translation table is one of the valid genetic codes.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>ctx</strong> – The Click context object. Unused.</p></li>
+<li><p><strong>param</strong> – The parameter object. Unused.</p></li>
+<li><p><strong>value</strong> – The given translation table.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The given translation table if it is valid.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>value</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>click.BadParameter</strong> – If the given translation table is not valid.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="suvtk.features.write_feature_entries">
+<span class="sig-prename descclassname"><span class="pre">suvtk.features.</span></span><span class="sig-name descname"><span class="pre">write_feature_entries</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">group</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/suvtk/features.html#write_feature_entries"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#suvtk.features.write_feature_entries" title="Link to this definition">¶</a></dt>
+<dd><p>Helper function to write feature entries to a file.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="suvtk.features.write_nucleotides">
+<span class="sig-prename descclassname"><span class="pre">suvtk.features.</span></span><span class="sig-name descname"><span class="pre">write_nucleotides</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sequence</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">output_handle</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">overwrite</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/suvtk/features.html#write_nucleotides"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#suvtk.features.write_nucleotides" title="Link to this definition">¶</a></dt>
+<dd><p>Write nucleotide sequences to a file.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="suvtk.features.write_proteins">
+<span class="sig-prename descclassname"><span class="pre">suvtk.features.</span></span><span class="sig-name descname"><span class="pre">write_proteins</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">genes</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">record_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dst_path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">overwrite</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/suvtk/features.html#write_proteins"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#suvtk.features.write_proteins" title="Link to this definition">¶</a></dt>
+<dd><p>Write protein translations to a file.</p>
+</dd></dl>
+
 </section>
-<section id="suvtk-gbk2tbl-module">
-<h2>suvtk.gbk2tbl module<a class="headerlink" href="#suvtk-gbk2tbl-module" title="Link to this heading">¶</a></h2>
+<section id="module-suvtk.gbk2tbl">
+<span id="suvtk-gbk2tbl-module"></span><h2>suvtk.gbk2tbl module<a class="headerlink" href="#module-suvtk.gbk2tbl" title="Link to this heading">¶</a></h2>
+<p>This script converts a GenBank file (.gbk or .gb) into a Sequin feature table (.tbl), which is an input file of table2asn used for creating an ASN.1 file (.sqn).</p>
+<p>Package requirement: BioPython and click</p>
+<dl>
+<dt>Usage:</dt><dd><dl class="simple">
+<dt>Simple command:</dt><dd><p>python gbk2tbl.py –mincontigsize 200 –prefix any_prefix &lt; annotation.gbk
+cat annotation.gbk | python gbk2tbl.py –mincontigsize 200 –prefix any_prefix # integrate gbk2tbl into a pipeline</p>
+</dd>
+<dt>Redirecting error messages to a text file (optional):</dt><dd><p>python gbk2tbl.py –mincontigsize 200 –prefix any_prefix –modifiers modifier_file.txt &lt; annotation.gbk 2&gt; stderr.txt
+cat annotation.gbk | python gbk2tbl.py –mincontigsize 200 –prefix any_prefix –modifiers modifier_file.txt 2&gt; stderr.txt</p>
+</dd>
+</dl>
+<p>Note that this script reads the GenBank file through the stdin (”&lt; annotation.gbk”) and you may want to redirect the stderr to a file via “&gt; stderr.txt” (redirection).</p>
+</dd>
+<dt>Inputs:</dt><dd><p>A GenBank file, which ought to be passed to the script through the standard input (stdin).</p>
+</dd>
+<dt>Outputs:</dt><dd><p>any_prefix.tbl: the Sequin feature table
+any_prefix.fsa: the corresponding fasta file
+These files are inputs for tbl2asn which generates ASN.1 files (<a href="#id1"><span class="problematic" id="id2">*</span></a>.sqn).</p>
+</dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">param –mincontigsize<span class="colon">:</span></dt>
+<dd class="field-odd"><p>the minimum contig size, default = 0</p>
+</dd>
+<dt class="field-even">param –prefix<span class="colon">:</span></dt>
+<dd class="field-even"><p>the prefix of output filenames, default = ‘seq’</p>
+</dd>
+</dl>
+<dl class="simple">
+<dt>Development notes:</dt><dd><p>This script is derived from the one developed by SEQanswers users nickloman (<a class="reference external" href="https://gist.github.com/nickloman/2660685/genbank_to_tbl.py">https://gist.github.com/nickloman/2660685/genbank_to_tbl.py</a>) and ErinL who modified nickloman’s script and put it
+on the forum post (<a class="reference external" href="http://seqanswers.com/forums/showthread.php?t=19975">http://seqanswers.com/forums/showthread.php?t=19975</a>).</p>
+</dd>
+</dl>
+<p>Author of this version: Yu Wan (<a class="reference external" href="mailto:wanyuac&#37;&#52;&#48;gmail&#46;com">wanyuac<span>&#64;</span>gmail<span>&#46;</span>com</a>, github.com/wanyuac)
+Creation: 20 June 2015 - 11 July 2015; the latest edition: 21 October 2019</p>
+<p>Dependency: Python versions 2 and 3 compatible.</p>
+<p>Licence: GNU GPL 2.1</p>
 </section>
-<section id="suvtk-table2asn-module">
-<h2>suvtk.table2asn module<a class="headerlink" href="#suvtk-table2asn-module" title="Link to this heading">¶</a></h2>
+<section id="module-suvtk.table2asn">
+<span id="suvtk-table2asn-module"></span><h2>suvtk.table2asn module<a class="headerlink" href="#module-suvtk.table2asn" title="Link to this heading">¶</a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="suvtk.table2asn.process_comments">
+<span class="sig-prename descclassname"><span class="pre">suvtk.table2asn.</span></span><span class="sig-name descname"><span class="pre">process_comments</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">src_file</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">comments_file</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/suvtk/table2asn.html#process_comments"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#suvtk.table2asn.process_comments" title="Link to this definition">¶</a></dt>
+<dd><p>Processes comments by updating the comments file based on the source file.</p>
+<p>This function reads a source file and a comments file into pandas DataFrames,
+ensures that the extra columns (collection_date, geo_loc_name, lat_lon) are inserted
+right after the first column ‘StructeredCommentPrefix’ in the comments file, and then
+groups the source DataFrame by the “Isolate” column to update duplicate-related fields.</p>
+<dl class="simple">
+<dt>For each group of isolates, it updates the comments file with:</dt><dd><ul class="simple">
+<li><p>extra data: collection_date, geo_loc_name, and lat_lon (copied from Collection_date,
+geo_loc_name, and Lat_Lon in the src file)</p></li>
+<li><dl class="simple">
+<dt>if duplicates exist, it updates:</dt><dd><ul>
+<li><p>the count of isolates,</p></li>
+<li><p>the majority predicted genome type (taken from the comments file), and</p></li>
+<li><p>sets the predicted genome structure to “segmented”.</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>src_file</strong> (<em>str</em>) – The file path to the source file in tab-separated format.</p></li>
+<li><p><strong>comments_file</strong> (<em>str</em>) – The file path to the comments file in tab-separated format.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
 </section>
-<section id="suvtk-taxonomy-module">
-<h2>suvtk.taxonomy module<a class="headerlink" href="#suvtk-taxonomy-module" title="Link to this heading">¶</a></h2>
+<section id="module-suvtk.taxonomy">
+<span id="suvtk-taxonomy-module"></span><h2>suvtk.taxonomy module<a class="headerlink" href="#module-suvtk.taxonomy" title="Link to this heading">¶</a></h2>
 </section>
-<section id="suvtk-utils-module">
-<h2>suvtk.utils module<a class="headerlink" href="#suvtk-utils-module" title="Link to this heading">¶</a></h2>
+<section id="module-suvtk.utils">
+<span id="suvtk-utils-module"></span><h2>suvtk.utils module<a class="headerlink" href="#module-suvtk.utils" title="Link to this heading">¶</a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="suvtk.utils.Exec">
+<span class="sig-prename descclassname"><span class="pre">suvtk.utils.</span></span><span class="sig-name descname"><span class="pre">Exec</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">CmdLine</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fLog</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">capture</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/suvtk/utils.html#Exec"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#suvtk.utils.Exec" title="Link to this definition">¶</a></dt>
+<dd><p>Execute a command line in a shell, logging it to a file if specified.
+If capture is True, suppress printing output to the screen.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>CmdLine</strong> (<em>str</em>) – The command line to execute</p></li>
+<li><p><strong>fLog</strong> (<em>file object</em><em> or </em><em>None</em>) – A file object to log the command and results, or None</p></li>
+<li><p><strong>capture</strong> (<em>bool</em>) – Whether to capture output instead of printing</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The output of the command if captured, else None</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str or None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="suvtk.utils.safe_read_csv">
+<span class="sig-prename descclassname"><span class="pre">suvtk.utils.</span></span><span class="sig-name descname"><span class="pre">safe_read_csv</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/suvtk/utils.html#safe_read_csv"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#suvtk.utils.safe_read_csv" title="Link to this definition">¶</a></dt>
+<dd><p>Reads a CSV file using ASCII encoding. If a UnicodeDecodeError occurs,
+raises a ClickException showing the offending character.</p>
+</dd></dl>
+
 </section>
-<section id="suvtk-virus-info-module">
-<h2>suvtk.virus_info module<a class="headerlink" href="#suvtk-virus-info-module" title="Link to this heading">¶</a></h2>
+<section id="module-suvtk.virus_info">
+<span id="suvtk-virus-info-module"></span><h2>suvtk.virus_info module<a class="headerlink" href="#module-suvtk.virus_info" title="Link to this heading">¶</a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="suvtk.virus_info.load_genome_type_db">
+<span class="sig-prename descclassname"><span class="pre">suvtk.virus_info.</span></span><span class="sig-name descname"><span class="pre">load_genome_type_db</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/suvtk/virus_info.html#load_genome_type_db"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#suvtk.virus_info.load_genome_type_db" title="Link to this definition">¶</a></dt>
+<dd><p>Load the genome structure database.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Data frame with the genome structure database.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>pandas.DataFrame</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="suvtk.virus_info.load_segment_db">
+<span class="sig-prename descclassname"><span class="pre">suvtk.virus_info.</span></span><span class="sig-name descname"><span class="pre">load_segment_db</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/suvtk/virus_info.html#load_segment_db"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#suvtk.virus_info.load_segment_db" title="Link to this definition">¶</a></dt>
+<dd><p>Load the segmented viruses database.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Data frame with the segmented viruses database.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>pandas.DataFrame</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="suvtk.virus_info.run_segment_info">
+<span class="sig-prename descclassname"><span class="pre">suvtk.virus_info.</span></span><span class="sig-name descname"><span class="pre">run_segment_info</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tax_df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">database</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">output_path</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/suvtk/virus_info.html#run_segment_info"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#suvtk.virus_info.run_segment_info" title="Link to this definition">¶</a></dt>
+<dd><p>Process the taxonomy file to get segmented virus and genome type info.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>taxonomy</strong> (<em>pandas.DataFrame</em>) – Pandas DataFrame with taxonomy information.</p></li>
+<li><p><strong>database</strong> (<em>str</em>) – The suvtk database path (contains nodes.dmp, names.dmp, etc.).</p></li>
+<li><p><strong>output_path</strong> (<em>str</em>) – The output directory where results will be saved.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
 </section>
-<section id="module-contents">
-<h2>Module contents<a class="headerlink" href="#module-contents" title="Link to this heading">¶</a></h2>
+<section id="module-suvtk">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-suvtk" title="Link to this heading">¶</a></h2>
 </section>
 </section>
 
@@ -352,16 +672,54 @@
             <ul>
 <li><a class="reference internal" href="#">suvtk package</a><ul>
 <li><a class="reference internal" href="#submodules">Submodules</a></li>
-<li><a class="reference internal" href="#suvtk-cli-module">suvtk.cli module</a></li>
-<li><a class="reference internal" href="#suvtk-co-occurrence-module">suvtk.co_occurrence module</a></li>
-<li><a class="reference internal" href="#suvtk-comments-module">suvtk.comments module</a></li>
-<li><a class="reference internal" href="#suvtk-features-module">suvtk.features module</a></li>
-<li><a class="reference internal" href="#suvtk-gbk2tbl-module">suvtk.gbk2tbl module</a></li>
-<li><a class="reference internal" href="#suvtk-table2asn-module">suvtk.table2asn module</a></li>
-<li><a class="reference internal" href="#suvtk-taxonomy-module">suvtk.taxonomy module</a></li>
-<li><a class="reference internal" href="#suvtk-utils-module">suvtk.utils module</a></li>
-<li><a class="reference internal" href="#suvtk-virus-info-module">suvtk.virus_info module</a></li>
-<li><a class="reference internal" href="#module-contents">Module contents</a></li>
+<li><a class="reference internal" href="#module-suvtk.cli">suvtk.cli module</a><ul>
+<li><a class="reference internal" href="#suvtk.cli.FullHelpGroup"><code class="docutils literal notranslate"><span class="pre">FullHelpGroup</span></code></a><ul>
+<li><a class="reference internal" href="#suvtk.cli.FullHelpGroup.format_commands"><code class="docutils literal notranslate"><span class="pre">FullHelpGroup.format_commands()</span></code></a></li>
+<li><a class="reference internal" href="#suvtk.cli.FullHelpGroup.list_commands"><code class="docutils literal notranslate"><span class="pre">FullHelpGroup.list_commands()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-suvtk.co_occurrence">suvtk.co_occurrence module</a><ul>
+<li><a class="reference internal" href="#suvtk.co_occurrence.calculate_proportion"><code class="docutils literal notranslate"><span class="pre">calculate_proportion()</span></code></a></li>
+<li><a class="reference internal" href="#suvtk.co_occurrence.create_correlation_matrix"><code class="docutils literal notranslate"><span class="pre">create_correlation_matrix()</span></code></a></li>
+<li><a class="reference internal" href="#suvtk.co_occurrence.create_segment_list"><code class="docutils literal notranslate"><span class="pre">create_segment_list()</span></code></a></li>
+<li><a class="reference internal" href="#suvtk.co_occurrence.segment_correlation_matrix"><code class="docutils literal notranslate"><span class="pre">segment_correlation_matrix()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-suvtk.comments">suvtk.comments module</a></li>
+<li><a class="reference internal" href="#module-suvtk.features">suvtk.features module</a><ul>
+<li><a class="reference internal" href="#suvtk.features.calculate_coding_capacity"><code class="docutils literal notranslate"><span class="pre">calculate_coding_capacity()</span></code></a></li>
+<li><a class="reference internal" href="#suvtk.features.extract_gene_results"><code class="docutils literal notranslate"><span class="pre">extract_gene_results()</span></code></a></li>
+<li><a class="reference internal" href="#suvtk.features.find_orientation"><code class="docutils literal notranslate"><span class="pre">find_orientation()</span></code></a></li>
+<li><a class="reference internal" href="#suvtk.features.get_lineage"><code class="docutils literal notranslate"><span class="pre">get_lineage()</span></code></a></li>
+<li><a class="reference internal" href="#suvtk.features.predict_orfs"><code class="docutils literal notranslate"><span class="pre">predict_orfs()</span></code></a></li>
+<li><a class="reference internal" href="#suvtk.features.save_ncbi_feature_tables"><code class="docutils literal notranslate"><span class="pre">save_ncbi_feature_tables()</span></code></a></li>
+<li><a class="reference internal" href="#suvtk.features.select_top_structure"><code class="docutils literal notranslate"><span class="pre">select_top_structure()</span></code></a></li>
+<li><a class="reference internal" href="#suvtk.features.validate_translation_table"><code class="docutils literal notranslate"><span class="pre">validate_translation_table()</span></code></a></li>
+<li><a class="reference internal" href="#suvtk.features.write_feature_entries"><code class="docutils literal notranslate"><span class="pre">write_feature_entries()</span></code></a></li>
+<li><a class="reference internal" href="#suvtk.features.write_nucleotides"><code class="docutils literal notranslate"><span class="pre">write_nucleotides()</span></code></a></li>
+<li><a class="reference internal" href="#suvtk.features.write_proteins"><code class="docutils literal notranslate"><span class="pre">write_proteins()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-suvtk.gbk2tbl">suvtk.gbk2tbl module</a></li>
+<li><a class="reference internal" href="#module-suvtk.table2asn">suvtk.table2asn module</a><ul>
+<li><a class="reference internal" href="#suvtk.table2asn.process_comments"><code class="docutils literal notranslate"><span class="pre">process_comments()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-suvtk.taxonomy">suvtk.taxonomy module</a></li>
+<li><a class="reference internal" href="#module-suvtk.utils">suvtk.utils module</a><ul>
+<li><a class="reference internal" href="#suvtk.utils.Exec"><code class="docutils literal notranslate"><span class="pre">Exec()</span></code></a></li>
+<li><a class="reference internal" href="#suvtk.utils.safe_read_csv"><code class="docutils literal notranslate"><span class="pre">safe_read_csv()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-suvtk.virus_info">suvtk.virus_info module</a><ul>
+<li><a class="reference internal" href="#suvtk.virus_info.load_genome_type_db"><code class="docutils literal notranslate"><span class="pre">load_genome_type_db()</span></code></a></li>
+<li><a class="reference internal" href="#suvtk.virus_info.load_segment_db"><code class="docutils literal notranslate"><span class="pre">load_segment_db()</span></code></a></li>
+<li><a class="reference internal" href="#suvtk.virus_info.run_segment_info"><code class="docutils literal notranslate"><span class="pre">run_segment_info()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-suvtk">Module contents</a></li>
 </ul>
 </li>
 </ul>
