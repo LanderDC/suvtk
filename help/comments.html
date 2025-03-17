@@ -213,6 +213,13 @@
 <li class="toctree-l1 current current-page"><a class="current reference internal" href="#">comments</a></li>
 <li class="toctree-l1"><a class="reference internal" href="table2asn.html">table2asn</a></li>
 </ul>
+<p class="caption" role="heading"><span class="caption-text">Python API</span></p>
+<ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../source/modules.html">suvtk</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle navigation of suvtk</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../source/suvtk.html">suvtk package</a></li>
+</ul>
+</li>
+</ul>
 
 </div>
 </div>
@@ -416,7 +423,7 @@ Example<div class="sd-summary-down docutils">
 </details></section>
 <section id="checkv-quality-summary-tsv">
 <h3>CheckV quality_summary.tsv<a class="headerlink" href="#checkv-quality-summary-tsv" title="Permalink to this heading">¶</a></h3>
-<p>Providing the <code class="docutils literal notranslate"><span class="pre">quality_summary.tsv</span></code> output of <a href="" target="_blank">CheckV</a> is optional, but will add more information in the MIUVIG structured comment. For example, the quality will be taken from CheckV’s quality estimation (High-quality or Genome-fragment) and also the completeness score will be added. Also if the sequence is a provirus (UpViG) will be taken into account. If you do not provide this file, sequences are considered to be ‘Genome fragments’ and ‘independent sequences (UViG) by default.</p>
+<p>Providing the <code class="docutils literal notranslate"><span class="pre">quality_summary.tsv</span></code> output of <a href="https://bitbucket.org/berkeleylab/checkv/src/master/" target="_blank">CheckV</a> is optional, but will add more information in the MIUVIG structured comment. For example, the quality will be taken from CheckV’s quality estimation (High-quality or Genome-fragment) and also the completeness score will be added. Also if the sequence is a provirus (UpViG) will be taken into account. If you do not provide this file, sequences are considered to be ‘Genome fragments’ and ‘independent sequences (UViG) by default.</p>
 <div class="admonition attention">
 <p class="admonition-title">Attention</p>
 <p>Providing the <code class="docutils literal notranslate"><span class="pre">quality_summary.tsv</span></code> CheckV file will be mostly useful when you have bacteriophage sequences as CheckV can not reliably estimate the completeness score for eukaryotic (RNA) viruses.</p>

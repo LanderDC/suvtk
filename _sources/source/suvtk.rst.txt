@@ -68,6 +68,14 @@ suvtk.utils module
    :undoc-members:
    :show-inheritance:
 
+suvtk.virus\_info module
+------------------------
+
+.. automodule:: suvtk.virus_info
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
 Module contents
 ---------------
 

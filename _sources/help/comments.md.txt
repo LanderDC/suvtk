@@ -63,7 +63,7 @@ The assembly comment file is essentially a tsv file that contains the necessary 
 ```
 
 ### CheckV quality_summary.tsv
-Providing the `quality_summary.tsv` output of <a href="" target="_blank">CheckV</a> is optional, but will add more information in the MIUVIG structured comment. For example, the quality will be taken from CheckV's quality estimation (High-quality or Genome-fragment) and also the completeness score will be added. Also if the sequence is a provirus (UpViG) will be taken into account. If you do not provide this file, sequences are considered to be 'Genome fragments' and 'independent sequences (UViG) by default.
+Providing the `quality_summary.tsv` output of <a href="https://bitbucket.org/berkeleylab/checkv/src/master/" target="_blank">CheckV</a> is optional, but will add more information in the MIUVIG structured comment. For example, the quality will be taken from CheckV's quality estimation (High-quality or Genome-fragment) and also the completeness score will be added. Also if the sequence is a provirus (UpViG) will be taken into account. If you do not provide this file, sequences are considered to be 'Genome fragments' and 'independent sequences (UViG) by default.
 
 ```{attention}
 Providing the `quality_summary.tsv` CheckV file will be mostly useful when you have bacteriophage sequences as CheckV can not reliably estimate the completeness score for eukaryotic (RNA) viruses.
