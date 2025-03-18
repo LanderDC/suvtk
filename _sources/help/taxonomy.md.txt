@@ -1,5 +1,5 @@
 # taxonomy
-
+---
 ## Overview
 This submodule of `suvtk` assigns virus taxonomy to your nucleotide sequences based on the <a href="https://static-content.springer.com/esm/art%3A10.1038%2Fs41587-023-01844-2/MediaObjects/41587_2023_1844_MOESM1_ESM.pdf" target="_blank">ICTV guidelines</a> (ie. classification to the lowest fitting taxon appended with "sp.", eg. “Coronavirus sp.”). It uses an <a href="https://github.com/apcamargo/ictv-mmseqs2-protein-database" target="_blank">MMseqs2 database</a> with all proteins of ICTV ratified viruses downloaded from NCBI. After `mmseqs2` alignment, the taxonomy is then decided with a lowest common ancestor approach (LCA) based on the best hits as implemented with `mmseqs easy-taxonomy`.
 
@@ -42,6 +42,7 @@ You can provide your own taxonomy to the other submodules (eg. `suvtk features`,
 |...|...|...|
 ```
 
+---
 ## Required Input
 - **-i, -\\\-input**: Input FASTA file with sequences. *(Required)*
 - **-o, -\\\-output**: Output directory where results will be saved. *(Required)*

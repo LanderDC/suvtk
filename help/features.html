@@ -261,6 +261,7 @@
         <article role="main" id="furo-main-content">
           <section id="features">
 <h1>features<a class="headerlink" href="#features" title="Link to this heading">¶</a></h1>
+<hr class="docutils" />
 <section id="overview">
 <h2>Overview<a class="headerlink" href="#overview" title="Link to this heading">¶</a></h2>
 <p>This command creates an <a href="https://www.ncbi.nlm.nih.gov/WebSub/html/help/feature-table.html" target="_blank">NCBI feature table</a> by predicting open reading frames (ORFs) from an input FASTA file with <a href="https://github.com/althonos/pyrodigal" target="_blank"><code class="docutils literal notranslate"><span class="pre">pyrodigal</span></code></a>. Subsequently, the ORFs get annotated by aligning the protein translations to the <a href="https://bfvd.steineggerlab.workers.dev/" target="_blank">Big Fantastic Virus Database</a> with <code class="docutils literal notranslate"><span class="pre">mmseqs2</span></code> and selecting the protein name of the top hit.</p>
@@ -303,6 +304,7 @@
 <p>Additionally, if a taxonomy file is provided, <code class="docutils literal notranslate"><span class="pre">suvtk</span> <span class="pre">features</span></code> will reorient the input nucleotide sequences based on their taxonomy. This means that ssRNA(-) virus sequences (ie. part of the <em>Negarnaviricota</em>) will get a negative orientation (3’ → 5’) and all other sequences, including unclassified sequences, a positive orientation (5’ → 3’). This reorientation is based on the strand on which the majority of ORFs are found by <code class="docutils literal notranslate"><span class="pre">pyrodigal</span></code>.</p>
 </div>
 </section>
+<hr class="docutils" />
 <section id="required-input">
 <h2>Required Input<a class="headerlink" href="#required-input" title="Link to this heading">¶</a></h2>
 <ul class="simple">

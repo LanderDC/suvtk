@@ -261,11 +261,14 @@
         <article role="main" id="furo-main-content">
           <section id="comments">
 <h1>comments<a class="headerlink" href="#comments" title="Link to this heading">¶</a></h1>
+<hr class="docutils" />
 <section id="overview">
 <h2>Overview<a class="headerlink" href="#overview" title="Link to this heading">¶</a></h2>
 <p>This command generates a <a href="https://www.ncbi.nlm.nih.gov/genbank/structuredcomment/" target="_blank">structured comment</a> file based on MIUVIG standards. It merges taxonomy, features, MIUVIG, and assembly data into a unified output file that will add structured comments to the GenBank submission.</p>
+<section id="miuvig-structured-comment">
+<h3>MIUVIG structured comment<a class="headerlink" href="#miuvig-structured-comment" title="Link to this heading">¶</a></h3>
 <section id="miuvig-taxonomy">
-<h3>MIUVIG taxonomy<a class="headerlink" href="#miuvig-taxonomy" title="Link to this heading">¶</a></h3>
+<h4>MIUVIG taxonomy<a class="headerlink" href="#miuvig-taxonomy" title="Link to this heading">¶</a></h4>
 <p>The <code class="docutils literal notranslate"><span class="pre">--taxonomy</span></code> file should contain info on the genome structure and type of your viral sequences. These are mandatory parameters in the MIUVIG standard and can be obtained with the <a class="reference internal" href="virus-info.html"><span class="std std-doc"><code class="docutils literal notranslate"><span class="pre">suvtk</span> <span class="pre">virus-info</span></code></span></a> if you determined your own taxonomy, or <a class="reference internal" href="taxonomy.html"><span class="std std-doc"><code class="docutils literal notranslate"><span class="pre">suvtk</span> <span class="pre">taxonomy</span></code></span></a> to get both the taxonomy and predicted genome structure and type for your sequences. These commands will output <code class="docutils literal notranslate"><span class="pre">miuvig_taxonomy.tsv</span></code> containing this info for all sequences.</p>
 <details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
 <summary class="sd-summary-title sd-card-header">
@@ -301,7 +304,7 @@
 </div>
 </details></section>
 <section id="miuvig-features">
-<h3>MIUVIG features<a class="headerlink" href="#miuvig-features" title="Link to this heading">¶</a></h3>
+<h4>MIUVIG features<a class="headerlink" href="#miuvig-features" title="Link to this heading">¶</a></h4>
 <p>The <code class="docutils literal notranslate"><span class="pre">--features</span></code> input file should contain info on the software, database and method that is used to annotate the features in your viral sequences. The <a class="reference internal" href="features.html"><span class="std std-doc"><code class="docutils literal notranslate"><span class="pre">suvtk</span> <span class="pre">features</span></code></span></a> generates <code class="docutils literal notranslate"><span class="pre">miuvig_features.tsv</span></code> containing all tool and databases with their versions and parameters used by <code class="docutils literal notranslate"><span class="pre">suvtk</span></code>.</p>
 <details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
 <summary class="sd-summary-title sd-card-header">
@@ -329,7 +332,7 @@
 </div>
 </details></section>
 <section id="global-miuvig-parameters">
-<h3>Global MIUVIG parameters<a class="headerlink" href="#global-miuvig-parameters" title="Link to this heading">¶</a></h3>
+<h4>Global MIUVIG parameters<a class="headerlink" href="#global-miuvig-parameters" title="Link to this heading">¶</a></h4>
 <p>The MIUVIG tsv file should contain global parameters of your study that apply to all your sequences. It should be a tsv file with two columns: <em>MIUVIG_parameter</em> and <em>value</em>. Allowed parameters and their values, including which parameters are mandatory, can be found <a class="reference external" href="https://static-content.springer.com/esm/art%3A10.1038%2Fnbt.4306/MediaObjects/41587_2019_BFnbt4306_MOESM36_ESM.xlsx">here</a> and the corresponding MIUVIG_parameter strings can be found <a href="https://genomicsstandardsconsortium.github.io/mixs/0010012/" target="_blank">here</a>.</p>
 <details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3" open="open">
 <summary class="sd-summary-title sd-card-header">
@@ -368,6 +371,16 @@
 </div>
 </div>
 </details></section>
+<section id="checkv-quality-summary-tsv">
+<h4>CheckV quality_summary.tsv<a class="headerlink" href="#checkv-quality-summary-tsv" title="Link to this heading">¶</a></h4>
+<p>Providing the <code class="docutils literal notranslate"><span class="pre">quality_summary.tsv</span></code> output of <a href="https://bitbucket.org/berkeleylab/checkv/src/master/" target="_blank">CheckV</a> is optional, but will add more information in the MIUVIG structured comment. For example, the quality will be taken from CheckV’s quality estimation (High-quality or Genome-fragment) and also the completeness score will be added. Also if the sequence is a provirus (UpViG) will be taken into account. If you do not provide this file, sequences are considered to be ‘Genome fragment(s)’ and ‘independent sequence (UViG) by default.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Providing the <code class="docutils literal notranslate"><span class="pre">quality_summary.tsv</span></code> CheckV file will be mostly useful when you have bacteriophage sequences as CheckV can not reliably estimate the completeness score for eukaryotic (RNA) viruses.</p>
+</div>
+</section>
+</section>
+<hr class="docutils" />
 <section id="assembly-comment">
 <h3>Assembly comment<a class="headerlink" href="#assembly-comment" title="Link to this heading">¶</a></h3>
 <p>The assembly comment file is essentially a tsv file that contains the necessary information on the Assembly structured comment. It should again contain two columns: <em>Assembly_parameter</em> and <em>value</em>. There are three possible <em>Assembly_parameter</em> values: <em>StructuredCommentPrefix</em> which should always be <em>Assembly-Data</em>, <em>Assembly Method</em> which contains the assembly software you used and <em>Sequencing Technology</em> which should include the sequencing platform used to generate your data.</p>
@@ -396,15 +409,8 @@
 </div>
 </div>
 </details></section>
-<section id="checkv-quality-summary-tsv">
-<h3>CheckV quality_summary.tsv<a class="headerlink" href="#checkv-quality-summary-tsv" title="Link to this heading">¶</a></h3>
-<p>Providing the <code class="docutils literal notranslate"><span class="pre">quality_summary.tsv</span></code> output of <a href="https://bitbucket.org/berkeleylab/checkv/src/master/" target="_blank">CheckV</a> is optional, but will add more information in the MIUVIG structured comment. For example, the quality will be taken from CheckV’s quality estimation (High-quality or Genome-fragment) and also the completeness score will be added. Also if the sequence is a provirus (UpViG) will be taken into account. If you do not provide this file, sequences are considered to be ‘Genome fragment(s)’ and ‘independent sequence (UViG) by default.</p>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>Providing the <code class="docutils literal notranslate"><span class="pre">quality_summary.tsv</span></code> CheckV file will be mostly useful when you have bacteriophage sequences as CheckV can not reliably estimate the completeness score for eukaryotic (RNA) viruses.</p>
-</div>
 </section>
-</section>
+<hr class="docutils" />
 <section id="required-input">
 <h2>Required Input<a class="headerlink" href="#required-input" title="Link to this heading">¶</a></h2>
 <ul class="simple">
@@ -499,11 +505,14 @@
             <ul>
 <li><a class="reference internal" href="#">comments</a><ul>
 <li><a class="reference internal" href="#overview">Overview</a><ul>
+<li><a class="reference internal" href="#miuvig-structured-comment">MIUVIG structured comment</a><ul>
 <li><a class="reference internal" href="#miuvig-taxonomy">MIUVIG taxonomy</a></li>
 <li><a class="reference internal" href="#miuvig-features">MIUVIG features</a></li>
 <li><a class="reference internal" href="#global-miuvig-parameters">Global MIUVIG parameters</a></li>
-<li><a class="reference internal" href="#assembly-comment">Assembly comment</a></li>
 <li><a class="reference internal" href="#checkv-quality-summary-tsv">CheckV quality_summary.tsv</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#assembly-comment">Assembly comment</a></li>
 </ul>
 </li>
 <li><a class="reference internal" href="#required-input">Required Input</a></li>

@@ -1,5 +1,5 @@
 # features
-
+---
 ## Overview
 This command creates an <a href="https://www.ncbi.nlm.nih.gov/WebSub/html/help/feature-table.html" target="_blank">NCBI feature table</a> by predicting open reading frames (ORFs) from an input FASTA file with <a href="https://github.com/althonos/pyrodigal" target="_blank">`pyrodigal`</a>. Subsequently, the ORFs get annotated by aligning the protein translations to the <a href="https://bfvd.steineggerlab.workers.dev/" target="_blank">Big Fantastic Virus Database</a> with `mmseqs2` and selecting the protein name of the top hit.
 
@@ -40,6 +40,7 @@ This command creates an <a href="https://www.ncbi.nlm.nih.gov/WebSub/html/help/f
 Additionally, if a taxonomy file is provided, `suvtk features` will reorient the input nucleotide sequences based on their taxonomy. This means that ssRNA(-) virus sequences (ie. part of the *Negarnaviricota*) will get a negative orientation (3' &rarr; 5') and all other sequences, including unclassified sequences, a positive orientation (5' &rarr; 3'). This reorientation is based on the strand on which the majority of ORFs are found by `pyrodigal`.
 ```
 
+---
 ## Required Input
 - **-i, -\\\-input**: Input FASTA file with sequences. *(Required)*
 - **-o, -\\\-output**: Output directory where the results will be saved. *(Required)*

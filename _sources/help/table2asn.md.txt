@@ -1,5 +1,5 @@
 # table2asn
-
+---
 ## Overview
 Generates a submission file (.sqn) for GenBank by integrating sequence data, feature tables, and structured comment files. It leverages the table2asn utility and validates the submission file.
 
@@ -44,6 +44,7 @@ You can generate a template file <a href="https://submit.ncbi.nlm.nih.gov/genban
 ### Comments file
 This file contains structured comments that provide additional metadata for your submission. It should be generated from the [`comments`](comments.md) subcommand.
 
+---
 ## Required Input
 - **-i, -\\\-input**: Input FASTA file. *(Required)*
 - **-o, -\\\-output**: Output prefix (the resulting file will have a `.sqn` extension). *(Required)*
