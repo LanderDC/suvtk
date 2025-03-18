@@ -29,7 +29,7 @@ The `--features` input file should contain info on the software, database and me
 | sim_search_meth   | MMseqs2;17.b804f;-s 7.5, default otherwise         |
 ```
 
-### MIUVIG tsv
+### Global MIUVIG parameters
 The MIUVIG tsv file should contain global parameters of your study that apply to all your sequences. It should be a tsv file with two columns: *MIUVIG_parameter* and *value*. Allowed parameters and their values, including which parameters are mandatory, can be found [here](https://static-content.springer.com/esm/art%3A10.1038%2Fnbt.4306/MediaObjects/41587_2019_BFnbt4306_MOESM36_ESM.xlsx) and the corresponding MIUVIG_parameter strings can be found <a href="https://genomicsstandardsconsortium.github.io/mixs/0010012/" target="_blank">here</a>.
 
 ```{dropdown} Example
@@ -40,9 +40,6 @@ The MIUVIG tsv file should contain global parameters of your study that apply to
 | source_uvig          | viral fraction metagenome (virome)                                    |
 | assembly_software    | metaSPAdes;v3.15.3;kmer set 21,33,55,77, default otherwise            |
 | vir_ident_software   | genomad;1.7.0;score-calibration, default otherwise                    |
-| detec_type           | independent sequence (UViG)                                           |
-| assembly_qual        | Genome fragment(s)                                                    |
-| number_contig        | 1                                                                     | # possibly remove this (see isolate count table2asn script)
 | size_frac            | 0-0.8 um                                                              |
 | virus_enrich_appr    | filtration + centrifugation + DNAse + RNAse                           |
 | nucl_acid_ext        | 10.1038/srep16532                                                     |
@@ -63,9 +60,9 @@ The assembly comment file is essentially a tsv file that contains the necessary 
 ```
 
 ### CheckV quality_summary.tsv
-Providing the `quality_summary.tsv` output of <a href="https://bitbucket.org/berkeleylab/checkv/src/master/" target="_blank">CheckV</a> is optional, but will add more information in the MIUVIG structured comment. For example, the quality will be taken from CheckV's quality estimation (High-quality or Genome-fragment) and also the completeness score will be added. Also if the sequence is a provirus (UpViG) will be taken into account. If you do not provide this file, sequences are considered to be 'Genome fragments' and 'independent sequences (UViG) by default.
+Providing the `quality_summary.tsv` output of <a href="https://bitbucket.org/berkeleylab/checkv/src/master/" target="_blank">CheckV</a> is optional, but will add more information in the MIUVIG structured comment. For example, the quality will be taken from CheckV's quality estimation (High-quality or Genome-fragment) and also the completeness score will be added. Also if the sequence is a provirus (UpViG) will be taken into account. If you do not provide this file, sequences are considered to be 'Genome fragment(s)' and 'independent sequence (UViG) by default.
 
-```{attention}
+```{note}
 Providing the `quality_summary.tsv` CheckV file will be mostly useful when you have bacteriophage sequences as CheckV can not reliably estimate the completeness score for eukaryotic (RNA) viruses.
 ```
 
