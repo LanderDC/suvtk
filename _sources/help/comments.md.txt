@@ -3,6 +3,7 @@
 ## Overview
 This command generates a <a href="https://www.ncbi.nlm.nih.gov/genbank/structuredcomment/" target="_blank">structured comment</a> file based on MIUVIG standards. It merges taxonomy, features, MIUVIG, and assembly data into a unified output file that will add structured comments to the GenBank submission.
 
+---
 ### MIUVIG structured comment
 #### MIUVIG taxonomy
 The `--taxonomy` file should contain info on the genome structure and type of your viral sequences. These are mandatory parameters in the MIUVIG standard and can be obtained with the [`suvtk virus-info`](virus-info.md) if you determined your own taxonomy, or [`suvtk taxonomy`](taxonomy.md) to get both the taxonomy and predicted genome structure and type for your sequences. These commands will output `miuvig_taxonomy.tsv` containing this info for all sequences.

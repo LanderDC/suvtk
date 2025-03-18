@@ -253,13 +253,15 @@
         </div>
         <article role="main" id="furo-main-content">
           <h1>Source code for suvtk.utils</h1><div class="highlight"><pre>
-<span></span><span class="kn">import</span> <span class="nn">subprocess</span>
+<span></span><span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">subprocess</span>
 <span class="kn">import</span> <span class="nn">sys</span>
 
 <span class="kn">import</span> <span class="nn">click</span>
 <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 
 
+<span class="c1"># Adapted from https://github.com/rcedgar/palm_annot/blob/77ac88ef7454dd3be9e5cbdb55792ce1ed7db95c/py/palm_annot.py#L121-L132</span>
 <div class="viewcode-block" id="Exec">
 <a class="viewcode-back" href="../../source/suvtk.html#suvtk.utils.Exec">[docs]</a>
 <span class="k">def</span> <span class="nf">Exec</span><span class="p">(</span><span class="n">CmdLine</span><span class="p">,</span> <span class="n">fLog</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">capture</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
@@ -340,6 +342,20 @@
             <span class="sa">f</span><span class="s2">&quot;Only ASCII characters are allowed in file &#39;</span><span class="si">{</span><span class="n">path</span><span class="si">}</span><span class="s2">&#39;. &quot;</span>
             <span class="sa">f</span><span class="s2">&quot;Offending character: </span><span class="si">{</span><span class="n">offending_char</span><span class="si">}</span><span class="s2">. Error: </span><span class="si">{</span><span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span>
         <span class="p">)</span></div>
+
+
+
+<span class="c1"># Copied from https://github.com/EricDeveaud/genomad/blob/030ab6434654435ce75243347c97be6f40ea175b/genomad/cli.py#L250-L257</span>
+<div class="viewcode-block" id="get_available_cpus">
+<a class="viewcode-back" href="../../source/suvtk.html#suvtk.utils.get_available_cpus">[docs]</a>
+<span class="k">def</span> <span class="nf">get_available_cpus</span><span class="p">():</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="c1"># Try to get the number of cores available to this process</span>
+        <span class="n">CPUS</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">sched_getaffinity</span><span class="p">(</span><span class="mi">0</span><span class="p">))</span>
+    <span class="k">except</span> <span class="ne">AttributeError</span><span class="p">:</span>
+        <span class="c1"># Windows / MacOS probably don&#39;t have this functionality</span>
+        <span class="n">CPUS</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">cpu_count</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">CPUS</span></div>
 
 </pre></div>
         </article>

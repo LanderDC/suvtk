@@ -564,7 +564,7 @@
     <span class="s2">&quot;--threads&quot;</span><span class="p">,</span>
     <span class="s2">&quot;threads&quot;</span><span class="p">,</span>
     <span class="n">required</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
-    <span class="n">default</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span>
+    <span class="n">default</span><span class="o">=</span><span class="n">utils</span><span class="o">.</span><span class="n">get_available_cpus</span><span class="p">(),</span>
     <span class="nb">type</span><span class="o">=</span><span class="nb">int</span><span class="p">,</span>
     <span class="n">metavar</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span>
     <span class="n">help</span><span class="o">=</span><span class="s2">&quot;Number of threads to use&quot;</span><span class="p">,</span>
@@ -808,7 +808,9 @@
         <span class="n">file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span>
             <span class="sa">f</span><span class="s2">&quot;feat_pred</span><span class="se">\t</span><span class="si">{</span><span class="n">feat_pred</span><span class="si">}</span><span class="s2">;</span><span class="si">{</span><span class="n">feat_pred_version</span><span class="si">}</span><span class="s2">;-g </span><span class="si">{</span><span class="n">transl_table</span><span class="si">}</span><span class="s2">, default otherwise</span><span class="se">\n</span><span class="s2">&quot;</span>
         <span class="p">)</span>
-        <span class="n">file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;ref_db</span><span class="se">\t</span><span class="s2">BFVD;2023_02;https://bfvd.steineggerlab.workers.dev</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="n">file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span>
+            <span class="sa">f</span><span class="s2">&quot;ref_db</span><span class="se">\t</span><span class="s2">BFVD;2023_02;https://bfvd.steineggerlab.workers.dev</span><span class="se">\n</span><span class="s2">&quot;</span>
+        <span class="p">)</span>  <span class="c1"># TODO: read DB version from version.txt or something</span>
         <span class="n">file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span>
             <span class="sa">f</span><span class="s2">&quot;sim_search_meth</span><span class="se">\t</span><span class="si">{</span><span class="n">aligner</span><span class="si">}</span><span class="s2">;</span><span class="si">{</span><span class="n">aligner_version</span><span class="si">}</span><span class="s2">;-s 7.5, default otherwise</span><span class="se">\n</span><span class="s2">&quot;</span>
         <span class="p">)</span>
