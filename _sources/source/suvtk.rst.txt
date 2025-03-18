@@ -1,6 +1,10 @@
 suvtk package
 =============
 
+.. attention::
+
+   Docstring were generated with GitHub Copilot and can contain errors.
+
 Submodules
 ----------
 

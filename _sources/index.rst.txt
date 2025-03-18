@@ -17,7 +17,7 @@ To install the package, run:
 
    git clone https://github.com/LanderDC/suvtk.git
    cd suvtk
-   mamba create -n suvtk -c bioconda -c conda-forge 'python>=3.9' pip mmseqs2
+   mamba create -n suvtk -c bioconda -c conda-forge 'python>=3.9' pip mmseqs2 table2asn
    mamba activate suvtk
    pip install .
 

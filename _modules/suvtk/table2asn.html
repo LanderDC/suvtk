@@ -258,10 +258,7 @@
 <span class="c1"># TODO: add missing required miuvig params from src file? -&gt; comments.py?:  env_broad_scale, env_local_scale, env_medium, investigation_type, project_name, seq_meth</span>
 <span class="c1"># TODO: add option to make genbank file -&gt; made by default</span>
 <span class="c1"># TODO: add check for required columns (src, comments)</span>
-<span class="kn">import</span> <span class="nn">os</span>
-
 <span class="kn">import</span> <span class="nn">click</span>
-<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 
 <span class="kn">from</span> <span class="nn">suvtk</span> <span class="kn">import</span> <span class="n">utils</span>
 
@@ -272,25 +269,24 @@
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Processes comments by updating the comments file based on the source file.</span>
 
-<span class="sd">    This function reads a source file and a comments file into pandas DataFrames,</span>
-<span class="sd">    ensures that the extra columns (collection_date, geo_loc_name, lat_lon) are inserted</span>
-<span class="sd">    right after the first column &#39;StructeredCommentPrefix&#39; in the comments file, and then</span>
-<span class="sd">    groups the source DataFrame by the &quot;Isolate&quot; column to update duplicate-related fields.</span>
-
 <span class="sd">    For each group of isolates, it updates the comments file with:</span>
-<span class="sd">      - extra data: collection_date, geo_loc_name, and lat_lon (copied from Collection_date,</span>
-<span class="sd">        geo_loc_name, and Lat_Lon in the src file)</span>
-<span class="sd">      - if duplicates exist, it updates:</span>
-<span class="sd">            - the count of isolates,</span>
-<span class="sd">            - the majority predicted genome type (taken from the comments file), and</span>
-<span class="sd">            - sets the predicted genome structure to &quot;segmented&quot;.</span>
+<span class="sd">    - Extra data: `collection_date`, `geo_loc_name`, and `lat_lon` (copied from `Collection_date`,</span>
+<span class="sd">      `geo_loc_name`, and `Lat_Lon` in the source file).</span>
+<span class="sd">    - If duplicates exist, it updates:</span>
+<span class="sd">        - The count of isolates.</span>
+<span class="sd">        - The majority predicted genome type (taken from the comments file).</span>
+<span class="sd">        - Sets the predicted genome structure to &quot;segmented&quot;.</span>
 
-<span class="sd">    Args:</span>
-<span class="sd">        src_file (str): The file path to the source file in tab-separated format.</span>
-<span class="sd">        comments_file (str): The file path to the comments file in tab-separated format.</span>
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    src_file : str</span>
+<span class="sd">        The file path to the source file in tab-separated format.</span>
+<span class="sd">    comments_file : str</span>
+<span class="sd">        The file path to the comments file in tab-separated format.</span>
 
-<span class="sd">    Returns:</span>
-<span class="sd">        None</span>
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    None</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">click</span><span class="o">.</span><span class="n">echo</span><span class="p">(</span><span class="s2">&quot;Reading source and comments files...&quot;</span><span class="p">)</span>
     <span class="n">src_df</span> <span class="o">=</span> <span class="n">utils</span><span class="o">.</span><span class="n">safe_read_csv</span><span class="p">(</span><span class="n">src_file</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\t</span><span class="s2">&quot;</span><span class="p">)</span>

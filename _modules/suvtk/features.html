@@ -274,18 +274,27 @@
 <div class="viewcode-block" id="validate_translation_table">
 <a class="viewcode-back" href="../../source/suvtk.html#suvtk.features.validate_translation_table">[docs]</a>
 <span class="k">def</span> <span class="nf">validate_translation_table</span><span class="p">(</span><span class="n">ctx</span><span class="p">,</span> <span class="n">param</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Validate that the given translation table is one of the valid genetic codes.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Validate that the given translation table is one of the valid genetic codes.</span>
 
-<span class="sd">    Args:</span>
-<span class="sd">        ctx: The Click context object. Unused.</span>
-<span class="sd">        param: The parameter object. Unused.</span>
-<span class="sd">        value: The given translation table.</span>
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    ctx : click.Context</span>
+<span class="sd">        The Click context object. Unused.</span>
+<span class="sd">    param : click.Parameter</span>
+<span class="sd">        The parameter object. Unused.</span>
+<span class="sd">    value : int</span>
+<span class="sd">        The given translation table.</span>
 
-<span class="sd">    Returns:</span>
-<span class="sd">        value: The given translation table if it is valid.</span>
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    int</span>
+<span class="sd">        The given translation table if it is valid.</span>
 
-<span class="sd">    Raises:</span>
-<span class="sd">        click.BadParameter: If the given translation table is not valid.</span>
+<span class="sd">    Raises</span>
+<span class="sd">    ------</span>
+<span class="sd">    click.BadParameter</span>
+<span class="sd">        If the given translation table is not valid.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="n">value</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">VALID_GENETIC_CODES</span><span class="p">:</span>
         <span class="k">raise</span> <span class="n">click</span><span class="o">.</span><span class="n">BadParameter</span><span class="p">(</span>
@@ -298,7 +307,21 @@
 <div class="viewcode-block" id="calculate_coding_capacity">
 <a class="viewcode-back" href="../../source/suvtk.html#suvtk.features.calculate_coding_capacity">[docs]</a>
 <span class="k">def</span> <span class="nf">calculate_coding_capacity</span><span class="p">(</span><span class="n">genes</span><span class="p">,</span> <span class="n">seq_length</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Calculate the total coding capacity for a list of genes.&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Calculate the total coding capacity for a list of genes.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    genes : list</span>
+<span class="sd">        A list of gene objects.</span>
+<span class="sd">    seq_length : int</span>
+<span class="sd">        The length of the sequence.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    float</span>
+<span class="sd">        The total coding capacity.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="nb">sum</span><span class="p">((</span><span class="n">gene</span><span class="o">.</span><span class="n">end</span> <span class="o">-</span> <span class="n">gene</span><span class="o">.</span><span class="n">begin</span><span class="p">)</span> <span class="o">/</span> <span class="n">seq_length</span> <span class="k">for</span> <span class="n">gene</span> <span class="ow">in</span> <span class="n">genes</span><span class="p">)</span></div>
 
 
@@ -310,11 +333,15 @@
 <span class="sd">    Calculate the sum of the strand orientations for a list of genes.</span>
 <span class="sd">    If the sum is zero, return the orientation of the largest gene.</span>
 
-<span class="sd">    Parameters:</span>
-<span class="sd">    genes (list): A list of gene objects, each having &#39;strand&#39;, &#39;begin&#39;, and &#39;end&#39; attributes.</span>
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    genes : list</span>
+<span class="sd">        A list of gene objects, each having &#39;strand&#39;, &#39;begin&#39;, and &#39;end&#39; attributes.</span>
 
-<span class="sd">    Returns:</span>
-<span class="sd">    int: The sum of strand orientations across all genes, or the orientation of the largest gene if the sum is zero.</span>
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    int</span>
+<span class="sd">        The sum of strand orientations across all genes, or the orientation of the largest gene if the sum is zero.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">orientation_sum</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">gene</span><span class="o">.</span><span class="n">strand</span> <span class="k">for</span> <span class="n">gene</span> <span class="ow">in</span> <span class="n">genes</span><span class="p">)</span>
 
@@ -330,7 +357,23 @@
 <div class="viewcode-block" id="extract_gene_results">
 <a class="viewcode-back" href="../../source/suvtk.html#suvtk.features.extract_gene_results">[docs]</a>
 <span class="k">def</span> <span class="nf">extract_gene_results</span><span class="p">(</span><span class="n">genes</span><span class="p">,</span> <span class="n">record_id</span><span class="p">,</span> <span class="n">seq_length</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Extract gene prediction results for a sequence.&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Extract gene prediction results for a sequence.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    genes : list</span>
+<span class="sd">        A list of gene objects.</span>
+<span class="sd">    record_id : str</span>
+<span class="sd">        The ID of the sequence record.</span>
+<span class="sd">    seq_length : int</span>
+<span class="sd">        The length of the sequence.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    list</span>
+<span class="sd">        A list of gene prediction results.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="p">[</span>
         <span class="p">[</span>
             <span class="n">record_id</span><span class="p">,</span>
@@ -351,7 +394,25 @@
 <div class="viewcode-block" id="write_proteins">
 <a class="viewcode-back" href="../../source/suvtk.html#suvtk.features.write_proteins">[docs]</a>
 <span class="k">def</span> <span class="nf">write_proteins</span><span class="p">(</span><span class="n">genes</span><span class="p">,</span> <span class="n">record_id</span><span class="p">,</span> <span class="n">dst_path</span><span class="p">,</span> <span class="n">overwrite</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Write protein translations to a file.&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Write protein translations to a file.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    genes : list</span>
+<span class="sd">        A list of gene objects.</span>
+<span class="sd">    record_id : str</span>
+<span class="sd">        The ID of the sequence record.</span>
+<span class="sd">    dst_path : str</span>
+<span class="sd">        The destination file path.</span>
+<span class="sd">    overwrite : bool</span>
+<span class="sd">        Whether to overwrite the file.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    bool</span>
+<span class="sd">        Updated overwrite flag.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">dst_path</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span> <span class="k">if</span> <span class="n">overwrite</span> <span class="k">else</span> <span class="s2">&quot;a&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">dst</span><span class="p">:</span>
         <span class="n">genes</span><span class="o">.</span><span class="n">write_translations</span><span class="p">(</span>
             <span class="n">dst</span><span class="p">,</span>
@@ -367,7 +428,23 @@
 <div class="viewcode-block" id="write_nucleotides">
 <a class="viewcode-back" href="../../source/suvtk.html#suvtk.features.write_nucleotides">[docs]</a>
 <span class="k">def</span> <span class="nf">write_nucleotides</span><span class="p">(</span><span class="n">sequence</span><span class="p">,</span> <span class="n">output_handle</span><span class="p">,</span> <span class="n">overwrite</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Write nucleotide sequences to a file.&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Write nucleotide sequences to a file.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    sequence : Bio.SeqRecord.SeqRecord</span>
+<span class="sd">        The sequence record to write.</span>
+<span class="sd">    output_handle : str</span>
+<span class="sd">        The output file path.</span>
+<span class="sd">    overwrite : bool</span>
+<span class="sd">        Whether to overwrite the file.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    bool</span>
+<span class="sd">        Updated overwrite flag.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">output_handle</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span> <span class="k">if</span> <span class="n">overwrite</span> <span class="k">else</span> <span class="s2">&quot;a&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">dst</span><span class="p">:</span>
         <span class="n">write</span><span class="p">(</span><span class="n">sequence</span><span class="p">,</span> <span class="n">dst</span><span class="p">,</span> <span class="s2">&quot;fasta&quot;</span><span class="p">)</span>
     <span class="k">return</span> <span class="kc">False</span></div>
@@ -383,7 +460,7 @@
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
 <span class="sd">    df : pandas.DataFrame</span>
-<span class="sd">        A DataFrame with columns &#39;query&#39;, &#39;bits&#39;.</span>
+<span class="sd">        A DataFrame with columns &#39;query&#39; and &#39;bits&#39;.</span>
 
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
@@ -400,7 +477,21 @@
 <div class="viewcode-block" id="predict_orfs">
 <a class="viewcode-back" href="../../source/suvtk.html#suvtk.features.predict_orfs">[docs]</a>
 <span class="k">def</span> <span class="nf">predict_orfs</span><span class="p">(</span><span class="n">orf_finder</span><span class="p">,</span> <span class="n">seq</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Find genes, compute coding capacity, and determine orientation.&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Find genes, compute coding capacity, and determine orientation.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    orf_finder : pyrodigal_gv.ViralGeneFinder</span>
+<span class="sd">        The ORF finder object.</span>
+<span class="sd">    seq : Bio.Seq.Seq</span>
+<span class="sd">        The sequence to analyze.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    tuple</span>
+<span class="sd">        A tuple containing genes, coding capacity, orientation, and the ORF finder used.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">genes</span> <span class="o">=</span> <span class="n">orf_finder</span><span class="o">.</span><span class="n">find_genes</span><span class="p">(</span><span class="nb">bytes</span><span class="p">(</span><span class="n">seq</span><span class="p">))</span>
     <span class="n">coding_capacity</span> <span class="o">=</span> <span class="n">calculate_coding_capacity</span><span class="p">(</span><span class="n">genes</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">seq</span><span class="p">))</span>
     <span class="n">orientation</span> <span class="o">=</span> <span class="n">find_orientation</span><span class="p">(</span><span class="n">genes</span><span class="p">)</span>
@@ -411,7 +502,23 @@
 <div class="viewcode-block" id="get_lineage">
 <a class="viewcode-back" href="../../source/suvtk.html#suvtk.features.get_lineage">[docs]</a>
 <span class="k">def</span> <span class="nf">get_lineage</span><span class="p">(</span><span class="n">record_id</span><span class="p">,</span> <span class="n">taxonomy_data</span><span class="p">,</span> <span class="n">taxdb</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Retrieve the lineage of a given record from the taxonomy table.&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Retrieve the lineage of a given record from the taxonomy table.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    record_id : str</span>
+<span class="sd">        The ID of the sequence record.</span>
+<span class="sd">    taxonomy_data : pandas.DataFrame</span>
+<span class="sd">        The taxonomy data table.</span>
+<span class="sd">    taxdb : taxopy.TaxDb</span>
+<span class="sd">        The taxonomy database.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    list</span>
+<span class="sd">        The lineage of the record.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">record_taxonomy</span> <span class="o">=</span> <span class="n">taxonomy_data</span><span class="p">[</span><span class="n">taxonomy_data</span><span class="p">[</span><span class="s2">&quot;contig&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="n">record_id</span><span class="p">]</span>
     <span class="k">if</span> <span class="n">record_taxonomy</span><span class="o">.</span><span class="n">empty</span><span class="p">:</span>
         <span class="k">return</span> <span class="p">[]</span>
@@ -441,12 +548,20 @@
 <span class="sd">    This function creates a single feature table file by default, but can</span>
 <span class="sd">    also save separate files for each unique sequence ID when specified.</span>
 
-<span class="sd">    Parameters:</span>
-<span class="sd">    df (pd.DataFrame): DataFrame containing sequence data with columns</span>
-<span class="sd">                       [&#39;seqid&#39;, &#39;accession&#39;, &#39;start&#39;, &#39;end&#39;, &#39;strand&#39;, &#39;type&#39;,</span>
-<span class="sd">                        &#39;Protein names&#39;, &#39;source&#39;, &#39;start_codon&#39;, &#39;partial_begin&#39;, &#39;partial_end&#39;].</span>
-<span class="sd">    output_dir (str): Directory path to save the feature tables. Defaults to &quot;.&quot;.</span>
-<span class="sd">    single_file (bool): If True, saves all features to one file; otherwise, saves separate files.</span>
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    df : pd.DataFrame</span>
+<span class="sd">        DataFrame containing sequence data with columns</span>
+<span class="sd">        [&#39;seqid&#39;, &#39;accession&#39;, &#39;start&#39;, &#39;end&#39;, &#39;strand&#39;, &#39;type&#39;,</span>
+<span class="sd">        &#39;Protein names&#39;, &#39;source&#39;, &#39;start_codon&#39;, &#39;partial_begin&#39;, &#39;partial_end&#39;].</span>
+<span class="sd">    output_dir : str, optional</span>
+<span class="sd">        Directory path to save the feature tables. Defaults to &quot;.&quot;.</span>
+<span class="sd">    single_file : bool, optional</span>
+<span class="sd">        If True, saves all features to one file; otherwise, saves separate files.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    None</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="k">if</span> <span class="n">single_file</span><span class="p">:</span>
@@ -473,7 +588,20 @@
 <div class="viewcode-block" id="write_feature_entries">
 <a class="viewcode-back" href="../../source/suvtk.html#suvtk.features.write_feature_entries">[docs]</a>
 <span class="k">def</span> <span class="nf">write_feature_entries</span><span class="p">(</span><span class="n">file</span><span class="p">,</span> <span class="n">group</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Helper function to write feature entries to a file.&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Helper function to write feature entries to a file.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    file : file-like object</span>
+<span class="sd">        The file to write to.</span>
+<span class="sd">    group : pandas.DataFrame</span>
+<span class="sd">        The group of feature entries to write.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    None</span>
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">for</span> <span class="n">_</span><span class="p">,</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">group</span><span class="o">.</span><span class="n">iterrows</span><span class="p">():</span>
         <span class="n">start</span><span class="p">,</span> <span class="n">end</span> <span class="o">=</span> <span class="n">row</span><span class="p">[</span><span class="s2">&quot;start&quot;</span><span class="p">],</span> <span class="n">row</span><span class="p">[</span><span class="s2">&quot;end&quot;</span><span class="p">]</span>
 
@@ -528,7 +656,7 @@
     <span class="s2">&quot;database&quot;</span><span class="p">,</span>
     <span class="n">required</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
     <span class="nb">type</span><span class="o">=</span><span class="n">click</span><span class="o">.</span><span class="n">Path</span><span class="p">(</span><span class="n">exists</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span>
-    <span class="n">help</span><span class="o">=</span><span class="s2">&quot;BFVD diamond database path&quot;</span><span class="p">,</span>
+    <span class="n">help</span><span class="o">=</span><span class="s2">&quot;Path to the suvtk database folder.&quot;</span><span class="p">,</span>
 <span class="p">)</span>
 <span class="nd">@click</span><span class="o">.</span><span class="n">option</span><span class="p">(</span>
     <span class="s2">&quot;-g&quot;</span><span class="p">,</span>
@@ -551,7 +679,7 @@
     <span class="s2">&quot;--taxonomy&quot;</span><span class="p">,</span>
     <span class="n">required</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
     <span class="nb">type</span><span class="o">=</span><span class="n">click</span><span class="o">.</span><span class="n">Path</span><span class="p">(</span><span class="n">exists</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span>
-    <span class="n">help</span><span class="o">=</span><span class="s2">&quot;Taxonomy file to adjust sequence orientation if it belongs to a ssRNA(-) virus.&quot;</span><span class="p">,</span>
+    <span class="n">help</span><span class="o">=</span><span class="s2">&quot;Taxonomy file to adjust sequence orientation (ssRNA- sequences will get 3&#39; -&gt; 5&#39; orientation, all others 5&#39; -&gt; 3&#39;).&quot;</span><span class="p">,</span>
 <span class="p">)</span>
 <span class="nd">@click</span><span class="o">.</span><span class="n">option</span><span class="p">(</span>
     <span class="s2">&quot;--separate-files&quot;</span><span class="p">,</span>
@@ -694,7 +822,7 @@
     <span class="c1"># Cmd += f&quot;--db {database}/foldseek_db/bfvd.dmnd &quot;</span>
     <span class="c1"># Cmd += f&quot;--query {output_path}/proteins.faa &quot;</span>
     <span class="c1"># Cmd += f&quot;--out {output_path}/alignment.m8 &quot;</span>
-    <span class="c1"># Cmd += f&quot;--threads {threads} &quot;</span>
+    <span class="c1"># Cmd += &quot;--threads {threads} &quot;</span>
     <span class="c1"># Cmd += &quot;--sensitive &quot;</span>
     <span class="c1"># Cmd += &quot;--index-chunks 1 &quot;</span>
     <span class="c1"># Cmd += &quot;--block-size 8 &quot;</span>

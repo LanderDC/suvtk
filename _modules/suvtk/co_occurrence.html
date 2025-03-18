@@ -253,10 +253,10 @@
         </div>
         <article role="main" id="furo-main-content">
           <h1>Source code for suvtk.co_occurrence</h1><div class="highlight"><pre>
-<span></span><span class="kn">import</span> <span class="nn">click</span>
-<span class="kn">import</span> <span class="nn">sys</span>
+<span></span><span class="kn">import</span> <span class="nn">sys</span>
 <span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
 
+<span class="kn">import</span> <span class="nn">click</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 
@@ -267,13 +267,16 @@
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Calculate the proportion of samples for each contig in a dataframe.</span>
 
-<span class="sd">    Parameters:</span>
-<span class="sd">    df (DataFrame): A pandas DataFrame where rows represent contigs and columns represent samples.</span>
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    df : pandas.DataFrame</span>
+<span class="sd">        A pandas DataFrame where rows represent contigs and columns represent samples.</span>
 
-<span class="sd">    Returns:</span>
-<span class="sd">    DataFrame: The original DataFrame with two additional columns: &#39;sample_count&#39;, the total number of samples a contig is present in, and &#39;proportion_samples&#39;, the proportion of samples a contig is present in.</span>
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    pandas.DataFrame</span>
+<span class="sd">        The original DataFrame with two additional columns: &#39;sample_count&#39;, the total number of samples a contig is present in, and &#39;proportion_samples&#39;, the proportion of samples a contig is present in.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="c1"># df_clean = df.drop(df.columns[df.columns.str.contains(&quot;NC&quot;)], axis=1)</span>
     <span class="n">df</span><span class="p">[</span><span class="s2">&quot;sample_count&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">row</span><span class="p">:</span> <span class="n">row</span><span class="p">[</span><span class="n">row</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">count</span><span class="p">(),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
     <span class="n">df</span><span class="p">[</span><span class="s2">&quot;proportion_samples&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;sample_count&quot;</span><span class="p">]</span> <span class="o">/</span> <span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
 
@@ -287,11 +290,15 @@
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Calculate a Spearman correlation matrix for the transposed dataframe and mask the upper triangle.</span>
 
-<span class="sd">    Parameters:</span>
-<span class="sd">    df_transposed (DataFrame): A transposed pandas DataFrame where rows represent samples and columns represent variables.</span>
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    df_transposed : pandas.DataFrame</span>
+<span class="sd">        A transposed pandas DataFrame where rows represent samples and columns represent variables.</span>
 
-<span class="sd">    Returns:</span>
-<span class="sd">    DataFrame: A masked correlation matrix with the upper triangle set to NaN, and the axes renamed to &#39;Contig1&#39; and &#39;Contig2&#39;.</span>
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    pandas.DataFrame</span>
+<span class="sd">        A masked correlation matrix with the upper triangle set to NaN, and the axes renamed to &#39;Contig1&#39; and &#39;Contig2&#39;.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="n">correlation_matrix</span> <span class="o">=</span> <span class="n">df_transposed</span><span class="o">.</span><span class="n">corr</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="s2">&quot;spearman&quot;</span><span class="p">)</span>
@@ -313,13 +320,18 @@
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Calculate the correlation of each segment in the segment list with all rows in the DataFrame.</span>
 
-<span class="sd">    Parameters:</span>
-<span class="sd">    df (DataFrame): A pandas DataFrame with rows representing samples and columns representing variables.</span>
-<span class="sd">    segment_list (list): A list of segment indices to calculate correlations with.</span>
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    df : pandas.DataFrame</span>
+<span class="sd">        A pandas DataFrame with rows representing samples and columns representing variables.</span>
+<span class="sd">    segment_list : list</span>
+<span class="sd">        A list of segment indices to calculate correlations with.</span>
 
-<span class="sd">    Returns:</span>
-<span class="sd">    DataFrame: A DataFrame where each column represents a segment from the segment_list and each value</span>
-<span class="sd">               is the Spearman correlation with the corresponding row in the original DataFrame.</span>
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    pandas.DataFrame</span>
+<span class="sd">        A DataFrame where each column represents a segment from the segment_list and each value</span>
+<span class="sd">        is the Spearman correlation with the corresponding row in the original DataFrame.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="n">correlation_results_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">()</span>
@@ -342,11 +354,15 @@
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Reads a file containing segment identifiers and returns them as a list.</span>
 
-<span class="sd">    Parameters:</span>
-<span class="sd">    segment_file (str): The path to a file containing segment identifiers, one per line.</span>
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    segment_file : str</span>
+<span class="sd">        The path to a file containing segment identifiers, one per line.</span>
 
-<span class="sd">    Returns:</span>
-<span class="sd">    list: A list of segment identifiers with whitespace stripped.</span>
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    list</span>
+<span class="sd">        A list of segment identifiers with whitespace stripped.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="n">file_path</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="n">segment_file</span><span class="p">)</span>
