@@ -253,7 +253,29 @@
         </div>
         <article role="main" id="furo-main-content">
           <h1>Source code for suvtk.virus_info</h1><div class="highlight"><pre>
-<span></span><span class="c1"># TODO: Rename to genome_info?</span>
+<span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">virus_info.py</span>
+<span class="sd">=============</span>
+
+<span class="sd">This script provides information on potentially segmented viruses based on their taxonomy.</span>
+<span class="sd">It also outputs genome type and structure information for MIUVIG structured comments.</span>
+
+<span class="sd">Functions</span>
+<span class="sd">---------</span>
+<span class="sd">load_segment_db()</span>
+<span class="sd">    Load the segmented viruses database.</span>
+
+<span class="sd">load_genome_type_db()</span>
+<span class="sd">    Load the genome structure database.</span>
+
+<span class="sd">run_segment_info(tax_df, database, output_path)</span>
+<span class="sd">    Process taxonomy data to extract segmented virus and genome type information.</span>
+
+<span class="sd">virus_info(taxonomy, database, output_path)</span>
+<span class="sd">    Main command to analyze segmented viruses and generate genome type information.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="c1"># TODO: Rename to genome_info?</span>
 <span class="kn">import</span> <span class="nn">importlib.resources</span>
 <span class="kn">import</span> <span class="nn">os</span>
 <span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>

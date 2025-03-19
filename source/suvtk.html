@@ -263,13 +263,45 @@
 <h1>suvtk package<a class="headerlink" href="#suvtk-package" title="Link to this heading">¶</a></h1>
 <div class="admonition attention">
 <p class="admonition-title">Attention</p>
-<p>Docstring were generated with GitHub Copilot and can contain errors.</p>
+<p>Docstrings were generated with GitHub Copilot and can contain errors.</p>
 </div>
 <section id="submodules">
 <h2>Submodules<a class="headerlink" href="#submodules" title="Link to this heading">¶</a></h2>
 </section>
 <section id="module-suvtk.cli">
 <span id="suvtk-cli-module"></span><h2>suvtk.cli module<a class="headerlink" href="#module-suvtk.cli" title="Link to this heading">¶</a></h2>
+<section id="cli-py">
+<h3>cli.py<a class="headerlink" href="#cli-py" title="Link to this heading">¶</a></h3>
+<p>This script provides a command-line interface (CLI) for submitting viral sequences to GenBank.
+It includes various subcommands for processing and preparing data, such as taxonomy assignment,
+feature extraction, structured comment generation, and more.</p>
+<section id="classes">
+<h4>Classes<a class="headerlink" href="#classes" title="Link to this heading">¶</a></h4>
+<dl class="simple">
+<dt>FullHelpGroup</dt><dd><p>Custom Click Group to display commands in the order they were added.</p>
+</dd>
+</dl>
+</section>
+<section id="functions">
+<h4>Functions<a class="headerlink" href="#functions" title="Link to this heading">¶</a></h4>
+<dl class="simple">
+<dt>cli()</dt><dd><p>Main entry point for the CLI tool.</p>
+</dd>
+</dl>
+</section>
+<section id="commands">
+<h4>Commands<a class="headerlink" href="#commands" title="Link to this heading">¶</a></h4>
+<ul class="simple">
+<li><p>taxonomy</p></li>
+<li><p>features</p></li>
+<li><p>virus_info</p></li>
+<li><p>co_occurrence</p></li>
+<li><p>gbk2tbl</p></li>
+<li><p>comments</p></li>
+<li><p>table2asn</p></li>
+</ul>
+</section>
+</section>
 <dl class="py class">
 <dt class="sig sig-object py" id="suvtk.cli.FullHelpGroup">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">suvtk.cli.</span></span><span class="sig-name descname"><span class="pre">FullHelpGroup</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">commands</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">attrs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/suvtk/cli.html#FullHelpGroup"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#suvtk.cli.FullHelpGroup" title="Link to this definition">¶</a></dt>
@@ -323,6 +355,27 @@
 </section>
 <section id="module-suvtk.co_occurrence">
 <span id="suvtk-co-occurrence-module"></span><h2>suvtk.co_occurrence module<a class="headerlink" href="#module-suvtk.co_occurrence" title="Link to this heading">¶</a></h2>
+<section id="co-occurrence-py">
+<h3>co_occurrence.py<a class="headerlink" href="#co-occurrence-py" title="Link to this heading">¶</a></h3>
+<p>This script identifies co-occurring sequences in an abundance table based on
+prevalence and correlation thresholds. It supports optional segment-specific
+analysis and contig length correction.</p>
+<section id="id2">
+<h4>Functions<a class="headerlink" href="#id2" title="Link to this heading">¶</a></h4>
+<dl class="simple">
+<dt>calculate_proportion(df)</dt><dd><p>Calculate the proportion of samples for each contig.</p>
+</dd>
+<dt>create_correlation_matrix(df_transposed)</dt><dd><p>Generate a Spearman correlation matrix and mask the upper triangle.</p>
+</dd>
+<dt>segment_correlation_matrix(df, segment_list)</dt><dd><p>Calculate correlations for specific segments with all rows in the DataFrame.</p>
+</dd>
+<dt>create_segment_list(segment_file)</dt><dd><p>Read a file containing segment identifiers and return them as a list.</p>
+</dd>
+<dt>co_occurrence(input, output, segments, lengths, prevalence, correlation, strict)</dt><dd><p>Main command to identify co-occurring sequences in an abundance table.</p>
+</dd>
+</dl>
+</section>
+</section>
 <dl class="py function">
 <dt class="sig sig-object py" id="suvtk.co_occurrence.calculate_proportion">
 <span class="sig-prename descclassname"><span class="pre">suvtk.co_occurrence.</span></span><span class="sig-name descname"><span class="pre">calculate_proportion</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/suvtk/co_occurrence.html#calculate_proportion"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#suvtk.co_occurrence.calculate_proportion" title="Link to this definition">¶</a></dt>
@@ -398,9 +451,43 @@ is the Spearman correlation with the corresponding row in the original DataFrame
 </section>
 <section id="module-suvtk.comments">
 <span id="suvtk-comments-module"></span><h2>suvtk.comments module<a class="headerlink" href="#module-suvtk.comments" title="Link to this heading">¶</a></h2>
+<section id="comments-py">
+<h3>comments.py<a class="headerlink" href="#comments-py" title="Link to this heading">¶</a></h3>
+<p>This script generates structured comment files based on MIUVIG standards.
+It validates input files, merges data from multiple sources, and ensures compliance
+with predefined standards for submission to GenBank.</p>
+<section id="id3">
+<h4>Functions<a class="headerlink" href="#id3" title="Link to this heading">¶</a></h4>
+<dl class="simple">
+<dt>comments(taxonomy, features, miuvig, assembly, checkv, output)</dt><dd><p>Generate a structured comment file based on MIUVIG standards.</p>
+</dd>
+</dl>
+</section>
+</section>
 </section>
 <section id="module-suvtk.features">
 <span id="suvtk-features-module"></span><h2>suvtk.features module<a class="headerlink" href="#module-suvtk.features" title="Link to this heading">¶</a></h2>
+<section id="features-py">
+<h3>features.py<a class="headerlink" href="#features-py" title="Link to this heading">¶</a></h3>
+<p>This script processes input sequences to predict open reading frames (ORFs),
+aligns the predicted protein sequences against a database, and generates feature
+tables for submission to GenBank.</p>
+<section id="id4">
+<h4>Functions<a class="headerlink" href="#id4" title="Link to this heading">¶</a></h4>
+<dl class="simple">
+<dt>validate_translation_table(ctx, param, value)</dt><dd><p>Validate the given translation table.</p>
+</dd>
+<dt>calculate_coding_capacity(genes, seq_length)</dt><dd><p>Calculate the total coding capacity for a list of genes.</p>
+</dd>
+<dt>find_orientation(genes)</dt><dd><p>Determine the orientation of genes based on strand information.</p>
+</dd>
+<dt>predict_orfs(orf_finder, seq)</dt><dd><p>Predict ORFs, compute coding capacity, and determine orientation.</p>
+</dd>
+<dt>features(fasta_file, output_path, database, transl_table, coding_complete, taxonomy, separate_files, threads)</dt><dd><p>Main command to create feature tables for sequences.</p>
+</dd>
+</dl>
+</section>
+</section>
 <dl class="py function">
 <dt class="sig sig-object py" id="suvtk.features.calculate_coding_capacity">
 <span class="sig-prename descclassname"><span class="pre">suvtk.features.</span></span><span class="sig-name descname"><span class="pre">calculate_coding_capacity</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">genes</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seq_length</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/suvtk/features.html#calculate_coding_capacity"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#suvtk.features.calculate_coding_capacity" title="Link to this definition">¶</a></dt>
@@ -629,44 +716,70 @@ also save separate files for each unique sequence ID when specified.</p>
 <span id="suvtk-gbk2tbl-module"></span><h2>suvtk.gbk2tbl module<a class="headerlink" href="#module-suvtk.gbk2tbl" title="Link to this heading">¶</a></h2>
 <p>This script converts a GenBank file (.gbk or .gb) into a Sequin feature table (.tbl), which is an input file of table2asn used for creating an ASN.1 file (.sqn).</p>
 <p>Package requirement: BioPython and click</p>
-<dl>
-<dt>Usage:</dt><dd><dl class="simple">
-<dt>Simple command:</dt><dd><p>python gbk2tbl.py –mincontigsize 200 –prefix any_prefix &lt; annotation.gbk
-cat annotation.gbk | python gbk2tbl.py –mincontigsize 200 –prefix any_prefix # integrate gbk2tbl into a pipeline</p>
-</dd>
-<dt>Redirecting error messages to a text file (optional):</dt><dd><p>python gbk2tbl.py –mincontigsize 200 –prefix any_prefix –modifiers modifier_file.txt &lt; annotation.gbk 2&gt; stderr.txt
-cat annotation.gbk | python gbk2tbl.py –mincontigsize 200 –prefix any_prefix –modifiers modifier_file.txt 2&gt; stderr.txt</p>
+<p class="rubric">Examples</p>
+<dl class="simple">
+<dt>Simple command:</dt><dd><p>python gbk2tbl.py –mincontigsize 200 –prefix any_prefix –input annotation.gbk</p>
 </dd>
 </dl>
-<p>Note that this script reads the GenBank file through the stdin (”&lt; annotation.gbk”) and you may want to redirect the stderr to a file via “&gt; stderr.txt” (redirection).</p>
+<section id="inputs">
+<h3>Inputs<a class="headerlink" href="#inputs" title="Link to this heading">¶</a></h3>
+<dl class="simple">
+<dt>GenBank file</dt><dd><p>Passed to the script through input.</p>
 </dd>
-<dt>Inputs:</dt><dd><p>A GenBank file, which ought to be passed to the script through the standard input (stdin).</p>
+</dl>
+</section>
+<section id="outputs">
+<h3>Outputs<a class="headerlink" href="#outputs" title="Link to this heading">¶</a></h3>
+<dl class="simple">
+<dt>any_prefix.tbl<span class="classifier">str</span></dt><dd><p>The Sequin feature table.</p>
 </dd>
-<dt>Outputs:</dt><dd><p>any_prefix.tbl: the Sequin feature table
-any_prefix.fsa: the corresponding fasta file
-These files are inputs for tbl2asn which generates ASN.1 files (<a href="#id2"><span class="problematic" id="id3">*</span></a>.sqn).</p>
+<dt>any_prefix.fsa<span class="classifier">str</span></dt><dd><p>The corresponding FASTA file.</p>
 </dd>
 </dl>
 <dl class="field-list simple">
-<dt class="field-odd">param –mincontigsize<span class="colon">:</span></dt>
-<dd class="field-odd"><p>the minimum contig size, default = 0</p>
+<dt class="field-odd">param --mincontigsize<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The minimum contig size, default = 0.</p>
 </dd>
-<dt class="field-even">param –prefix<span class="colon">:</span></dt>
-<dd class="field-even"><p>the prefix of output filenames, default = ‘seq’</p>
+<dt class="field-even">type --mincontigsize<span class="colon">:</span></dt>
+<dd class="field-even"><p>int, optional</p>
+</dd>
+<dt class="field-odd">param --prefix<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The prefix of output filenames, default = ‘seq’.</p>
+</dd>
+<dt class="field-even">type --prefix<span class="colon">:</span></dt>
+<dd class="field-even"><p>str, optional</p>
 </dd>
 </dl>
-<dl class="simple">
-<dt>Development notes:</dt><dd><p>This script is derived from the one developed by SEQanswers users nickloman (<a class="reference external" href="https://gist.github.com/nickloman/2660685/genbank_to_tbl.py">https://gist.github.com/nickloman/2660685/genbank_to_tbl.py</a>) and ErinL who modified nickloman’s script and put it
-on the forum post (<a class="reference external" href="http://seqanswers.com/forums/showthread.php?t=19975">http://seqanswers.com/forums/showthread.php?t=19975</a>).</p>
-</dd>
-</dl>
+<p class="rubric">Notes</p>
+<p>These files are inputs for table2asn which generates ASN.1 files (<a href="#id5"><span class="problematic" id="id6">*</span></a>.sqn).</p>
+</section>
+<section id="development-notes">
+<h3>Development notes<a class="headerlink" href="#development-notes" title="Link to this heading">¶</a></h3>
+<blockquote>
+<div><p>This script is derived from the one developed by SEQanswers users nickloman (<a class="reference external" href="https://gist.github.com/nickloman/2660685/genbank_to_tbl.py">https://gist.github.com/nickloman/2660685/genbank_to_tbl.py</a>) and ErinL who modified nickloman’s script and put it on the forum post (<a class="reference external" href="http://seqanswers.com/forums/showthread.php?t=19975">http://seqanswers.com/forums/showthread.php?t=19975</a>).</p>
 <p>Author of this version: Yu Wan (<a class="reference external" href="mailto:wanyuac&#37;&#52;&#48;gmail&#46;com">wanyuac<span>&#64;</span>gmail<span>&#46;</span>com</a>, github.com/wanyuac)
 Creation: 20 June 2015 - 11 July 2015; the latest edition: 21 October 2019</p>
 <p>Dependency: Python versions 2 and 3 compatible.</p>
 <p>Licence: GNU GPL 2.1</p>
+</div></blockquote>
+</section>
 </section>
 <section id="module-suvtk.table2asn">
 <span id="suvtk-table2asn-module"></span><h2>suvtk.table2asn module<a class="headerlink" href="#module-suvtk.table2asn" title="Link to this heading">¶</a></h2>
+<section id="table2asn-py">
+<h3>table2asn.py<a class="headerlink" href="#table2asn-py" title="Link to this heading">¶</a></h3>
+<p>This script generates a .sqn submission file for GenBank. It processes source
+and comments files, validates data, and prepares the submission package.</p>
+<section id="id7">
+<h4>Functions<a class="headerlink" href="#id7" title="Link to this heading">¶</a></h4>
+<dl class="simple">
+<dt>process_comments(src_file, comments_file)</dt><dd><p>Update the comments file based on the source file.</p>
+</dd>
+<dt>table2asn(input, output, src_file, features, template, comments)</dt><dd><p>Main command to generate a .sqn file for GenBank submission.</p>
+</dd>
+</dl>
+</section>
+</section>
 <dl class="py function">
 <dt class="sig sig-object py" id="suvtk.table2asn.process_comments">
 <span class="sig-prename descclassname"><span class="pre">suvtk.table2asn.</span></span><span class="sig-name descname"><span class="pre">process_comments</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">src_file</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">comments_file</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/suvtk/table2asn.html#process_comments"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#suvtk.table2asn.process_comments" title="Link to this definition">¶</a></dt>
@@ -703,9 +816,38 @@ Creation: 20 June 2015 - 11 July 2015; the latest edition: 21 October 2019</p>
 </section>
 <section id="module-suvtk.taxonomy">
 <span id="suvtk-taxonomy-module"></span><h2>suvtk.taxonomy module<a class="headerlink" href="#module-suvtk.taxonomy" title="Link to this heading">¶</a></h2>
+<section id="taxonomy-py">
+<h3>taxonomy.py<a class="headerlink" href="#taxonomy-py" title="Link to this heading">¶</a></h3>
+<p>This script assigns taxonomy to sequences using MMseqs2 from the ICTV nr database.
+It generates taxonomy files and integrates with other modules for further processing.</p>
+<section id="id8">
+<h4>Functions<a class="headerlink" href="#id8" title="Link to this heading">¶</a></h4>
+<dl class="simple">
+<dt>taxonomy(fasta_file, database, output_path, seqid, threads)</dt><dd><p>Main command to assign taxonomy to sequences.</p>
+</dd>
+</dl>
+</section>
+</section>
 </section>
 <section id="module-suvtk.utils">
 <span id="suvtk-utils-module"></span><h2>suvtk.utils module<a class="headerlink" href="#module-suvtk.utils" title="Link to this heading">¶</a></h2>
+<section id="utils-py">
+<h3>utils.py<a class="headerlink" href="#utils-py" title="Link to this heading">¶</a></h3>
+<p>This script provides utility functions for executing shell commands, reading CSV files safely,
+and determining the number of available CPUs. These utilities are used across various modules
+in the project.</p>
+<section id="id9">
+<h4>Functions<a class="headerlink" href="#id9" title="Link to this heading">¶</a></h4>
+<dl class="simple">
+<dt>Exec(CmdLine, fLog=None, capture=False)</dt><dd><p>Execute a shell command and optionally log or capture the output.</p>
+</dd>
+<dt>safe_read_csv(path, <a href="#id10"><span class="problematic" id="id11">**</span></a>kwargs)</dt><dd><p>Read a CSV file with ASCII encoding and handle UnicodeDecodeError.</p>
+</dd>
+<dt>get_available_cpus()</dt><dd><p>Get the number of available CPUs for the current process.</p>
+</dd>
+</dl>
+</section>
+</section>
 <dl class="py function">
 <dt class="sig sig-object py" id="suvtk.utils.Exec">
 <span class="sig-prename descclassname"><span class="pre">suvtk.utils.</span></span><span class="sig-name descname"><span class="pre">Exec</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">CmdLine</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fLog</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">capture</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/suvtk/utils.html#Exec"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#suvtk.utils.Exec" title="Link to this definition">¶</a></dt>
@@ -771,6 +913,24 @@ raises a ClickException showing the offending character.</p>
 </section>
 <section id="module-suvtk.virus_info">
 <span id="suvtk-virus-info-module"></span><h2>suvtk.virus_info module<a class="headerlink" href="#module-suvtk.virus_info" title="Link to this heading">¶</a></h2>
+<section id="virus-info-py">
+<h3>virus_info.py<a class="headerlink" href="#virus-info-py" title="Link to this heading">¶</a></h3>
+<p>This script provides information on potentially segmented viruses based on their taxonomy.
+It also outputs genome type and structure information for MIUVIG structured comments.</p>
+<section id="id12">
+<h4>Functions<a class="headerlink" href="#id12" title="Link to this heading">¶</a></h4>
+<dl class="simple">
+<dt>load_segment_db()</dt><dd><p>Load the segmented viruses database.</p>
+</dd>
+<dt>load_genome_type_db()</dt><dd><p>Load the genome structure database.</p>
+</dd>
+<dt>run_segment_info(tax_df, database, output_path)</dt><dd><p>Process taxonomy data to extract segmented virus and genome type information.</p>
+</dd>
+<dt>virus_info(taxonomy, database, output_path)</dt><dd><p>Main command to analyze segmented viruses and generate genome type information.</p>
+</dd>
+</dl>
+</section>
+</section>
 <dl class="py function">
 <dt class="sig sig-object py" id="suvtk.virus_info.load_genome_type_db">
 <span class="sig-prename descclassname"><span class="pre">suvtk.virus_info.</span></span><span class="sig-name descname"><span class="pre">load_genome_type_db</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/suvtk/virus_info.html#load_genome_type_db"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#suvtk.virus_info.load_genome_type_db" title="Link to this definition">¶</a></dt>
@@ -880,6 +1040,12 @@ raises a ClickException showing the offending character.</p>
 <li><a class="reference internal" href="#">suvtk package</a><ul>
 <li><a class="reference internal" href="#submodules">Submodules</a></li>
 <li><a class="reference internal" href="#module-suvtk.cli">suvtk.cli module</a><ul>
+<li><a class="reference internal" href="#cli-py">cli.py</a><ul>
+<li><a class="reference internal" href="#classes">Classes</a></li>
+<li><a class="reference internal" href="#functions">Functions</a></li>
+<li><a class="reference internal" href="#commands">Commands</a></li>
+</ul>
+</li>
 <li><a class="reference internal" href="#suvtk.cli.FullHelpGroup"><code class="docutils literal notranslate"><span class="pre">FullHelpGroup</span></code></a><ul>
 <li><a class="reference internal" href="#suvtk.cli.FullHelpGroup.list_commands"><code class="docutils literal notranslate"><span class="pre">FullHelpGroup.list_commands()</span></code></a></li>
 <li><a class="reference internal" href="#suvtk.cli.FullHelpGroup.format_commands"><code class="docutils literal notranslate"><span class="pre">FullHelpGroup.format_commands()</span></code></a></li>
@@ -890,14 +1056,28 @@ raises a ClickException showing the offending character.</p>
 </ul>
 </li>
 <li><a class="reference internal" href="#module-suvtk.co_occurrence">suvtk.co_occurrence module</a><ul>
+<li><a class="reference internal" href="#co-occurrence-py">co_occurrence.py</a><ul>
+<li><a class="reference internal" href="#id2">Functions</a></li>
+</ul>
+</li>
 <li><a class="reference internal" href="#suvtk.co_occurrence.calculate_proportion"><code class="docutils literal notranslate"><span class="pre">calculate_proportion()</span></code></a></li>
 <li><a class="reference internal" href="#suvtk.co_occurrence.create_correlation_matrix"><code class="docutils literal notranslate"><span class="pre">create_correlation_matrix()</span></code></a></li>
 <li><a class="reference internal" href="#suvtk.co_occurrence.create_segment_list"><code class="docutils literal notranslate"><span class="pre">create_segment_list()</span></code></a></li>
 <li><a class="reference internal" href="#suvtk.co_occurrence.segment_correlation_matrix"><code class="docutils literal notranslate"><span class="pre">segment_correlation_matrix()</span></code></a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#module-suvtk.comments">suvtk.comments module</a></li>
+<li><a class="reference internal" href="#module-suvtk.comments">suvtk.comments module</a><ul>
+<li><a class="reference internal" href="#comments-py">comments.py</a><ul>
+<li><a class="reference internal" href="#id3">Functions</a></li>
+</ul>
+</li>
+</ul>
+</li>
 <li><a class="reference internal" href="#module-suvtk.features">suvtk.features module</a><ul>
+<li><a class="reference internal" href="#features-py">features.py</a><ul>
+<li><a class="reference internal" href="#id4">Functions</a></li>
+</ul>
+</li>
 <li><a class="reference internal" href="#suvtk.features.calculate_coding_capacity"><code class="docutils literal notranslate"><span class="pre">calculate_coding_capacity()</span></code></a></li>
 <li><a class="reference internal" href="#suvtk.features.extract_gene_results"><code class="docutils literal notranslate"><span class="pre">extract_gene_results()</span></code></a></li>
 <li><a class="reference internal" href="#suvtk.features.find_orientation"><code class="docutils literal notranslate"><span class="pre">find_orientation()</span></code></a></li>
@@ -911,19 +1091,42 @@ raises a ClickException showing the offending character.</p>
 <li><a class="reference internal" href="#suvtk.features.write_proteins"><code class="docutils literal notranslate"><span class="pre">write_proteins()</span></code></a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#module-suvtk.gbk2tbl">suvtk.gbk2tbl module</a></li>
+<li><a class="reference internal" href="#module-suvtk.gbk2tbl">suvtk.gbk2tbl module</a><ul>
+<li><a class="reference internal" href="#inputs">Inputs</a></li>
+<li><a class="reference internal" href="#outputs">Outputs</a></li>
+<li><a class="reference internal" href="#development-notes">Development notes</a></li>
+</ul>
+</li>
 <li><a class="reference internal" href="#module-suvtk.table2asn">suvtk.table2asn module</a><ul>
+<li><a class="reference internal" href="#table2asn-py">table2asn.py</a><ul>
+<li><a class="reference internal" href="#id7">Functions</a></li>
+</ul>
+</li>
 <li><a class="reference internal" href="#suvtk.table2asn.process_comments"><code class="docutils literal notranslate"><span class="pre">process_comments()</span></code></a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#module-suvtk.taxonomy">suvtk.taxonomy module</a></li>
+<li><a class="reference internal" href="#module-suvtk.taxonomy">suvtk.taxonomy module</a><ul>
+<li><a class="reference internal" href="#taxonomy-py">taxonomy.py</a><ul>
+<li><a class="reference internal" href="#id8">Functions</a></li>
+</ul>
+</li>
+</ul>
+</li>
 <li><a class="reference internal" href="#module-suvtk.utils">suvtk.utils module</a><ul>
+<li><a class="reference internal" href="#utils-py">utils.py</a><ul>
+<li><a class="reference internal" href="#id9">Functions</a></li>
+</ul>
+</li>
 <li><a class="reference internal" href="#suvtk.utils.Exec"><code class="docutils literal notranslate"><span class="pre">Exec()</span></code></a></li>
 <li><a class="reference internal" href="#suvtk.utils.get_available_cpus"><code class="docutils literal notranslate"><span class="pre">get_available_cpus()</span></code></a></li>
 <li><a class="reference internal" href="#suvtk.utils.safe_read_csv"><code class="docutils literal notranslate"><span class="pre">safe_read_csv()</span></code></a></li>
 </ul>
 </li>
 <li><a class="reference internal" href="#module-suvtk.virus_info">suvtk.virus_info module</a><ul>
+<li><a class="reference internal" href="#virus-info-py">virus_info.py</a><ul>
+<li><a class="reference internal" href="#id12">Functions</a></li>
+</ul>
+</li>
 <li><a class="reference internal" href="#suvtk.virus_info.load_genome_type_db"><code class="docutils literal notranslate"><span class="pre">load_genome_type_db()</span></code></a></li>
 <li><a class="reference internal" href="#suvtk.virus_info.load_segment_db"><code class="docutils literal notranslate"><span class="pre">load_segment_db()</span></code></a></li>
 <li><a class="reference internal" href="#suvtk.virus_info.run_segment_info"><code class="docutils literal notranslate"><span class="pre">run_segment_info()</span></code></a></li>

@@ -253,7 +253,33 @@
         </div>
         <article role="main" id="furo-main-content">
           <h1>Source code for suvtk.co_occurrence</h1><div class="highlight"><pre>
-<span></span><span class="kn">import</span> <span class="nn">sys</span>
+<span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">co_occurrence.py</span>
+<span class="sd">================</span>
+
+<span class="sd">This script identifies co-occurring sequences in an abundance table based on</span>
+<span class="sd">prevalence and correlation thresholds. It supports optional segment-specific</span>
+<span class="sd">analysis and contig length correction.</span>
+
+<span class="sd">Functions</span>
+<span class="sd">---------</span>
+<span class="sd">calculate_proportion(df)</span>
+<span class="sd">    Calculate the proportion of samples for each contig.</span>
+
+<span class="sd">create_correlation_matrix(df_transposed)</span>
+<span class="sd">    Generate a Spearman correlation matrix and mask the upper triangle.</span>
+
+<span class="sd">segment_correlation_matrix(df, segment_list)</span>
+<span class="sd">    Calculate correlations for specific segments with all rows in the DataFrame.</span>
+
+<span class="sd">create_segment_list(segment_file)</span>
+<span class="sd">    Read a file containing segment identifiers and return them as a list.</span>
+
+<span class="sd">co_occurrence(input, output, segments, lengths, prevalence, correlation, strict)</span>
+<span class="sd">    Main command to identify co-occurring sequences in an abundance table.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">import</span> <span class="nn">sys</span>
 <span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
 
 <span class="kn">import</span> <span class="nn">click</span>

@@ -253,7 +253,23 @@
         </div>
         <article role="main" id="furo-main-content">
           <h1>Source code for suvtk.table2asn</h1><div class="highlight"><pre>
-<span></span><span class="c1"># TODO: add date correction option</span>
+<span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">table2asn.py</span>
+<span class="sd">============</span>
+
+<span class="sd">This script generates a .sqn submission file for GenBank. It processes source</span>
+<span class="sd">and comments files, validates data, and prepares the submission package.</span>
+
+<span class="sd">Functions</span>
+<span class="sd">---------</span>
+<span class="sd">process_comments(src_file, comments_file)</span>
+<span class="sd">    Update the comments file based on the source file.</span>
+
+<span class="sd">table2asn(input, output, src_file, features, template, comments)</span>
+<span class="sd">    Main command to generate a .sqn file for GenBank submission.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="c1"># TODO: add date correction option</span>
 <span class="c1"># TODO: check/display stats file for errors (https://www.ncbi.nlm.nih.gov/genbank/validation/#BioSourceMissing) -&gt; OKish</span>
 <span class="c1"># TODO: add missing required miuvig params from src file? -&gt; comments.py?:  env_broad_scale, env_local_scale, env_medium, investigation_type, project_name, seq_meth</span>
 <span class="c1"># TODO: add option to make genbank file -&gt; made by default</span>

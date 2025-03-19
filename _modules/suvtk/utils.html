@@ -253,7 +253,27 @@
         </div>
         <article role="main" id="furo-main-content">
           <h1>Source code for suvtk.utils</h1><div class="highlight"><pre>
-<span></span><span class="kn">import</span> <span class="nn">os</span>
+<span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">utils.py</span>
+<span class="sd">========</span>
+
+<span class="sd">This script provides utility functions for executing shell commands, reading CSV files safely,</span>
+<span class="sd">and determining the number of available CPUs. These utilities are used across various modules</span>
+<span class="sd">in the project.</span>
+
+<span class="sd">Functions</span>
+<span class="sd">---------</span>
+<span class="sd">Exec(CmdLine, fLog=None, capture=False)</span>
+<span class="sd">    Execute a shell command and optionally log or capture the output.</span>
+
+<span class="sd">safe_read_csv(path, **kwargs)</span>
+<span class="sd">    Read a CSV file with ASCII encoding and handle UnicodeDecodeError.</span>
+
+<span class="sd">get_available_cpus()</span>
+<span class="sd">    Get the number of available CPUs for the current process.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">import</span> <span class="nn">os</span>
 <span class="kn">import</span> <span class="nn">subprocess</span>
 <span class="kn">import</span> <span class="nn">sys</span>
 
