@@ -4,29 +4,32 @@
 
 The `virus-info` subcommand identifies and reports details on potential segmented viruses based on their taxonomy. It cross-references a user-supplied taxonomy file with a segmented viruses database and a genome type database to predict the genome structure and type for each contig. Additionally, it outputs information for further investigation if a high fraction of viruses within a taxon are segmented.
 
-### What It Does
-
-1. **Load Databases**  
-   - **Segmented Viruses Database:** Loaded from `segmented_viruses.tsv`.
-   - **Genome Type Database:** Loaded from `genome_types.tsv`.
-   - **Taxonomy Database:** Constructed using the `nodes.dmp` and `names.dmp` files via the `taxopy` package.
-
-2. **Process Each Taxonomy Record**  
-   For each contig in the taxonomy file:
+For each contig in the taxonomy file:
    - If the taxonomy is `"unclassified viruses"`, a minimal record is created (genome type set as "uncharacterized" and structure as "undetermined").
-   - Otherwise, it retrieves the lineage for the taxon (after stripping a potential trailing `" sp."`), and searches first for a segmented virus record.  
-     - If found and the segmented fraction is high, extra details are echoed to the terminal.
-   - Next, it searches for the corresponding genome type record.
-   - It then deduces the predicted genome structure:
-     - `"segmented"` if segmented_fraction is 100,
-     - `"undetermined"` if segmented_fraction is > 0 but less than 100,
+   - Otherwise, the contig's taxnomy lineage is searched through a list of known segmented taxa and information on the segmentation of the corresponding taxon is retrieved. If the contig's taxonomy belongs to a taxon containing segmented viruses and the fraction of segmented viruses in that taxon is high (>=25%), extra details are echoed to the terminal (see Example below).
+   - It also deduces the predicted genome structure based on the taxonomy:
+     - `"segmented"` if the fraction of segmented viruses in that taxon (segmented_fraction) is 100%,
+     - `"undetermined"` if segmented_fraction is > 0 but less than 100%,
      - `"non-segmented"` otherwise.
-   - Finally, it combines this information to build a record for output.
+   - Finally, it will also predict the genome type based on the contig's taxonomy. 
+   - If a contig’s taxonomy is not part of the official ICTV taxonomy, the predicted genome type will default to `"uncharacterized"` and its structure to `"undetermined"`.
 
-3. **Generate Output Files**  
-   - **miuvig_taxonomy.tsv**: Contains contigs with their predicted genome type and structure.
-   - **segmented_viruses_info.tsv**: If any segmented virus records were found, details from the segmented viruses database are saved to this file.
-   - During processing, the command also echoes warnings if certain taxa are not found in the official ICTV taxonomy.
+::::{dropdown} Example
+:open:
+
+Information echoed to the terminal if a sequence belongs to a taxon with segmented viruses:
+```text
+Seq4 is part of the Chrysoviridae Family, 100.00% of these are segmented viruses.
+Most segmented viruses of the Family Chrysoviridae have 4 segments, but it can vary between 3 and 7 depending on the species.
+
+You might want to look into your data to see if you can identify the missing segments.
+```
+
+The corresponding info in `segmented_viruses_info.tsv`:
+| contig | rank   | taxon          | parent            | total | segmented | segmented_fraction | majority_segment | min_segment | max_segment |
+|--------|--------|----------------|-------------------|-------|-----------|--------------------|------------------|-------------|-------------|
+| Seq4 | Family | Chrysoviridae  | Alphatotivirineae | 29    | 29        | 100.0              | 4                | 3           | 7           |
+::::
 
 ---
 ## Required Input
@@ -59,9 +62,8 @@ Below is an example command-line invocation:
 suvtk virus-info --taxonomy taxonomy.tsv --database /path/to/database --output output_dir
 ```
 
-This command will process the `taxonomy.tsv` file, using the databases in `/path/to/database`, and write the results (e.g., `miuvig_taxonomy.tsv` and `segmented_viruses_info.tsv`) to the `output_dir`.
+This command will process the `taxonomy.tsv` file, using the `nodes.dmp` and `names.dmp` in `/path/to/database`, and write the results (e.g., `miuvig_taxonomy.tsv` and `segmented_viruses_info.tsv`) to the `output_dir`.
 
 ## Additional Notes
 
 - If a contig’s taxonomy is not part of the official ICTV taxonomy, the predicted genome type will default to `"uncharacterized"` and its structure to `"undetermined"`.
-- For taxa where a high percentage of viruses are segmented, additional information (such as the range of segments and the majority segment count) is echoed for further inspection.

@@ -5,7 +5,7 @@ This submodule of `suvtk` assigns virus taxonomy to your nucleotide sequences ba
 
 After determining the taxonomy, this subcommand also gives you information on any possible segmented viruses in your data. This could be interesting to look more into your data and try to group segments of the same virus together. For this, the [`suvtk co-occurrence`](co-occurrence.md) module can be helpful.
 
-Finally, `suvtk taxonomy` also outputs the mandatory MIUVIG parameters predicted genome structure (segmented, non-segmented, undetermined) and genome type (ssDNA, dsDNA, ssRNA(+), etc.) based on the predicted taxonomy in the `miuvig_taxonomy.tsv` file. This file is a required input of `suvtk comments` but can be generated yourself following subsequent tsv file format:
+Finally, `suvtk taxonomy` also runs [`suvtk virus-info`](virus-info.md) which outputs the mandatory MIUVIG parameters predicted genome structure (segmented, non-segmented, undetermined) and genome type (ssDNA, dsDNA, ssRNA(+), etc.) based on the predicted taxonomy in the `miuvig_taxonomy.tsv` file. This file is a required input of `suvtk comments` but can be generated yourself following subsequent tsv file format:
 | contig | pred_genome_type | pred_genome_struc |
 |--------|----------|-------|
 | <sequence_name_as_in_fasta> | <allowed_value> | <allowed_value> |

@@ -13,7 +13,7 @@ Installation
 
 To install the package, run:
 
-.. code-block:: bash
+.. code-block:: none
 
    git clone https://github.com/LanderDC/suvtk.git
    cd suvtk
