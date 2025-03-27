@@ -6,7 +6,7 @@
 ``suvtk`` documentation
 =======================
 
-This is the documentation for Submission of Uncultivated Viral genomes toolkit or ``suvtk`` (/ɛs juː viː tiː keɪ/).
+This is the documentation for the Submission of Uncultivated Viral genomes toolkit or ``suvtk`` (/ɛs juː viː tiː keɪ/).
 
 Installation
 ------------

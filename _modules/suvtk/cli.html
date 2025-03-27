@@ -364,12 +364,10 @@
 
 
 <span class="nd">@click</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="n">context_settings</span><span class="o">=</span><span class="n">CONTEXT_SETTINGS</span><span class="p">,</span> <span class="bp">cls</span><span class="o">=</span><span class="n">FullHelpGroup</span><span class="p">)</span>
-<span class="nd">@click</span><span class="o">.</span><span class="n">version_option</span><span class="p">()</span>
+<span class="nd">@click</span><span class="o">.</span><span class="n">version_option</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="s2">&quot;-v&quot;</span><span class="p">,</span> <span class="s2">&quot;--version&quot;</span><span class="p">,</span> <span class="n">message</span><span class="o">=</span><span class="s2">&quot;</span><span class="si">%(prog)s</span><span class="s2"> </span><span class="si">%(version)s</span><span class="s2">&quot;</span><span class="p">)</span>
 <span class="k">def</span> <span class="nf">cli</span><span class="p">():</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Tool to submit viral sequences to Genbank.</span>
-
-<span class="sd">    This CLI tool provides various commands to process and submit viral</span>
+<span class="sd">    The suvtk CLI tool provides various commands to process and submit viral</span>
 <span class="sd">    sequences to Genbank, including taxonomy, features, virus information,</span>
 <span class="sd">    and more.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
