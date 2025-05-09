@@ -82,5 +82,5 @@ The assembly comment file is essentially a tsv file that contains the necessary 
 - A structured comment file (e.g., `output.cmt`) that consolidates various data fields and meets MIUVIG standards.
 
 ## Example Usage
-```bash
+```none
 suvtk comments -t taxonomy.tsv -f features.tsv -m miuvig.tsv -a assembly.tsv -o structured_comment

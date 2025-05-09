@@ -58,6 +58,6 @@ You can provide your own taxonomy to the other submodules (eg. `suvtk features`,
 - `segmented_viruses_info.tsv`: Additional info for segmented viruses (if applicable).
 
 ## Example Usage
-```bash
+```none
 suvtk taxonomy -i sequences.fasta -o taxonomy_output -d /path/to/ICTV_db -s 0.7 -t 4
 ```

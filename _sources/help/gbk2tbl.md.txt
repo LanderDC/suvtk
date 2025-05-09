@@ -18,5 +18,5 @@ You would generally want to use this when you get Genbank flatfiles (.gbk) from 
 - `<prefix>.tbl`: Feature table for GenBank submissions.
 
 ## Example Usage
-```bash
+```none
 suvtk gbk2tbl -i annotation.gbk -p myprefix

@@ -58,5 +58,5 @@ This file contains structured comments that provide additional metadata for your
 - `<output>.val`: A validation file listing warnings, info, or errors from the submission check.
 
 ## Example Usage
-```bash
+```none
 suvtk table2asn -i sequences.fasta -o submission -s source.src -f features.tbl -t template.sbt -c comments.cmt

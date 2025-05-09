@@ -58,7 +58,7 @@ The corresponding info in `segmented_viruses_info.tsv`:
 
 Below is an example command-line invocation:
 
-```bash
+```none
 suvtk virus-info --taxonomy taxonomy.tsv --database /path/to/database --output output_dir
 ```
 

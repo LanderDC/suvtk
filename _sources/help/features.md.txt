@@ -69,5 +69,5 @@ For now only coding complete sequences (>50% coding capacity) will have predicte
 - `no_ORF_prediction.txt`: List of sequences with insufficient ORF predictions.
 
 ## Example Usage
-```bash
+```none
 suvtk features -i sequences.fasta -o output_dir -d /path/to/database -g 1 --coding-complete --taxonomy taxonomy.tsv -t 4

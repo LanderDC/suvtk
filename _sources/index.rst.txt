@@ -21,6 +21,14 @@ To install the package, run:
    mamba activate suvtk
    pip install .
 
+Download the database with:
+
+.. code-block:: none
+
+   suvtk download-database
+
+Or manually download and extract it from |Zenodo|.
+
 Background
 ----------
 
@@ -51,6 +59,9 @@ A big thank you to:
 * |Antônio Camargo| for the |taxonomy database|.
 * |Martin Steinegger| and colleagues for |MMseqs2| and |BFVD|.
 
+.. |Zenodo| raw:: html
+
+   <a href="https://doi.org/10.5281/zenodo.15374439" target="_blank">Zenodo</a>
 
 .. |MIUVIG| raw:: html
 
