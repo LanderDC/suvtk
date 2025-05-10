@@ -469,6 +469,74 @@ with predefined standards for submission to GenBank.</p>
 </section>
 </section>
 </section>
+<section id="module-suvtk.download_database">
+<span id="suvtk-download-database-module"></span><h2>suvtk.download_database module<a class="headerlink" href="#module-suvtk.download_database" title="Link to this heading">¶</a></h2>
+<section id="download-database-py">
+<h3>download_database.py<a class="headerlink" href="#download-database-py" title="Link to this heading">¶</a></h3>
+<p>This script downloads and extracts the suvtk database as a gzipped tar file from Zenodo.</p>
+<section id="id4">
+<h4>Functions<a class="headerlink" href="#id4" title="Link to this heading">¶</a></h4>
+<dl class="simple">
+<dt>doi_to_record_id(doi: str) -&gt; str</dt><dd><p>Extract the numeric record ID from a Zenodo DOI.</p>
+</dd>
+<dt>fetch_record_metadata(record_id: str) -&gt; dict</dt><dd><p>Fetch the Zenodo record metadata in JSON form.</p>
+</dd>
+<dt>find_tar_file(files: list) -&gt; dict</dt><dd><p>Locate the first <cite>.tar</cite> or <cite>.tar.gz</cite> file in the record’s files list.</p>
+</dd>
+<dt>download_file(url: str, dest: str, chunk_size: int = 1024 * 1024)</dt><dd><p>Stream-download a file from a URL to a local path.</p>
+</dd>
+<dt>unpack_tar(archive: str, output_dir: str = None)</dt><dd><p>Extract a <cite>.tar</cite> or <cite>.tar.gz</cite> archive to a directory.</p>
+</dd>
+</dl>
+</section>
+</section>
+<dl class="py function">
+<dt class="sig sig-object py" id="suvtk.download_database.doi_to_record_id">
+<span class="sig-prename descclassname"><span class="pre">suvtk.download_database.</span></span><span class="sig-name descname"><span class="pre">doi_to_record_id</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">doi</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/suvtk/download_database.html#doi_to_record_id"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#suvtk.download_database.doi_to_record_id" title="Link to this definition">¶</a></dt>
+<dd><p>Extract the numeric record ID from a Zenodo DOI.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="suvtk.download_database.download_file">
+<span class="sig-prename descclassname"><span class="pre">suvtk.download_database.</span></span><span class="sig-name descname"><span class="pre">download_file</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">url</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dest</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">chunk_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1048576</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/suvtk/download_database.html#download_file"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#suvtk.download_database.download_file" title="Link to this definition">¶</a></dt>
+<dd><p>Stream-download a file from <cite>url</cite> to local path <cite>dest</cite>.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="suvtk.download_database.fetch_record_metadata">
+<span class="sig-prename descclassname"><span class="pre">suvtk.download_database.</span></span><span class="sig-name descname"><span class="pre">fetch_record_metadata</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">record_id</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/suvtk/download_database.html#fetch_record_metadata"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#suvtk.download_database.fetch_record_metadata" title="Link to this definition">¶</a></dt>
+<dd><p>Fetch the Zenodo record metadata in JSON form.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="suvtk.download_database.find_tar_file">
+<span class="sig-prename descclassname"><span class="pre">suvtk.download_database.</span></span><span class="sig-name descname"><span class="pre">find_tar_file</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">files</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/suvtk/download_database.html#find_tar_file"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#suvtk.download_database.find_tar_file" title="Link to this definition">¶</a></dt>
+<dd><p>From the record’s files list, locate the first .tar or .tar.gz.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="suvtk.download_database.unpack_tar">
+<span class="sig-prename descclassname"><span class="pre">suvtk.download_database.</span></span><span class="sig-name descname"><span class="pre">unpack_tar</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">archive</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">output_dir</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/suvtk/download_database.html#unpack_tar"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#suvtk.download_database.unpack_tar" title="Link to this definition">¶</a></dt>
+<dd><p>Extract a .tar or .tar.gz archive into the specified output_dir
+(defaults to current directory), preserving all folder structure.</p>
+</dd></dl>
+
+</section>
 <section id="module-suvtk.features">
 <span id="suvtk-features-module"></span><h2>suvtk.features module<a class="headerlink" href="#module-suvtk.features" title="Link to this heading">¶</a></h2>
 <section id="features-py">
@@ -476,8 +544,8 @@ with predefined standards for submission to GenBank.</p>
 <p>This script processes input sequences to predict open reading frames (ORFs),
 aligns the predicted protein sequences against a database, and generates feature
 tables for submission to GenBank.</p>
-<section id="id4">
-<h4>Functions<a class="headerlink" href="#id4" title="Link to this heading">¶</a></h4>
+<section id="id5">
+<h4>Functions<a class="headerlink" href="#id5" title="Link to this heading">¶</a></h4>
 <dl class="simple">
 <dt>validate_translation_table(ctx, param, value)</dt><dd><p>Validate the given translation table.</p>
 </dd>
@@ -755,7 +823,7 @@ also save separate files for each unique sequence ID when specified.</p>
 </dd>
 </dl>
 <p class="rubric">Notes</p>
-<p>These files are inputs for table2asn which generates ASN.1 files (<a href="#id5"><span class="problematic" id="id6">*</span></a>.sqn).</p>
+<p>These files are inputs for table2asn which generates ASN.1 files (<a href="#id6"><span class="problematic" id="id7">*</span></a>.sqn).</p>
 </section>
 <section id="development-notes">
 <h3>Development notes<a class="headerlink" href="#development-notes" title="Link to this heading">¶</a></h3>
@@ -774,8 +842,8 @@ Creation: 20 June 2015 - 11 July 2015; the latest edition: 21 October 2019</p>
 <h3>table2asn.py<a class="headerlink" href="#table2asn-py" title="Link to this heading">¶</a></h3>
 <p>This script generates a .sqn submission file for GenBank. It processes source
 and comments files, validates data, and prepares the submission package.</p>
-<section id="id7">
-<h4>Functions<a class="headerlink" href="#id7" title="Link to this heading">¶</a></h4>
+<section id="id8">
+<h4>Functions<a class="headerlink" href="#id8" title="Link to this heading">¶</a></h4>
 <dl class="simple">
 <dt>process_comments(src_file, comments_file)</dt><dd><p>Update the comments file based on the source file.</p>
 </dd>
@@ -824,8 +892,8 @@ and comments files, validates data, and prepares the submission package.</p>
 <h3>taxonomy.py<a class="headerlink" href="#taxonomy-py" title="Link to this heading">¶</a></h3>
 <p>This script assigns taxonomy to sequences using MMseqs2 from the ICTV nr database.
 It generates taxonomy files and integrates with other modules for further processing.</p>
-<section id="id8">
-<h4>Functions<a class="headerlink" href="#id8" title="Link to this heading">¶</a></h4>
+<section id="id9">
+<h4>Functions<a class="headerlink" href="#id9" title="Link to this heading">¶</a></h4>
 <dl class="simple">
 <dt>taxonomy(fasta_file, database, output_path, seqid, threads)</dt><dd><p>Main command to assign taxonomy to sequences.</p>
 </dd>
@@ -840,12 +908,12 @@ It generates taxonomy files and integrates with other modules for further proces
 <p>This script provides utility functions for executing shell commands, reading CSV files safely,
 and determining the number of available CPUs. These utilities are used across various modules
 in the project.</p>
-<section id="id9">
-<h4>Functions<a class="headerlink" href="#id9" title="Link to this heading">¶</a></h4>
+<section id="id10">
+<h4>Functions<a class="headerlink" href="#id10" title="Link to this heading">¶</a></h4>
 <dl class="simple">
 <dt>Exec(CmdLine, fLog=None, capture=False)</dt><dd><p>Execute a shell command and optionally log or capture the output.</p>
 </dd>
-<dt>safe_read_csv(path, <a href="#id10"><span class="problematic" id="id11">**</span></a>kwargs)</dt><dd><p>Read a CSV file with ASCII encoding and handle UnicodeDecodeError.</p>
+<dt>safe_read_csv(path, <a href="#id11"><span class="problematic" id="id12">**</span></a>kwargs)</dt><dd><p>Read a CSV file with ASCII encoding and handle UnicodeDecodeError.</p>
 </dd>
 <dt>get_available_cpus()</dt><dd><p>Get the number of available CPUs for the current process.</p>
 </dd>
@@ -921,8 +989,8 @@ raises a ClickException showing the offending character.</p>
 <h3>virus_info.py<a class="headerlink" href="#virus-info-py" title="Link to this heading">¶</a></h3>
 <p>This script provides information on potentially segmented viruses based on their taxonomy.
 It also outputs genome type and structure information for MIUVIG structured comments.</p>
-<section id="id12">
-<h4>Functions<a class="headerlink" href="#id12" title="Link to this heading">¶</a></h4>
+<section id="id13">
+<h4>Functions<a class="headerlink" href="#id13" title="Link to this heading">¶</a></h4>
 <dl class="simple">
 <dt>load_segment_db()</dt><dd><p>Load the segmented viruses database.</p>
 </dd>
@@ -1077,9 +1145,21 @@ It also outputs genome type and structure information for MIUVIG structured comm
 </li>
 </ul>
 </li>
+<li><a class="reference internal" href="#module-suvtk.download_database">suvtk.download_database module</a><ul>
+<li><a class="reference internal" href="#download-database-py">download_database.py</a><ul>
+<li><a class="reference internal" href="#id4">Functions</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#suvtk.download_database.doi_to_record_id"><code class="docutils literal notranslate"><span class="pre">doi_to_record_id()</span></code></a></li>
+<li><a class="reference internal" href="#suvtk.download_database.download_file"><code class="docutils literal notranslate"><span class="pre">download_file()</span></code></a></li>
+<li><a class="reference internal" href="#suvtk.download_database.fetch_record_metadata"><code class="docutils literal notranslate"><span class="pre">fetch_record_metadata()</span></code></a></li>
+<li><a class="reference internal" href="#suvtk.download_database.find_tar_file"><code class="docutils literal notranslate"><span class="pre">find_tar_file()</span></code></a></li>
+<li><a class="reference internal" href="#suvtk.download_database.unpack_tar"><code class="docutils literal notranslate"><span class="pre">unpack_tar()</span></code></a></li>
+</ul>
+</li>
 <li><a class="reference internal" href="#module-suvtk.features">suvtk.features module</a><ul>
 <li><a class="reference internal" href="#features-py">features.py</a><ul>
-<li><a class="reference internal" href="#id4">Functions</a></li>
+<li><a class="reference internal" href="#id5">Functions</a></li>
 </ul>
 </li>
 <li><a class="reference internal" href="#suvtk.features.calculate_coding_capacity"><code class="docutils literal notranslate"><span class="pre">calculate_coding_capacity()</span></code></a></li>
@@ -1103,7 +1183,7 @@ It also outputs genome type and structure information for MIUVIG structured comm
 </li>
 <li><a class="reference internal" href="#module-suvtk.table2asn">suvtk.table2asn module</a><ul>
 <li><a class="reference internal" href="#table2asn-py">table2asn.py</a><ul>
-<li><a class="reference internal" href="#id7">Functions</a></li>
+<li><a class="reference internal" href="#id8">Functions</a></li>
 </ul>
 </li>
 <li><a class="reference internal" href="#suvtk.table2asn.process_comments"><code class="docutils literal notranslate"><span class="pre">process_comments()</span></code></a></li>
@@ -1111,14 +1191,14 @@ It also outputs genome type and structure information for MIUVIG structured comm
 </li>
 <li><a class="reference internal" href="#module-suvtk.taxonomy">suvtk.taxonomy module</a><ul>
 <li><a class="reference internal" href="#taxonomy-py">taxonomy.py</a><ul>
-<li><a class="reference internal" href="#id8">Functions</a></li>
+<li><a class="reference internal" href="#id9">Functions</a></li>
 </ul>
 </li>
 </ul>
 </li>
 <li><a class="reference internal" href="#module-suvtk.utils">suvtk.utils module</a><ul>
 <li><a class="reference internal" href="#utils-py">utils.py</a><ul>
-<li><a class="reference internal" href="#id9">Functions</a></li>
+<li><a class="reference internal" href="#id10">Functions</a></li>
 </ul>
 </li>
 <li><a class="reference internal" href="#suvtk.utils.Exec"><code class="docutils literal notranslate"><span class="pre">Exec()</span></code></a></li>
@@ -1128,7 +1208,7 @@ It also outputs genome type and structure information for MIUVIG structured comm
 </li>
 <li><a class="reference internal" href="#module-suvtk.virus_info">suvtk.virus_info module</a><ul>
 <li><a class="reference internal" href="#virus-info-py">virus_info.py</a><ul>
-<li><a class="reference internal" href="#id12">Functions</a></li>
+<li><a class="reference internal" href="#id13">Functions</a></li>
 </ul>
 </li>
 <li><a class="reference internal" href="#suvtk.virus_info.load_genome_type_db"><code class="docutils literal notranslate"><span class="pre">load_genome_type_db()</span></code></a></li>

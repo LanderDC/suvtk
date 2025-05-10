@@ -32,6 +32,14 @@ suvtk.comments module
    :undoc-members:
    :show-inheritance:
 
+suvtk.download\_database module
+-------------------------------
+
+.. automodule:: suvtk.download_database
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
 suvtk.features module
 ---------------------
 
