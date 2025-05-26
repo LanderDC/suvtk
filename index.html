@@ -267,7 +267,46 @@
 <p>This is the documentation for the Submission of Uncultivated Viral genomes toolkit or <code class="docutils literal notranslate"><span class="pre">suvtk</span></code> (/ɛs juː viː tiː keɪ/).</p>
 <section id="installation">
 <h2>Installation<a class="headerlink" href="#installation" title="Link to this heading">¶</a></h2>
-<p>To install the package, run:</p>
+<ol class="arabic simple">
+<li><p>To install the package, run one of the following commands depending on your preferred package manager.
+The package is available on <a href="https://bioconda.github.io/recipes/suvtk/README.html" target="_blank">Bioconda</a> and <a href="https://pypi.org/project/suvtk/" target="_blank">PyPI</a>, so you can use either <code class="docutils literal notranslate"><span class="pre">conda</span></code> or <code class="docutils literal notranslate"><span class="pre">mamba</span></code> for installation.
+You can also install it using <code class="docutils literal notranslate"><span class="pre">pip</span></code> or from the source code for development purposes.:</p></li>
+</ol>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-0" name="sd-tab-set-0" type="radio">
+<label class="sd-tab-label" for="sd-tab-item-0">
+conda</label><div class="sd-tab-content docutils">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>conda create -n suvtk -c bioconda -c conda-forge suvtk
+conda activate suvtk
+suvtk --help
+</pre></div>
+</div>
+</div>
+<input id="sd-tab-item-1" name="sd-tab-set-0" type="radio">
+<label class="sd-tab-label" for="sd-tab-item-1">
+mamba</label><div class="sd-tab-content docutils">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>mamba create -n suvtk -c bioconda -c conda-forge suvtk
+mamba activate suvtk
+suvtk --help
+</pre></div>
+</div>
+</div>
+<input id="sd-tab-item-2" name="sd-tab-set-0" type="radio">
+<label class="sd-tab-label" for="sd-tab-item-2">
+pip</label><div class="sd-tab-content docutils">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>pip install suvtk
+suvtk --help
+</pre></div>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>The pip installation does not include non-python dependencies like
+<a href="https://github.com/soedinglab/MMseqs2" target="_blank">MMseqs2</a> and <a href="https://www.ncbi.nlm.nih.gov/genbank/table2asn/" target="_blank">table2asn</a>. You will need to install them separately.</p>
+</div>
+</div>
+<input id="sd-tab-item-3" name="sd-tab-set-0" type="radio">
+<label class="sd-tab-label" for="sd-tab-item-3">
+development</label><div class="sd-tab-content docutils">
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>git clone https://github.com/LanderDC/suvtk.git
 cd suvtk
 mamba create -n suvtk -c bioconda -c conda-forge &#39;python&gt;=3.9&#39; pip mmseqs2 table2asn
@@ -275,7 +314,11 @@ mamba activate suvtk
 pip install .
 </pre></div>
 </div>
-<p>Download the database with:</p>
+</div>
+</div>
+<ol class="arabic simple" start="2">
+<li><p>Download the database with:</p></li>
+</ol>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>suvtk download-database
 </pre></div>
 </div>

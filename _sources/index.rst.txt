@@ -10,18 +10,51 @@ This is the documentation for the Submission of Uncultivated Viral genomes toolk
 
 Installation
 ------------
+1. To install the package, run one of the following commands depending on your preferred package manager.
+   The package is available on |Bioconda| and |PyPI|, so you can use either ``conda`` or ``mamba`` for installation. 
+   You can also install it using ``pip`` or from the source code for development purposes.:
 
-To install the package, run:
+.. tab-set::
 
-.. code-block:: none
+   .. tab-item:: conda
 
-   git clone https://github.com/LanderDC/suvtk.git
-   cd suvtk
-   mamba create -n suvtk -c bioconda -c conda-forge 'python>=3.9' pip mmseqs2 table2asn
-   mamba activate suvtk
-   pip install .
+      .. code-block:: none
 
-Download the database with:
+         conda create -n suvtk -c bioconda -c conda-forge suvtk
+         conda activate suvtk
+         suvtk --help
+
+   .. tab-item:: mamba
+
+      .. code-block:: none
+
+         mamba create -n suvtk -c bioconda -c conda-forge suvtk
+         mamba activate suvtk
+         suvtk --help
+
+   .. tab-item:: pip
+
+      .. code-block:: none
+
+         pip install suvtk
+         suvtk --help
+
+      .. warning::
+
+         The pip installation does not include non-python dependencies like
+         |MMseqs2| and |table2asn|. You will need to install them separately.
+
+   .. tab-item:: development
+
+      .. code-block:: none
+
+         git clone https://github.com/LanderDC/suvtk.git
+         cd suvtk
+         mamba create -n suvtk -c bioconda -c conda-forge 'python>=3.9' pip mmseqs2 table2asn
+         mamba activate suvtk
+         pip install .
+
+2. Download the database with:
 
 .. code-block:: none
 
@@ -58,6 +91,14 @@ A big thank you to:
 
 * |Antônio Camargo| for the |taxonomy database|.
 * |Martin Steinegger| and colleagues for |MMseqs2| and |BFVD|.
+
+.. |Bioconda| raw:: html
+
+   <a href="https://bioconda.github.io/recipes/suvtk/README.html" target="_blank">Bioconda</a>
+
+.. |PyPI| raw:: html
+
+   <a href="https://pypi.org/project/suvtk/" target="_blank">PyPI</a>
 
 .. |Zenodo| raw:: html
 
