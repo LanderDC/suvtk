@@ -4,7 +4,7 @@
 [![PyPI](https://img.shields.io/pypi/v/suvtk.svg?color=blue&logo=python)](https://pypi.org/project/suvtk/)
 [![Bioconda](https://img.shields.io/conda/v/bioconda/suvtk?label=bioconda&labelColor=grey&color=brightgreen&logo=anaconda)](https://bioconda.github.io/recipes/suvtk/README.html)
 [![Tests](https://github.com/LanderDC/suvtk/actions/workflows/test.yml/badge.svg)](https://github.com/LanderDC/suvtk/actions/workflows/test.yml)
-[![License](https://img.shields.io/badge/license-Apache%202.0-blue.svg)](https://github.com/LanderDC/suvtk/blob/master/LICENSE)
+[![License](https://img.shields.io/github/license/LanderDC/suvtk?color=blue)](https://github.com/LanderDC/suvtk/blob/master/LICENSE)
 
 Tool to submit viral sequences to Genbank.
 
