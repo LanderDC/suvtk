@@ -1,6 +1,6 @@
 [project]
 name = "suvtk"
-version = "0.1.4"
+version = "0.1.5"
 description = "Tool to submit viral sequences to Genbank."
 readme = "README.md"
 authors = [{name = "Lander De Coninck"}]
@@ -36,5 +36,9 @@ suvtk = "suvtk.cli:cli"
 [project.optional-dependencies]
 test = ["pytest"]
 
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["suvtk"]
+
 [tool.setuptools.package-data]
-data = ["segmented_viruses.tsv", "genome_types.tsv"]
+suvtk = ["data/*.tsv"]
