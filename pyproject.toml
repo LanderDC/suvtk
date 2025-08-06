@@ -37,4 +37,4 @@ suvtk = "suvtk.cli:cli"
 test = ["pytest"]
 
 [tool.setuptools.package-data]
-data = ["segmented_viruses.tsv", "genome_types.tsv"]
+data = ["data/egmented_viruses.tsv", "data/genome_types.tsv"]
