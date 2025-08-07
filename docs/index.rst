@@ -3,6 +3,12 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
+.. warning::
+
+   ``suvtk`` is still under active development. 
+   If you encounter any problems, please let me know. 
+   You can create an |issue| on GitHub.
+
 ``suvtk`` documentation
 =======================
 
@@ -135,6 +141,11 @@ A big thank you to:
 .. |BFVD| raw:: html
 
    <a href="https://bfvd.steineggerlab.workers.dev/" target="_blank">BFVD</a>
+
+.. |issue| raw:: html
+
+   <a href="https://github.com/LanderDC/suvtk/issues" target="_blank">issue</a>
+
 
 
 .. toctree::
