@@ -266,7 +266,6 @@ def comments(taxonomy, features, miuvig, assembly, checkv, output):
         )
         checkv_df = checkv_df[["contig", "assembly_qual", "compl_score", "detec_type"]]
         taxonomy_df = pd.merge(taxonomy_df, checkv_df, on="contig", how="left")
-        # merged_params.pop("assembly_qual")
         merged_params["compl_software"] = "CheckV"
         for param, val in merged_params.items():
             taxonomy_df[param] = val
@@ -285,7 +284,7 @@ def comments(taxonomy, features, miuvig, assembly, checkv, output):
         if col not in taxonomy_df:
             taxonomy_df[col] = default
         else:
-            taxonomy_df[col].fillna(default, inplace=True)
+            taxonomy_df[col] = taxonomy_df[col].fillna(default)
 
     # Reorder columns.
     desired_order = [
