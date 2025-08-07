@@ -1,4 +1,4 @@
-name: 📦 Create Release
+name: 🚀 Create Release
 
 on:
   workflow_dispatch:
