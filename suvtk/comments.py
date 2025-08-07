@@ -264,9 +264,7 @@ def comments(taxonomy, features, miuvig, assembly, checkv, output):
                 "provirus (UpViG)" if x == "Yes" else "independent sequence (UViG)"
             )
         )
-        checkv_df = checkv_df[
-            ["contig_id", "miuvig_quality", "completeness", "detec_type"]
-        ]
+        checkv_df = checkv_df[["contig", "assembly_qual", "compl_score", "detec_type"]]
         taxonomy_df = pd.merge(taxonomy_df, checkv_df, on="contig", how="left")
         merged_params.pop("assembly_qual")
         merged_params["compl_software"] = "CheckV"
