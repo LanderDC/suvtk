@@ -52,7 +52,7 @@ Installation
          cd suvtk
          mamba create -n suvtk -c bioconda -c conda-forge 'python>=3.9' pip mmseqs2 table2asn
          mamba activate suvtk
-         pip install .
+         pip install -e .
 
 2. Download the database with:
 
