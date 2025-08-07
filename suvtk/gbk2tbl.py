@@ -83,13 +83,11 @@ def gbk2tbl(input, mincontigsize, prefix):
     This script converts a GenBank file (.gbk or .gb) into a Sequin feature table (.tbl), which is an input file of table2asn used for creating an ASN.1 file (.sqn).
     """
     allowed_qualifiers = [
-        "locus_tag",
         "gene",
         "product",
         "pseudo",
         "protein_id",
         "gene_desc",
-        "old_locus_tag",
         "note",
         "inference",
         "organism",
@@ -101,7 +99,7 @@ def gbk2tbl(input, mincontigsize, prefix):
         "collection_date",
         "transl_table",
         "source",
-    ]  # In GenBank files, the qualifier 'collection-date' is written as 'collection_date'.
+    ]
     """
 	These are selected qualifiers because we do not want to see qualifiers such as 'translation' or 'codon_start' in the feature table.
 	Qualifiers 'organism', 'mol_type', 'strain', 'sub_species', 'isolation-source', 'country' belong to the feature 'source'.
