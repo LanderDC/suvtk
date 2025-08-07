@@ -85,4 +85,4 @@ The assembly comment file is essentially a tsv file that contains the necessary 
 
 ## Example Usage
 ```none
-suvtk comments -t taxonomy.tsv -f features.tsv -m miuvig.tsv -a assembly.tsv -o structured_comment
+suvtk comments -t miuvig_taxonomy.tsv -f miuvig_features.tsv -m miuvig.tsv -a assembly.tsv -o structured_comment
