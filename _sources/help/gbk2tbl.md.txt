@@ -5,6 +5,13 @@ This command converts a GenBank file (with a .gbk or .gb extension) into a featu
 
 You would generally want to use this when you get Genbank flatfiles (.gbk) from external tools like <a href="https://github.com/gbouras13/phold" target="_blank">phold</a>.
 
+```{admonition} Warning
+:class: warning
+For now, it is not recommended to use the `phold` GenBank file as it contains features that are not compatible with NCBI GenBank. 
+```
+
+
+
 ---
 ## Required Input
 - **-i, -\\\-input**: Input GenBank file. *(Required)*
