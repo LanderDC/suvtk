@@ -1,9 +1,15 @@
 import sys
+import tomllib
 from pathlib import Path
 
-import suvtk
+pyproject_path = Path(__file__).parent.parent / "pyproject.toml"
+with open(pyproject_path, "rb") as f:
+    pyproject_data = tomllib.load(f)
 
-sys.path.insert(0, str(Path("..", "suvtk").resolve()))
+__version__ = pyproject_data["project"]["version"]
+
+
+sys.path.insert(0, str(Path("..").resolve()))
 
 # Configuration file for the Sphinx documentation builder.
 #
@@ -16,7 +22,7 @@ sys.path.insert(0, str(Path("..", "suvtk").resolve()))
 project = "suvtk"
 copyright = "2025, Lander De Coninck"
 author = "Lander De Coninck"
-release = "0.1"
+release = __version__
 
 # -- General configuration ---------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration
