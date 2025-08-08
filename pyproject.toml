@@ -1,6 +1,6 @@
 [project]
 name = "suvtk"
-version = "0.1.5b3"
+version = "0.1.5b4"
 description = "Tool to submit viral sequences to Genbank."
 readme = "README.md"
 authors = [{name = "Lander De Coninck"}]
@@ -13,7 +13,7 @@ dependencies = [
     "biopython>=1.83",
     "click",
     "numpy>1.24.4",
-    "pandas==2.2.2",
+    "pandas>=2.0.3",
     "pyrodigal-gv>=0.3.2",
     "requests>=2.32.3",
     "scipy>=1.13.1",
