@@ -1,6 +1,6 @@
 [project]
 name = "suvtk"
-version = "0.1.5"
+version = "0.1.5b1"
 description = "Tool to submit viral sequences to Genbank."
 readme = "README.md"
 authors = [{name = "Lander De Coninck"}]
@@ -21,8 +21,12 @@ dependencies = [
 ]
 
 [build-system]
-requires = ["setuptools"]
-build-backend = "setuptools.build_meta"
+requires = ["uv_build>=0.8.0,<0.9.0"]
+build-backend = "uv_build"
+
+[tool.uv.build-backend]
+module-name = "suvtk"
+module-root = ""
 
 [project.urls]
 Homepage = "https://github.com/LanderDC/suvtk"
@@ -36,9 +40,4 @@ suvtk = "suvtk.cli:cli"
 [project.optional-dependencies]
 test = ["pytest"]
 
-[tool.setuptools.packages.find]
-where = ["."]
-include = ["suvtk"]
 
-[tool.setuptools.package-data]
-suvtk = ["data/*.tsv"]
