@@ -501,7 +501,7 @@ wheels = [
 
 [[package]]
 name = "suvtk"
-version = "0.1.5b2"
+version = "0.1.5b3"
 source = { editable = "." }
 dependencies = [
     { name = "biopython" },
@@ -524,7 +524,7 @@ test = [
 requires-dist = [
     { name = "biopython", specifier = ">=1.83" },
     { name = "click" },
-    { name = "numpy", specifier = "==1.26.4" },
+    { name = "numpy", specifier = ">1.24.4" },
     { name = "pandas", specifier = "==2.2.2" },
     { name = "pyrodigal-gv", specifier = ">=0.3.2" },
     { name = "pytest", marker = "extra == 'test'" },
