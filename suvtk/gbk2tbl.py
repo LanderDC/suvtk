@@ -95,11 +95,16 @@ def gbk2tbl(input, mincontigsize, prefix):
         "mol_type",
         "strain",
         "sub_species",
-        "isolation-source",
+        "isolation_source",
         "country",
         "collection_date",
         "transl_table",
         "source",
+        "anticodon",
+        "rpt_type",
+        "rpt_family",
+        "rpt_unit_seq",
+        "rpt_unit_range",
     ]
     """
 	These are selected qualifiers because we do not want to see qualifiers such as 'translation' or 'codon_start' in the feature table.
