@@ -28,6 +28,7 @@ features(fasta_file, output_path, database, transl_table, coding_complete, taxon
 # TODO: mmseqs log to file for clarity
 import os
 import shutil
+import sys
 
 import Bio.SeqIO
 import click
@@ -462,10 +463,31 @@ def features(
 
     records = list(Bio.SeqIO.parse(fasta_file, "fasta"))
 
-    # Train ORF finder
+    if not records:
+        click.echo(f"Error: no sequences found in '{fasta_file}'. Exiting.")
+        sys.exit(1)
+
+    # Ensure training set has at least 20,000 bases by duplicating sequences if needed.
+    total_bases = sum(len(rec.seq) for rec in records)
+    training_records = records[:]  # make a shallow copy for training-only duplication
+
+    if total_bases < 20000:
+        click.echo(
+            f"Warning: total sequence length across {len(records)} record(s) is {total_bases} bases (<20000). "
+            "Sequences will be duplicated for training only so the ORF finder has enough data."
+        )
+        # Duplicate the entire set of original records until we exceed 20,000 bases
+        while sum(len(rec.seq) for rec in training_records) < 20000:
+            training_records.extend(records)
+        new_total = sum(len(rec.seq) for rec in training_records)
+        click.echo(
+            f"Training set length after duplication: {new_total} bases ({len(training_records)} records)."
+        )
+
+    # Train ORF finder using the possibly-duplicated training_records.
     orf_finder = pyrodigal_gv.ViralGeneFinder()
     training_info = orf_finder.train(
-        *(bytes(seq.seq) for seq in records), translation_table=transl_table
+        *(bytes(seq.seq) for seq in training_records), translation_table=transl_table
     )
 
     # Initialize ORF finders
@@ -546,7 +568,7 @@ def features(
     ]
     df = pd.DataFrame(results, columns=columns)
 
-    feat_pred = f"pyrodigal-gv"
+    feat_pred = "pyrodigal-gv"
     feat_pred_version = f"{pyrodigal_gv.__version__}"
 
     df["seqid"] = df["seqid"].str.strip()
@@ -670,12 +692,12 @@ def features(
     )
 
     with open(os.path.join(output_path, "miuvig_features.tsv"), "w") as file:
-        file.write(f"MIUVIG_parameter\tvalue\n")
+        file.write("MIUVIG_parameter\tvalue\n")
         file.write(
             f"feat_pred\t{feat_pred};{feat_pred_version};-g {transl_table}, default otherwise\n"
         )
         file.write(
-            f"ref_db\tBFVD;2023_02;https://bfvd.steineggerlab.workers.dev\n"
+            "ref_db\tBFVD;2023_02;https://bfvd.steineggerlab.workers.dev\n"
         )  # TODO: read DB version from version.txt or something
         file.write(
             f"sim_search_meth\t{aligner};{aligner_version};-s 7.5, default otherwise\n"
