@@ -218,13 +218,13 @@ def co_occurrence(input, output, segments, lengths, prevalence, correlation, str
     n = len(filtered_df)
 
     if lengths:
-        click.echo(f"Using contig length corrected abundance table.")
+        click.echo("Using contig length corrected abundance table.")
         lengths = pd.read_csv(
             lengths, sep="\t", index_col=0, header=None, names=["Contig", "length"]
         )
         df = filtered_df.div(lengths["length"], axis=0).dropna(how="all")
     else:
-        click.echo(f"Using absence/presence abundance table.")
+        click.echo("Using absence/presence abundance table.")
         df = filtered_df.map(lambda x: 1 if x > 0 else x)
 
     click.echo(
@@ -243,10 +243,11 @@ def co_occurrence(input, output, segments, lengths, prevalence, correlation, str
 
         if missing_segments:
             missing_segments_str = ", ".join(map(str, missing_segments))
-            raise ValueError(
-                f"The following segment(s) are not present in the sample prevalence filtered abundance table: {missing_segments_str}\n"
+            click.echo(
+                f"Error: The following segment(s) are not present in the sample prevalence filtered abundance table: {missing_segments_str}\n"
                 f"Consider lowering the prevalence threshold (-p) which is currently at {prevalence_threshold}"
             )
+            sys.exit(1)
 
         correlation_results_df = segment_correlation_matrix(df, segment_list)
 
