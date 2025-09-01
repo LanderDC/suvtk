@@ -501,7 +501,7 @@ wheels = [
 
 [[package]]
 name = "suvtk"
-version = "0.1.5b4"
+version = "0.1.5b5"
 source = { editable = "." }
 dependencies = [
     { name = "biopython" },

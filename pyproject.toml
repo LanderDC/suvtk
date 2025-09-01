@@ -1,6 +1,6 @@
 [project]
 name = "suvtk"
-version = "0.1.5b4"
+version = "0.1.5b5"
 description = "Tool to submit viral sequences to Genbank."
 readme = "README.md"
 authors = [{name = "Lander De Coninck"}]
