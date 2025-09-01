@@ -25,17 +25,22 @@ jobs:
         with:
           fetch-depth: 0
           persist-credentials: true
+      
+      - name: Install uv
+        uses: astral-sh/setup-uv@v6
+        with:
+          # Install a specific version of uv.
+          version: "0.8.6"
 
-      - name: Bump files
+      - name: Bump version
         run: |
-          sed -i -E 's|^(version = ").*(")$|\1'"${VERSION}"'\2|' pyproject.toml
-          sed -i -E 's|^(release = ").*(")$|\1'"${VERSION}"'\2|' docs/conf.py
+          uv version ${VERSION}
 
       - name: Commit bump
         run: |
           git config user.name  "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add pyproject.toml docs/conf.py
+          git add pyproject.toml
           git commit -m "release: bump version to ${VERSION}"
           git push origin HEAD:${{ github.ref }}
           
