@@ -86,6 +86,7 @@ def gbk2tbl(input, mincontigsize, prefix):
     allowed_qualifiers = [
         "gene",
         "product",
+        "function",
         "pseudo",
         "protein_id",
         "gene_desc",
