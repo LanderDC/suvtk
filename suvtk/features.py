@@ -502,10 +502,12 @@ def features(
 
     # Load taxonomy database
     if taxonomy:
+        # TODO: Set better database path?
         taxdb = taxopy.TaxDb(
             nodes_dmp=os.path.join(database, "nodes.dmp"),
             names_dmp=os.path.join(database, "names.dmp"),
-        )  # TODO: Set better database path?
+        )
+
         taxonomy_data = utils.safe_read_csv(taxonomy, sep="\t")
 
     # Define output paths
@@ -643,18 +645,22 @@ def features(
     m8["aligner_version"] = aligner_version
 
     m8_top = select_top_structure(m8)
+
+    # TODO find better solution for protein names?
     names_df = utils.safe_read_csv(
         os.path.join(database, "bfvd_uniprot_names.tsv"), sep="\t"
-    )  # TODO find better solution?
+    )
 
     # remove all trailing strings within brackets from protein names
     names_df["Protein names"] = names_df["Protein names"].str.replace(
         r"[\(\[].*?[\)\]]$", "", regex=True
     )
 
+    # TODO find better solution for protein metadata?
     meta_df = utils.safe_read_csv(
         os.path.join(database, "bfvd_metadata.tsv"), sep="\t", header=None
-    )  # TODO find better solution?
+    )
+
     meta_df.rename(
         {
             0: "Uniref_entry",
