@@ -8,7 +8,7 @@
         <link rel="prefetch" href="../_static/logo_dark.svg" as="image" />
 
     <!-- Generated with Sphinx 8.2.3 and Furo 2025.07.19 -->
-        <title>comments - suvtk 0.1.5b4</title>
+        <title>comments - suvtk 0.1.6</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=acfd86a5" />
     <link rel="stylesheet" type="text/css" href="../_static/styles/furo.css?v=25af2a20" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
@@ -170,7 +170,7 @@
       </label>
     </div>
     <div class="header-center">
-      <a href="../index.html"><div class="brand">suvtk 0.1.5b4</div></a>
+      <a href="../index.html"><div class="brand">suvtk 0.1.6</div></a>
     </div>
     <div class="header-right">
       <div class="theme-toggle-container theme-toggle-header">
@@ -216,6 +216,11 @@
 <li class="toctree-l1"><a class="reference internal" href="gbk2tbl.html">gbk2tbl</a></li>
 <li class="toctree-l1 current current-page"><a class="current reference internal" href="#">comments</a></li>
 <li class="toctree-l1"><a class="reference internal" href="table2asn.html">table2asn</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Extra</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="typical-workflow.html">Typical workflow</a></li>
+<li class="toctree-l1"><a class="reference internal" href="links.html">Useful links</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Python API</span></p>
 <ul>
@@ -274,7 +279,7 @@
 <h3>MIUVIG structured comment<a class="headerlink" href="#miuvig-structured-comment" title="Link to this heading">¶</a></h3>
 <section id="miuvig-taxonomy">
 <h4>MIUVIG taxonomy<a class="headerlink" href="#miuvig-taxonomy" title="Link to this heading">¶</a></h4>
-<p>The <code class="docutils literal notranslate"><span class="pre">--taxonomy</span></code> file should contain info on the genome structure and type of your viral sequences. These are mandatory parameters in the MIUVIG standard and can be obtained with the <a class="reference internal" href="virus-info.html"><span class="std std-doc"><code class="docutils literal notranslate"><span class="pre">suvtk</span> <span class="pre">virus-info</span></code></span></a> if you determined your own taxonomy, or <a class="reference internal" href="taxonomy.html"><span class="std std-doc"><code class="docutils literal notranslate"><span class="pre">suvtk</span> <span class="pre">taxonomy</span></code></span></a> to get both the taxonomy and predicted genome structure and type for your sequences. These commands will output <code class="docutils literal notranslate"><span class="pre">miuvig_taxonomy.tsv</span></code> containing this info for all sequences.</p>
+<p>The input for <code class="docutils literal notranslate"><span class="pre">--taxonomy</span></code> is the MIUVIG data file that should contain info on the genome structure and type of your viral sequences. These are mandatory parameters in the MIUVIG standard and can be obtained with the <a class="reference internal" href="virus-info.html"><span class="std std-doc"><code class="docutils literal notranslate"><span class="pre">suvtk</span> <span class="pre">virus-info</span></code></span></a> if you determined your own taxonomy, or <a class="reference internal" href="taxonomy.html"><span class="std std-doc"><code class="docutils literal notranslate"><span class="pre">suvtk</span> <span class="pre">taxonomy</span></code></span></a> to get both the taxonomy and predicted genome structure and type for your sequences. These commands will output <code class="docutils literal notranslate"><span class="pre">miuvig_taxonomy.tsv</span></code> containing this info for all sequences.</p>
 <details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3" open="open">
 <summary class="sd-summary-title sd-card-header">
 <span class="sd-summary-text">Example</span><span class="sd-summary-state-marker sd-summary-chevron-right"><svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-right" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"></path></svg></span></summary><div class="sd-summary-content sd-card-body docutils">
@@ -310,7 +315,7 @@
 </details></section>
 <section id="miuvig-features">
 <h4>MIUVIG features<a class="headerlink" href="#miuvig-features" title="Link to this heading">¶</a></h4>
-<p>The <code class="docutils literal notranslate"><span class="pre">--features</span></code> input file should contain info on the software, database and method that is used to annotate the features in your viral sequences. The <a class="reference internal" href="features.html"><span class="std std-doc"><code class="docutils literal notranslate"><span class="pre">suvtk</span> <span class="pre">features</span></code></span></a> generates <code class="docutils literal notranslate"><span class="pre">miuvig_features.tsv</span></code> containing all tool and databases with their versions and parameters used by <code class="docutils literal notranslate"><span class="pre">suvtk</span></code>.</p>
+<p>The input for <code class="docutils literal notranslate"><span class="pre">--features</span></code> is the MIUVIG data file that should contain info on the software, database and method that are used to annotate the features in your viral sequences. The <a class="reference internal" href="features.html"><span class="std std-doc"><code class="docutils literal notranslate"><span class="pre">suvtk</span> <span class="pre">features</span></code></span></a> generates <code class="docutils literal notranslate"><span class="pre">miuvig_features.tsv</span></code> containing all tool and databases with their versions and parameters used by <code class="docutils literal notranslate"><span class="pre">suvtk</span></code>.</p>
 <details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3" open="open">
 <summary class="sd-summary-title sd-card-header">
 <span class="sd-summary-text">Example</span><span class="sd-summary-state-marker sd-summary-chevron-right"><svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-right" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"></path></svg></span></summary><div class="sd-summary-content sd-card-body docutils">
@@ -535,7 +540,7 @@
       
     </aside>
   </div>
-</div><script src="../_static/documentation_options.js?v=b68e0b9d"></script>
+</div><script src="../_static/documentation_options.js?v=79d558ae"></script>
     <script src="../_static/doctools.js?v=9bcbadda"></script>
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/scripts/furo.js?v=46bd48cc"></script>

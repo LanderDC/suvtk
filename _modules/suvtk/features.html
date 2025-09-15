@@ -7,7 +7,7 @@
         <link rel="prefetch" href="../../_static/logo_dark.svg" as="image" />
 
     <!-- Generated with Sphinx 8.2.3 and Furo 2025.07.19 -->
-        <title>suvtk.features - suvtk 0.1.5b4</title>
+        <title>suvtk.features - suvtk 0.1.6</title>
       <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=acfd86a5" />
     <link rel="stylesheet" type="text/css" href="../../_static/styles/furo.css?v=25af2a20" />
     <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
@@ -169,7 +169,7 @@
       </label>
     </div>
     <div class="header-center">
-      <a href="../../index.html"><div class="brand">suvtk 0.1.5b4</div></a>
+      <a href="../../index.html"><div class="brand">suvtk 0.1.6</div></a>
     </div>
     <div class="header-right">
       <div class="theme-toggle-container theme-toggle-header">
@@ -215,6 +215,11 @@
 <li class="toctree-l1"><a class="reference internal" href="../../help/gbk2tbl.html">gbk2tbl</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../help/comments.html">comments</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../help/table2asn.html">table2asn</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Extra</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../help/typical-workflow.html">Typical workflow</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../help/links.html">Useful links</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Python API</span></p>
 <ul>
@@ -287,6 +292,7 @@
 <span class="c1"># TODO: mmseqs log to file for clarity</span>
 <span class="kn">import</span> <span class="nn">os</span>
 <span class="kn">import</span> <span class="nn">shutil</span>
+<span class="kn">import</span> <span class="nn">sys</span>
 
 <span class="kn">import</span> <span class="nn">Bio.SeqIO</span>
 <span class="kn">import</span> <span class="nn">click</span>
@@ -754,10 +760,31 @@
 
     <span class="n">records</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">Bio</span><span class="o">.</span><span class="n">SeqIO</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="n">fasta_file</span><span class="p">,</span> <span class="s2">&quot;fasta&quot;</span><span class="p">))</span>
 
-    <span class="c1"># Train ORF finder</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">records</span><span class="p">:</span>
+        <span class="n">click</span><span class="o">.</span><span class="n">echo</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Error: no sequences found in &#39;</span><span class="si">{</span><span class="n">fasta_file</span><span class="si">}</span><span class="s2">&#39;. Exiting.&quot;</span><span class="p">)</span>
+        <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+
+    <span class="c1"># Ensure training set has at least 20,000 bases by duplicating sequences if needed.</span>
+    <span class="n">total_bases</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">rec</span><span class="o">.</span><span class="n">seq</span><span class="p">)</span> <span class="k">for</span> <span class="n">rec</span> <span class="ow">in</span> <span class="n">records</span><span class="p">)</span>
+    <span class="n">training_records</span> <span class="o">=</span> <span class="n">records</span><span class="p">[:]</span>  <span class="c1"># make a shallow copy for training-only duplication</span>
+
+    <span class="k">if</span> <span class="n">total_bases</span> <span class="o">&lt;</span> <span class="mi">20000</span><span class="p">:</span>
+        <span class="n">click</span><span class="o">.</span><span class="n">echo</span><span class="p">(</span>
+            <span class="sa">f</span><span class="s2">&quot;Warning: total sequence length across </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">records</span><span class="p">)</span><span class="si">}</span><span class="s2"> record(s) is </span><span class="si">{</span><span class="n">total_bases</span><span class="si">}</span><span class="s2"> bases (&lt;20000). &quot;</span>
+            <span class="s2">&quot;Sequences will be duplicated for training only so the ORF finder has enough data.&quot;</span>
+        <span class="p">)</span>
+        <span class="c1"># Duplicate the entire set of original records until we exceed 20,000 bases</span>
+        <span class="k">while</span> <span class="nb">sum</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">rec</span><span class="o">.</span><span class="n">seq</span><span class="p">)</span> <span class="k">for</span> <span class="n">rec</span> <span class="ow">in</span> <span class="n">training_records</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">20000</span><span class="p">:</span>
+            <span class="n">training_records</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">records</span><span class="p">)</span>
+        <span class="n">new_total</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">rec</span><span class="o">.</span><span class="n">seq</span><span class="p">)</span> <span class="k">for</span> <span class="n">rec</span> <span class="ow">in</span> <span class="n">training_records</span><span class="p">)</span>
+        <span class="n">click</span><span class="o">.</span><span class="n">echo</span><span class="p">(</span>
+            <span class="sa">f</span><span class="s2">&quot;Training set length after duplication: </span><span class="si">{</span><span class="n">new_total</span><span class="si">}</span><span class="s2"> bases (</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">training_records</span><span class="p">)</span><span class="si">}</span><span class="s2"> records).&quot;</span>
+        <span class="p">)</span>
+
+    <span class="c1"># Train ORF finder using the possibly-duplicated training_records.</span>
     <span class="n">orf_finder</span> <span class="o">=</span> <span class="n">pyrodigal_gv</span><span class="o">.</span><span class="n">ViralGeneFinder</span><span class="p">()</span>
     <span class="n">training_info</span> <span class="o">=</span> <span class="n">orf_finder</span><span class="o">.</span><span class="n">train</span><span class="p">(</span>
-        <span class="o">*</span><span class="p">(</span><span class="nb">bytes</span><span class="p">(</span><span class="n">seq</span><span class="o">.</span><span class="n">seq</span><span class="p">)</span> <span class="k">for</span> <span class="n">seq</span> <span class="ow">in</span> <span class="n">records</span><span class="p">),</span> <span class="n">translation_table</span><span class="o">=</span><span class="n">transl_table</span>
+        <span class="o">*</span><span class="p">(</span><span class="nb">bytes</span><span class="p">(</span><span class="n">seq</span><span class="o">.</span><span class="n">seq</span><span class="p">)</span> <span class="k">for</span> <span class="n">seq</span> <span class="ow">in</span> <span class="n">training_records</span><span class="p">),</span> <span class="n">translation_table</span><span class="o">=</span><span class="n">transl_table</span>
     <span class="p">)</span>
 
     <span class="c1"># Initialize ORF finders</span>
@@ -772,10 +799,12 @@
 
     <span class="c1"># Load taxonomy database</span>
     <span class="k">if</span> <span class="n">taxonomy</span><span class="p">:</span>
+        <span class="c1"># TODO: Set better database path?</span>
         <span class="n">taxdb</span> <span class="o">=</span> <span class="n">taxopy</span><span class="o">.</span><span class="n">TaxDb</span><span class="p">(</span>
             <span class="n">nodes_dmp</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">database</span><span class="p">,</span> <span class="s2">&quot;nodes.dmp&quot;</span><span class="p">),</span>
             <span class="n">names_dmp</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">database</span><span class="p">,</span> <span class="s2">&quot;names.dmp&quot;</span><span class="p">),</span>
-        <span class="p">)</span>  <span class="c1"># TODO: Set better database path?</span>
+        <span class="p">)</span>
+
         <span class="n">taxonomy_data</span> <span class="o">=</span> <span class="n">utils</span><span class="o">.</span><span class="n">safe_read_csv</span><span class="p">(</span><span class="n">taxonomy</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\t</span><span class="s2">&quot;</span><span class="p">)</span>
 
     <span class="c1"># Define output paths</span>
@@ -838,7 +867,7 @@
     <span class="p">]</span>
     <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">results</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="n">columns</span><span class="p">)</span>
 
-    <span class="n">feat_pred</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;pyrodigal-gv&quot;</span>
+    <span class="n">feat_pred</span> <span class="o">=</span> <span class="s2">&quot;pyrodigal-gv&quot;</span>
     <span class="n">feat_pred_version</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">pyrodigal_gv</span><span class="o">.</span><span class="n">__version__</span><span class="si">}</span><span class="s2">&quot;</span>
 
     <span class="n">df</span><span class="p">[</span><span class="s2">&quot;seqid&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;seqid&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
@@ -913,18 +942,22 @@
     <span class="n">m8</span><span class="p">[</span><span class="s2">&quot;aligner_version&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">aligner_version</span>
 
     <span class="n">m8_top</span> <span class="o">=</span> <span class="n">select_top_structure</span><span class="p">(</span><span class="n">m8</span><span class="p">)</span>
+
+    <span class="c1"># TODO find better solution for protein names?</span>
     <span class="n">names_df</span> <span class="o">=</span> <span class="n">utils</span><span class="o">.</span><span class="n">safe_read_csv</span><span class="p">(</span>
         <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">database</span><span class="p">,</span> <span class="s2">&quot;bfvd_uniprot_names.tsv&quot;</span><span class="p">),</span> <span class="n">sep</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\t</span><span class="s2">&quot;</span>
-    <span class="p">)</span>  <span class="c1"># TODO find better solution?</span>
+    <span class="p">)</span>
 
     <span class="c1"># remove all trailing strings within brackets from protein names</span>
     <span class="n">names_df</span><span class="p">[</span><span class="s2">&quot;Protein names&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">names_df</span><span class="p">[</span><span class="s2">&quot;Protein names&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span>
         <span class="sa">r</span><span class="s2">&quot;[\(\[].*?[\)\]]$&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">regex</span><span class="o">=</span><span class="kc">True</span>
     <span class="p">)</span>
 
+    <span class="c1"># TODO find better solution for protein metadata?</span>
     <span class="n">meta_df</span> <span class="o">=</span> <span class="n">utils</span><span class="o">.</span><span class="n">safe_read_csv</span><span class="p">(</span>
         <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">database</span><span class="p">,</span> <span class="s2">&quot;bfvd_metadata.tsv&quot;</span><span class="p">),</span> <span class="n">sep</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\t</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="kc">None</span>
-    <span class="p">)</span>  <span class="c1"># TODO find better solution?</span>
+    <span class="p">)</span>
+
     <span class="n">meta_df</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span>
         <span class="p">{</span>
             <span class="mi">0</span><span class="p">:</span> <span class="s2">&quot;Uniref_entry&quot;</span><span class="p">,</span>
@@ -962,12 +995,12 @@
     <span class="p">)</span>
 
     <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">output_path</span><span class="p">,</span> <span class="s2">&quot;miuvig_features.tsv&quot;</span><span class="p">),</span> <span class="s2">&quot;w&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>
-        <span class="n">file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;MIUVIG_parameter</span><span class="se">\t</span><span class="s2">value</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="n">file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;MIUVIG_parameter</span><span class="se">\t</span><span class="s2">value</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
         <span class="n">file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span>
             <span class="sa">f</span><span class="s2">&quot;feat_pred</span><span class="se">\t</span><span class="si">{</span><span class="n">feat_pred</span><span class="si">}</span><span class="s2">;</span><span class="si">{</span><span class="n">feat_pred_version</span><span class="si">}</span><span class="s2">;-g </span><span class="si">{</span><span class="n">transl_table</span><span class="si">}</span><span class="s2">, default otherwise</span><span class="se">\n</span><span class="s2">&quot;</span>
         <span class="p">)</span>
         <span class="n">file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span>
-            <span class="sa">f</span><span class="s2">&quot;ref_db</span><span class="se">\t</span><span class="s2">BFVD;2023_02;https://bfvd.steineggerlab.workers.dev</span><span class="se">\n</span><span class="s2">&quot;</span>
+            <span class="s2">&quot;ref_db</span><span class="se">\t</span><span class="s2">BFVD;2023_02;https://bfvd.steineggerlab.workers.dev</span><span class="se">\n</span><span class="s2">&quot;</span>
         <span class="p">)</span>  <span class="c1"># TODO: read DB version from version.txt or something</span>
         <span class="n">file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span>
             <span class="sa">f</span><span class="s2">&quot;sim_search_meth</span><span class="se">\t</span><span class="si">{</span><span class="n">aligner</span><span class="si">}</span><span class="s2">;</span><span class="si">{</span><span class="n">aligner_version</span><span class="si">}</span><span class="s2">;-s 7.5, default otherwise</span><span class="se">\n</span><span class="s2">&quot;</span>
@@ -1015,7 +1048,7 @@
       
     </aside>
   </div>
-</div><script src="../../_static/documentation_options.js?v=b68e0b9d"></script>
+</div><script src="../../_static/documentation_options.js?v=79d558ae"></script>
     <script src="../../_static/doctools.js?v=9bcbadda"></script>
     <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../_static/scripts/furo.js?v=46bd48cc"></script>

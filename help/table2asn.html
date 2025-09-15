@@ -3,12 +3,12 @@
   <head><meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
     <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
-<link rel="index" title="Index" href="../genindex.html" /><link rel="search" title="Search" href="../search.html" /><link rel="next" title="suvtk" href="../source/modules.html" /><link rel="prev" title="comments" href="comments.html" />
+<link rel="index" title="Index" href="../genindex.html" /><link rel="search" title="Search" href="../search.html" /><link rel="next" title="Typical workflow" href="typical-workflow.html" /><link rel="prev" title="comments" href="comments.html" />
         <link rel="prefetch" href="../_static/logo_light.svg" as="image" />
         <link rel="prefetch" href="../_static/logo_dark.svg" as="image" />
 
     <!-- Generated with Sphinx 8.2.3 and Furo 2025.07.19 -->
-        <title>table2asn - suvtk 0.1.5b4</title>
+        <title>table2asn - suvtk 0.1.6</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=acfd86a5" />
     <link rel="stylesheet" type="text/css" href="../_static/styles/furo.css?v=25af2a20" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
@@ -170,7 +170,7 @@
       </label>
     </div>
     <div class="header-center">
-      <a href="../index.html"><div class="brand">suvtk 0.1.5b4</div></a>
+      <a href="../index.html"><div class="brand">suvtk 0.1.6</div></a>
     </div>
     <div class="header-right">
       <div class="theme-toggle-container theme-toggle-header">
@@ -216,6 +216,11 @@
 <li class="toctree-l1"><a class="reference internal" href="gbk2tbl.html">gbk2tbl</a></li>
 <li class="toctree-l1"><a class="reference internal" href="comments.html">comments</a></li>
 <li class="toctree-l1 current current-page"><a class="current reference internal" href="#">table2asn</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Extra</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="typical-workflow.html">Typical workflow</a></li>
+<li class="toctree-l1"><a class="reference internal" href="links.html">Useful links</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Python API</span></p>
 <ul>
@@ -275,7 +280,9 @@
 </section>
 <section id="source-file">
 <h3>Source file<a class="headerlink" href="#source-file" title="Link to this heading">¶</a></h3>
-<p>This file contains the metadata of your sequences as required by <a href="https://www.ncbi.nlm.nih.gov/WebSub/html/help/genbank-source-table.html" target="_blank">NCBI</a>. You will have to generate this file yourself from the output of the <a class="reference internal" href="taxonomy.html"><span class="std std-doc"><code class="docutils literal notranslate"><span class="pre">suvtk</span> <span class="pre">taxonomy</span></code></span></a> subcommand and the metadata of your study. The <code class="docutils literal notranslate"><span class="pre">taxonomy.tsv</span></code>file contains the <em>Sequence_ID</em> and the <em>Organism</em> values, you will have to provide:</p>
+<p>This file contains the metadata of your sequences as required by <a href="https://www.ncbi.nlm.nih.gov/WebSub/html/help/genbank-source-table.html" target="_blank">NCBI</a>. You will have to generate this file yourself from the output of the <a class="reference internal" href="taxonomy.html"><span class="std std-doc"><code class="docutils literal notranslate"><span class="pre">suvtk</span> <span class="pre">taxonomy</span></code></span></a> subcommand and the metadata of your study. The <code class="docutils literal notranslate"><span class="pre">taxonomy.tsv</span></code>file contains the <em>Sequence_ID</em> and the <em>Organism</em> values (named “contig” and “taxonomy” respectively in the <code class="docutils literal notranslate"><span class="pre">taxonomy.tsv</span></code>).
+<br>
+<strong>You will have to provide:</strong></p>
 <ul class="simple">
 <li><p><em>Isolate</em> (required; unique identifiers for each sequence, preferably as a single string of at least six alphanumerical characters (e.g., blue53F), using hyphens and underscores to tie separate elements together, e.g., “0815_Eier-kuchen”)</p></li>
 <li><p><em>Collection_date</em> (required; in format [DD-Mon-]YYYY)</p></li>
@@ -298,124 +305,134 @@
 <tr class="row-odd"><th class="head"><p class="sd-card-text">Sequence_ID</p></th>
 <th class="head"><p class="sd-card-text">Organism</p></th>
 <th class="head"><p class="sd-card-text">Isolate</p></th>
-<th class="head text-right"><p class="sd-card-text">Collection_date</p></th>
+<th class="head"><p class="sd-card-text">Collection_date</p></th>
 <th class="head"><p class="sd-card-text">geo_loc_name</p></th>
-<th class="head"><p class="sd-card-text">Metagenome_source</p></th>
 <th class="head"><p class="sd-card-text">Lat_Lon</p></th>
+<th class="head"><p class="sd-card-text">Bioproject</p></th>
 <th class="head"><p class="sd-card-text">Biosample</p></th>
 <th class="head"><p class="sd-card-text">SRA</p></th>
-<th class="head text-right"><p class="sd-card-text">Segment</p></th>
+<th class="head"><p class="sd-card-text">Segment</p></th>
 <th class="head"><p class="sd-card-text">Metagenomic</p></th>
+<th class="head"><p class="sd-card-text">Metagenome_source</p></th>
 </tr>
 </thead>
 <tbody>
 <tr class="row-even"><td><p class="sd-card-text">Seq1</p></td>
 <td><p class="sd-card-text">Riboviria sp.</p></td>
 <td><p class="sd-card-text">Sample1_bazTh</p></td>
-<td class="text-right"><p class="sd-card-text">Jul-21</p></td>
+<td><p class="sd-card-text">Jul-21</p></td>
 <td><p class="sd-card-text">Cameroon</p></td>
-<td><p class="sd-card-text">blackfly metagenome</p></td>
 <td><p class="sd-card-text">4.352433 N 11.63255 E</p></td>
+<td><p class="sd-card-text">PRJNA1088476</p></td>
 <td><p class="sd-card-text">SAMN40472416</p></td>
 <td><p class="sd-card-text">SRR28387210</p></td>
-<td class="text-right"><p class="sd-card-text"></p></td>
+<td><p class="sd-card-text"></p></td>
 <td><p class="sd-card-text">TRUE</p></td>
+<td><p class="sd-card-text">blackfly metagenome</p></td>
 </tr>
 <tr class="row-odd"><td><p class="sd-card-text">Seq2</p></td>
 <td><p class="sd-card-text">Leviviricetes sp.</p></td>
 <td><p class="sd-card-text">Sample2_8xzwR</p></td>
-<td class="text-right"><p class="sd-card-text">Jul-21</p></td>
+<td><p class="sd-card-text">Jul-21</p></td>
 <td><p class="sd-card-text">Cameroon</p></td>
-<td><p class="sd-card-text">blackfly metagenome</p></td>
 <td><p class="sd-card-text">4.352433 N 11.63255 E</p></td>
+<td><p class="sd-card-text">PRJNA1088476</p></td>
 <td><p class="sd-card-text">SAMN40472429</p></td>
 <td><p class="sd-card-text">SRR28387198</p></td>
-<td class="text-right"><p class="sd-card-text"></p></td>
+<td><p class="sd-card-text"></p></td>
 <td><p class="sd-card-text">TRUE</p></td>
+<td><p class="sd-card-text">blackfly metagenome</p></td>
 </tr>
 <tr class="row-even"><td><p class="sd-card-text">Seq3</p></td>
 <td><p class="sd-card-text">unclassified viruses</p></td>
 <td><p class="sd-card-text">Sample3_xliVj</p></td>
-<td class="text-right"><p class="sd-card-text">Jul-21</p></td>
+<td><p class="sd-card-text">Jul-21</p></td>
 <td><p class="sd-card-text">Cameroon</p></td>
-<td><p class="sd-card-text">blackfly metagenome</p></td>
 <td><p class="sd-card-text">4.352433 N 11.63255 E</p></td>
+<td><p class="sd-card-text">PRJNA1088476</p></td>
 <td><p class="sd-card-text">SAMN40472417</p></td>
 <td><p class="sd-card-text">SRR28387209</p></td>
-<td class="text-right"><p class="sd-card-text"></p></td>
+<td><p class="sd-card-text"></p></td>
 <td><p class="sd-card-text">TRUE</p></td>
+<td><p class="sd-card-text">blackfly metagenome</p></td>
 </tr>
 <tr class="row-odd"><td><p class="sd-card-text">Seq4</p></td>
 <td><p class="sd-card-text">Chrysoviridae sp.</p></td>
 <td><p class="sd-card-text">Sample4_qC6AD</p></td>
-<td class="text-right"><p class="sd-card-text">Jul-21</p></td>
+<td><p class="sd-card-text">Jul-21</p></td>
 <td><p class="sd-card-text">Cameroon</p></td>
-<td><p class="sd-card-text">blackfly metagenome</p></td>
 <td><p class="sd-card-text">4.352433 N 11.63255 E</p></td>
+<td><p class="sd-card-text">PRJNA1088476</p></td>
 <td><p class="sd-card-text">SAMN40472428</p></td>
 <td><p class="sd-card-text">SRR28387197</p></td>
-<td class="text-right"><p class="sd-card-text">1</p></td>
+<td><p class="sd-card-text">1</p></td>
 <td><p class="sd-card-text">TRUE</p></td>
+<td><p class="sd-card-text">blackfly metagenome</p></td>
 </tr>
 <tr class="row-even"><td><p class="sd-card-text">Seq5</p></td>
 <td><p class="sd-card-text">Chrysoviridae sp.</p></td>
 <td><p class="sd-card-text">Sample4_qC6AD</p></td>
-<td class="text-right"><p class="sd-card-text">Jul-21</p></td>
+<td><p class="sd-card-text">Jul-21</p></td>
 <td><p class="sd-card-text">Cameroon</p></td>
-<td><p class="sd-card-text">blackfly metagenome</p></td>
 <td><p class="sd-card-text">4.352433 N 11.63255 E</p></td>
+<td><p class="sd-card-text">PRJNA1088476</p></td>
 <td><p class="sd-card-text">SAMN40472428</p></td>
 <td><p class="sd-card-text">SRR28387197</p></td>
-<td class="text-right"><p class="sd-card-text">2</p></td>
+<td><p class="sd-card-text">2</p></td>
 <td><p class="sd-card-text">TRUE</p></td>
+<td><p class="sd-card-text">blackfly metagenome</p></td>
 </tr>
 <tr class="row-odd"><td><p class="sd-card-text">Seq6</p></td>
 <td><p class="sd-card-text">Chrysoviridae sp.</p></td>
 <td><p class="sd-card-text">Sample4_qC6AD</p></td>
-<td class="text-right"><p class="sd-card-text">Jul-21</p></td>
+<td><p class="sd-card-text">Jul-21</p></td>
 <td><p class="sd-card-text">Cameroon</p></td>
-<td><p class="sd-card-text">blackfly metagenome</p></td>
 <td><p class="sd-card-text">4.352433 N 11.63255 E</p></td>
+<td><p class="sd-card-text">PRJNA1088476</p></td>
 <td><p class="sd-card-text">SAMN40472428</p></td>
 <td><p class="sd-card-text">SRR28387197</p></td>
-<td class="text-right"><p class="sd-card-text">3</p></td>
+<td><p class="sd-card-text">3</p></td>
 <td><p class="sd-card-text">TRUE</p></td>
+<td><p class="sd-card-text">blackfly metagenome</p></td>
 </tr>
 <tr class="row-even"><td><p class="sd-card-text">Seq7</p></td>
 <td><p class="sd-card-text">Chrysoviridae sp.</p></td>
 <td><p class="sd-card-text">Sample4_qC6AD</p></td>
-<td class="text-right"><p class="sd-card-text">Jul-21</p></td>
+<td><p class="sd-card-text">Jul-21</p></td>
 <td><p class="sd-card-text">Cameroon</p></td>
-<td><p class="sd-card-text">blackfly metagenome</p></td>
 <td><p class="sd-card-text">4.352433 N 11.63255 E</p></td>
+<td><p class="sd-card-text">PRJNA1088476</p></td>
 <td><p class="sd-card-text">SAMN40472428</p></td>
 <td><p class="sd-card-text">SRR28387197</p></td>
-<td class="text-right"><p class="sd-card-text">4</p></td>
+<td><p class="sd-card-text">4</p></td>
 <td><p class="sd-card-text">TRUE</p></td>
+<td><p class="sd-card-text">blackfly metagenome</p></td>
 </tr>
 <tr class="row-odd"><td><p class="sd-card-text">Seq8</p></td>
 <td><p class="sd-card-text">Negarnaviricota sp.</p></td>
 <td><p class="sd-card-text">Sample1_IowNh</p></td>
-<td class="text-right"><p class="sd-card-text">Jul-21</p></td>
+<td><p class="sd-card-text">Jul-21</p></td>
 <td><p class="sd-card-text">Cameroon</p></td>
-<td><p class="sd-card-text">blackfly metagenome</p></td>
 <td><p class="sd-card-text">4.352433 N 11.63255 E</p></td>
+<td><p class="sd-card-text">PRJNA1088476</p></td>
 <td><p class="sd-card-text">SAMN40472416</p></td>
 <td><p class="sd-card-text">SRR28387210</p></td>
-<td class="text-right"><p class="sd-card-text"></p></td>
+<td><p class="sd-card-text"></p></td>
 <td><p class="sd-card-text">TRUE</p></td>
+<td><p class="sd-card-text">blackfly metagenome</p></td>
 </tr>
 <tr class="row-even"><td><p class="sd-card-text">Seq9</p></td>
 <td><p class="sd-card-text">Riboviria sp.</p></td>
 <td><p class="sd-card-text">Sample3_o7K62</p></td>
-<td class="text-right"><p class="sd-card-text">Jul-21</p></td>
+<td><p class="sd-card-text">Jul-21</p></td>
 <td><p class="sd-card-text">Cameroon</p></td>
-<td><p class="sd-card-text">blackfly metagenome</p></td>
 <td><p class="sd-card-text">4.352433 N 11.63255 E</p></td>
+<td><p class="sd-card-text">PRJNA1088476</p></td>
 <td><p class="sd-card-text">SAMN40472417</p></td>
 <td><p class="sd-card-text">SRR28387209</p></td>
-<td class="text-right"><p class="sd-card-text"></p></td>
+<td><p class="sd-card-text"></p></td>
 <td><p class="sd-card-text">TRUE</p></td>
+<td><p class="sd-card-text">blackfly metagenome</p></td>
 </tr>
 </tbody>
 </table>
@@ -467,12 +484,12 @@
       <footer>
         
         <div class="related-pages">
-          <a class="next-page" href="../source/modules.html">
+          <a class="next-page" href="typical-workflow.html">
               <div class="page-info">
                 <div class="context">
                   <span>Next</span>
                 </div>
-                <div class="title">suvtk</div>
+                <div class="title">Typical workflow</div>
               </div>
               <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
             </a>
@@ -546,7 +563,7 @@
       
     </aside>
   </div>
-</div><script src="../_static/documentation_options.js?v=b68e0b9d"></script>
+</div><script src="../_static/documentation_options.js?v=79d558ae"></script>
     <script src="../_static/doctools.js?v=9bcbadda"></script>
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/scripts/furo.js?v=46bd48cc"></script>

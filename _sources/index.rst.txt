@@ -169,6 +169,15 @@ A big thank you to:
 
 .. toctree::
    :maxdepth: 1
+   :caption: Extra
+   :hidden:
+
+   help/typical-workflow
+   help/links
+   
+
+.. toctree::
+   :maxdepth: 1
    :caption: Python API
    :hidden:
 

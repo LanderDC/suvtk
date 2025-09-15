@@ -7,7 +7,7 @@
         <link rel="prefetch" href="../../_static/logo_dark.svg" as="image" />
 
     <!-- Generated with Sphinx 8.2.3 and Furo 2025.07.19 -->
-        <title>suvtk.co_occurrence - suvtk 0.1.5b4</title>
+        <title>suvtk.co_occurrence - suvtk 0.1.6</title>
       <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=acfd86a5" />
     <link rel="stylesheet" type="text/css" href="../../_static/styles/furo.css?v=25af2a20" />
     <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
@@ -169,7 +169,7 @@
       </label>
     </div>
     <div class="header-center">
-      <a href="../../index.html"><div class="brand">suvtk 0.1.5b4</div></a>
+      <a href="../../index.html"><div class="brand">suvtk 0.1.6</div></a>
     </div>
     <div class="header-right">
       <div class="theme-toggle-container theme-toggle-header">
@@ -215,6 +215,11 @@
 <li class="toctree-l1"><a class="reference internal" href="../../help/gbk2tbl.html">gbk2tbl</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../help/comments.html">comments</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../help/table2asn.html">table2asn</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Extra</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../help/typical-workflow.html">Typical workflow</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../help/links.html">Useful links</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Python API</span></p>
 <ul>
@@ -489,13 +494,13 @@
     <span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">filtered_df</span><span class="p">)</span>
 
     <span class="k">if</span> <span class="n">lengths</span><span class="p">:</span>
-        <span class="n">click</span><span class="o">.</span><span class="n">echo</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Using contig length corrected abundance table.&quot;</span><span class="p">)</span>
+        <span class="n">click</span><span class="o">.</span><span class="n">echo</span><span class="p">(</span><span class="s2">&quot;Using contig length corrected abundance table.&quot;</span><span class="p">)</span>
         <span class="n">lengths</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span>
             <span class="n">lengths</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\t</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">index_col</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">names</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;Contig&quot;</span><span class="p">,</span> <span class="s2">&quot;length&quot;</span><span class="p">]</span>
         <span class="p">)</span>
         <span class="n">df</span> <span class="o">=</span> <span class="n">filtered_df</span><span class="o">.</span><span class="n">div</span><span class="p">(</span><span class="n">lengths</span><span class="p">[</span><span class="s2">&quot;length&quot;</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">dropna</span><span class="p">(</span><span class="n">how</span><span class="o">=</span><span class="s2">&quot;all&quot;</span><span class="p">)</span>
     <span class="k">else</span><span class="p">:</span>
-        <span class="n">click</span><span class="o">.</span><span class="n">echo</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Using absence/presence abundance table.&quot;</span><span class="p">)</span>
+        <span class="n">click</span><span class="o">.</span><span class="n">echo</span><span class="p">(</span><span class="s2">&quot;Using absence/presence abundance table.&quot;</span><span class="p">)</span>
         <span class="n">df</span> <span class="o">=</span> <span class="n">filtered_df</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="mi">1</span> <span class="k">if</span> <span class="n">x</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="k">else</span> <span class="n">x</span><span class="p">)</span>
 
     <span class="n">click</span><span class="o">.</span><span class="n">echo</span><span class="p">(</span>
@@ -514,10 +519,11 @@
 
         <span class="k">if</span> <span class="n">missing_segments</span><span class="p">:</span>
             <span class="n">missing_segments_str</span> <span class="o">=</span> <span class="s2">&quot;, &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="nb">str</span><span class="p">,</span> <span class="n">missing_segments</span><span class="p">))</span>
-            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
-                <span class="sa">f</span><span class="s2">&quot;The following segment(s) are not present in the sample prevalence filtered abundance table: </span><span class="si">{</span><span class="n">missing_segments_str</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span>
+            <span class="n">click</span><span class="o">.</span><span class="n">echo</span><span class="p">(</span>
+                <span class="sa">f</span><span class="s2">&quot;Error: The following segment(s) are not present in the sample prevalence filtered abundance table: </span><span class="si">{</span><span class="n">missing_segments_str</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span>
                 <span class="sa">f</span><span class="s2">&quot;Consider lowering the prevalence threshold (-p) which is currently at </span><span class="si">{</span><span class="n">prevalence_threshold</span><span class="si">}</span><span class="s2">&quot;</span>
             <span class="p">)</span>
+            <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
 
         <span class="n">correlation_results_df</span> <span class="o">=</span> <span class="n">segment_correlation_matrix</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">segment_list</span><span class="p">)</span>
 
@@ -599,7 +605,7 @@
       
     </aside>
   </div>
-</div><script src="../../_static/documentation_options.js?v=b68e0b9d"></script>
+</div><script src="../../_static/documentation_options.js?v=79d558ae"></script>
     <script src="../../_static/doctools.js?v=9bcbadda"></script>
     <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../_static/scripts/furo.js?v=46bd48cc"></script>

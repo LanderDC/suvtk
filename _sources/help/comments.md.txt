@@ -6,7 +6,7 @@ This command generates a <a href="https://www.ncbi.nlm.nih.gov/genbank/structure
 ---
 ### MIUVIG structured comment
 #### MIUVIG taxonomy
-The `--taxonomy` file should contain info on the genome structure and type of your viral sequences. These are mandatory parameters in the MIUVIG standard and can be obtained with the [`suvtk virus-info`](virus-info.md) if you determined your own taxonomy, or [`suvtk taxonomy`](taxonomy.md) to get both the taxonomy and predicted genome structure and type for your sequences. These commands will output `miuvig_taxonomy.tsv` containing this info for all sequences.
+The input for `--taxonomy` is the MIUVIG data file that should contain info on the genome structure and type of your viral sequences. These are mandatory parameters in the MIUVIG standard and can be obtained with the [`suvtk virus-info`](virus-info.md) if you determined your own taxonomy, or [`suvtk taxonomy`](taxonomy.md) to get both the taxonomy and predicted genome structure and type for your sequences. These commands will output `miuvig_taxonomy.tsv` containing this info for all sequences.
 
 ```{dropdown} Example
 :open:
@@ -20,7 +20,7 @@ The `--taxonomy` file should contain info on the genome structure and type of yo
 ```
 
 #### MIUVIG features
-The `--features` input file should contain info on the software, database and method that is used to annotate the features in your viral sequences. The [`suvtk features`](features.md) generates `miuvig_features.tsv` containing all tool and databases with their versions and parameters used by `suvtk`.
+The input for `--features` is the MIUVIG data file that should contain info on the software, database and method that are used to annotate the features in your viral sequences. The [`suvtk features`](features.md) generates `miuvig_features.tsv` containing all tool and databases with their versions and parameters used by `suvtk`.
 
 ```{dropdown} Example
 :open:
