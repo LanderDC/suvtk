@@ -1,6 +1,7 @@
 import sys
-import tomllib
 from pathlib import Path
+
+import tomllib
 
 pyproject_path = Path(__file__).parent.parent / "pyproject.toml"
 with open(pyproject_path, "rb") as f:

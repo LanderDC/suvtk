@@ -9,6 +9,7 @@ Your input sequences, preferably the `reoriented_nucleotide_sequences.fna` from 
 ### Source file
 This file contains the metadata of your sequences as required by <a href="https://www.ncbi.nlm.nih.gov/WebSub/html/help/genbank-source-table.html" target="_blank">NCBI</a>. You will have to generate this file yourself from the output of the [`suvtk taxonomy`](taxonomy.md) subcommand and the metadata of your study. The `taxonomy.tsv`file contains the *Sequence_ID* and the *Organism* values (named "contig" and "taxonomy" respectively in the `taxonomy.tsv`). 
 <br> 
+<br>
 **You will have to provide:**
 - *Isolate* (required; unique identifiers for each sequence, preferably as a single string of at least six alphanumerical characters (e.g., blue53F), using hyphens and underscores to tie separate elements together, e.g., “0815_Eier-kuchen”) 
 - *Collection_date* (required; in format [DD-Mon-]YYYY)
