@@ -100,6 +100,7 @@ def gbk2tbl(input, mincontigsize, prefix):
         "country",
         "collection_date",
         "transl_table",
+        "codon_start",
         "source",
         "anticodon",
         "rpt_type",
@@ -150,6 +151,7 @@ def gbk2tbl(input, mincontigsize, prefix):
 
             if (f.type == "CDS") and ("product" not in f.qualifiers):
                 f.qualifiers["product"] = "hypothetical protein"
+
             # print qualifiers (keys and values)
             for key, values in f.qualifiers.items():
                 """
