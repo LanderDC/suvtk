@@ -15,12 +15,36 @@ taxonomy(fasta_file, database, output_path, seqid, threads)
 # TODO: Change to genomad taxonomy
 # TODO: mmseqs overwrite tmp file (mmseqs fails when command was previously aborted)
 import os
+import re
 import shutil
 
 import click
 import pandas as pd
+import psutil
 
 from suvtk import utils, virus_info
+
+
+def parse_memlimit(mem_str):
+    """
+    Parse memory string like '30G', '40000M', '32GB' into bytes.
+    Returns an integer number of bytes.
+    """
+    mem_str = mem_str.strip().upper()
+    match = re.match(r"(\d+(?:\.\d+)?)([GMK]?)B?$", mem_str)
+    if not match:
+        raise ValueError(f"Invalid memory limit format: '{mem_str}'")
+
+    value, unit = match.groups()
+    value = float(value)
+    if unit == "G":
+        value *= 1024**3
+    elif unit == "M":
+        value *= 1024**2
+    elif unit == "K":
+        value *= 1024
+    # default = bytes
+    return int(value)
 
 
 @click.command(short_help="Assign virus taxonomy to sequences.")
@@ -66,7 +90,15 @@ from suvtk import utils, virus_info
     type=int,
     help="Number of threads to use",
 )
-def taxonomy(fasta_file, database, output_path, seqid, threads):
+@click.option(
+    "--memory-limit",
+    "memlimit",
+    required=False,
+    default=None,
+    type=str,
+    help="Memory limit for MMseqs2 (e.g. 4G, 2000M). Defaults to available system memory.",
+)
+def taxonomy(fasta_file, database, output_path, seqid, threads, memlimit):
     """
     This command uses MMseqs2 to assign taxonomy to sequences using protein sequences from ICTV taxa in the nr database.
     """
@@ -79,11 +111,28 @@ def taxonomy(fasta_file, database, output_path, seqid, threads):
 
     taxresult_path = os.path.join(output_path, "taxresults")
 
-    # TODO Add RAM restrictions?
+    # TODO Add RAM restrictions? need at least 30G add split-memory-limit for limited systems
     # TODO Add error handling
     # TODO removing tmp before running mmseqs might be dangerous
     if os.path.exists("tmp"):
         shutil.rmtree("tmp")
+
+    # Auto-detect memory if not provided
+    if not memlimit:
+        total_mem_gb = psutil.virtual_memory().available / (1024**3)
+        # Leave a little headroom
+        memlimit = f"{int(total_mem_gb) - 1}G"
+
+    # Validate memory limit (at least 30G)
+    try:
+        mem_bytes = parse_memlimit(memlimit)
+    except ValueError as e:
+        raise click.BadParameter(str(e))
+
+    if mem_bytes < 30 * 1024**3:
+        raise click.BadParameter(
+            f"Memory limit too low ({memlimit}). Must be at least 30G."
+        )
 
     Cmd = "mmseqs easy-taxonomy "
     Cmd += f"{fasta_file} "  # input
@@ -91,7 +140,8 @@ def taxonomy(fasta_file, database, output_path, seqid, threads):
     Cmd += f"{taxresult_path} "  # output
     Cmd += "tmp "  # tmp
     Cmd += "-s 7.5 --blacklist '' --tax-lineage 1 "
-    Cmd += f"--threads {threads}"
+    Cmd += f"--threads {threads} "
+    Cmd += f"--split-memory-limit {memlimit} "
     utils.Exec(Cmd)
 
     shutil.rmtree("tmp")
