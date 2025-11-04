@@ -37,4 +37,4 @@ jobs:
         uv sync --dev
     - name: Run tests
       run: |
-        pytest .
+        uv run pytest -q
