@@ -132,6 +132,15 @@ wheels = [
 ]
 
 [[package]]
+name = "cli-test-helpers"
+version = "4.1.0"
+source = { registry = "https://pypi.org/simple" }
+sdist = { url = "https://files.pythonhosted.org/packages/14/ea/c389552b72ae8a6415c5df0e54afe008b6a66272c919db718e5ee2dd86bd/cli_test_helpers-4.1.0.tar.gz", hash = "sha256:317a642087f2b86d04ffa279200492d186d103284d082ff20a0287223409351e", size = 49433, upload-time = "2025-01-06T22:28:25.314Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/b1/13/084afd8429bd56dfc273736df2dab6d34518c0d00134eb1d456e30ca4763/cli_test_helpers-4.1.0-py3-none-any.whl", hash = "sha256:1a5308842e929e2c70dbb446be1b05f235dd09a896256bbb0bac7bdd89bae88e", size = 34951, upload-time = "2025-01-06T22:28:23.004Z" },
+]
+
+[[package]]
 name = "click"
 version = "8.1.8"
 source = { registry = "https://pypi.org/simple" }
@@ -547,6 +556,12 @@ test = [
     { name = "pytest" },
 ]
 
+[package.dev-dependencies]
+dev = [
+    { name = "cli-test-helpers" },
+    { name = "pytest" },
+]
+
 [package.metadata]
 requires-dist = [
     { name = "biopython", specifier = ">=1.83" },
@@ -561,6 +576,12 @@ requires-dist = [
     { name = "taxopy", specifier = ">=0.14.0" },
 ]
 provides-extras = ["test"]
+
+[package.metadata.requires-dev]
+dev = [
+    { name = "cli-test-helpers", specifier = ">=4.1.0" },
+    { name = "pytest", specifier = ">=8.3.4" },
+]
 
 [[package]]
 name = "taxopy"

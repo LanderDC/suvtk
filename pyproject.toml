@@ -29,6 +29,12 @@ build-backend = "uv_build"
 module-name = "suvtk"
 module-root = ""
 
+[dependency-groups]
+dev = [
+    "cli-test-helpers>=4.1.0",
+    "pytest>=8.3.4",
+]
+
 [project.urls]
 Homepage = "https://github.com/LanderDC/suvtk"
 Changelog = "https://github.com/LanderDC/suvtk/releases"
