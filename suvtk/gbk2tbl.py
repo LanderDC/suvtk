@@ -109,7 +109,7 @@ def gbk2tbl(input, mincontigsize, prefix):
         "rpt_unit_range",
     ]
     """
-	These are selected qualifiers because we do not want to see qualifiers such as 'translation' or 'codon_start' in the feature table.
+	These are selected qualifiers because we do not want to see qualifiers such as 'translation' in the feature table.
 	Qualifiers 'organism', 'mol_type', 'strain', 'sub_species', 'isolation-source', 'country' belong to the feature 'source'.
 	"""
 
@@ -126,6 +126,7 @@ def gbk2tbl(input, mincontigsize, prefix):
             continue  # start a new 'for' loop
         contig_num += 1
         print(rec.name)  # print the contig name to STDOUT
+        sequence_length = len(rec.seq)
 
         # write the fasta file
         SeqIO.write(
@@ -137,17 +138,28 @@ def gbk2tbl(input, mincontigsize, prefix):
             ">Feature %s" % (rec.name), file=feature_fh
         )  # write the first line of this record in the feature table: the LOCUS name
         for f in rec.features:
-            # print the coordinates
             if f.location.strand == 1:
-                print(
-                    "%d\t%d\t%s" % (f.location.start + 1, f.location.end, f.type),
-                    file=feature_fh,
-                )
+                start = str(f.location.start + 1)
+                stop = str(f.location.end)
             else:
-                print(
-                    "%d\t%d\t%s" % (f.location.end, f.location.start + 1, f.type),
-                    file=feature_fh,
-                )
+                start = str(f.location.end)
+                stop = str(f.location.start + 1)
+
+            if "partial" in f.qualifiers:
+                if f.location.strand == 1 and f.qualifiers["partial"] == ["10"]:
+                    start = "<1"
+                elif f.location.strand == 1 and f.qualifiers["partial"] == ["01"]:
+                    stop = ">" + stop
+                elif f.location.strand == -1 and f.qualifiers["partial"] == ["01"]:
+                    start = "<" + str(sequence_length)
+                elif f.location.strand == -1 and f.qualifiers["partial"] == ["10"]:
+                    stop = ">" + stop
+
+            # print the coordinates
+            print(
+                "%s\t%s\t%s" % (start, stop, f.type),
+                file=feature_fh,
+            )
 
             if (f.type == "CDS") and ("product" not in f.qualifiers):
                 f.qualifiers["product"] = "hypothetical protein"
