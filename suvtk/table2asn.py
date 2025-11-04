@@ -211,7 +211,7 @@ def table2asn(input, output, src_file, features, template, comments):
     Cmd += "-V vb "  # Check for errors
     Cmd += "-a s"  # allow multifasta file
 
-    utils.Exec(Cmd)
+    utils.Exec(Cmd, raise_on_error=False)
 
     tag = 0
     error_file = f"{output}.val"

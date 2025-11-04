@@ -27,70 +27,103 @@ import pandas as pd
 
 
 # Adapted from https://github.com/rcedgar/palm_annot/blob/77ac88ef7454dd3be9e5cbdb55792ce1ed7db95c/py/palm_annot.py#L121-L132
-def Exec(CmdLine, fLog=None, capture=False):
+def Exec(CmdLine, fLog=None, capture=False, raise_on_error=True):
     """
-    Execute a command line in a shell, logging it to a file if specified.
+    Execute a shell command with optional logging and output capture.
 
     Parameters
     ----------
     CmdLine : str
-        The command line to execute.
-    fLog : file object or None, optional
-        A file object to log the command and results, or None.
-    capture : bool, optional
-        Whether to capture output instead of printing.
+        The command line string to execute in the shell.
+    fLog : file-like object, optional
+        A file object (opened for writing) to which stdout and stderr
+        will be written. If `None`, no file logging is performed.
+    capture : bool, default=False
+        If True, captures stdout and stderr and returns stdout upon success.
+        If False, outputs are printed directly to the console.
+    raise_on_error : bool, default=True
+        If True, raises a `subprocess.CalledProcessError` when the command
+        exits with a non-zero return code. If False, returns a dictionary
+        containing the command results instead.
 
     Returns
     -------
-    str or None
-        The output of the command if captured, else None.
+    str or None or dict
+        - If `capture` is True and the command succeeds, returns the captured
+          stdout as a string.
+        - If `capture` is False and the command succeeds, returns None.
+        - If `raise_on_error` is False and the command fails, returns a dict
+          with keys:
+            - 'returncode' : int
+                Exit status of the process.
+            - 'stdout' : str or None
+                Captured standard output, if any.
+            - 'stderr' : str or None
+                Captured standard error, if any.
+            - 'cmd' : str
+                The command that was executed.
 
     Raises
     ------
     subprocess.CalledProcessError
-        If the command execution fails.
+        If the command returns a non-zero exit code and `raise_on_error`
+        is True. The exception includes the return code, command, stdout,
+        and stderr.
+
+    Notes
+    -----
+    - When `capture` is False, stdout and stderr are streamed directly to
+      the console instead of being captured.
+    - Both stdout and stderr are written to `fLog` if provided, regardless
+      of the `capture` setting.
     """
 
-    def log_or_print(message, is_error=False):
-        """Helper to log to file or print to screen, unless capturing."""
-        if not capture:  # Only print if capture is False
-            if fLog:
-                fLog.write(message)
-            else:
-                output = sys.stderr if is_error else sys.stdout
-                output.write(message)
+    def write_log(message, is_error=False):
+        # Always write to fLog if provided
+        if fLog and message:
+            fLog.write(message)
 
-    try:
-        # Execute the command
-        result = subprocess.run(
-            CmdLine,
-            shell=True,
-            capture_output=capture,
-            text=True,
-            check=True,
+        # Print to console only when not capturing
+        if not capture and message:
+            stream = sys.stderr if is_error else sys.stdout
+            stream.write(message)
+
+    # Set up pipes explicitly to control capture behavior
+    stdout_pipe = subprocess.PIPE if capture else None
+    stderr_pipe = subprocess.PIPE if capture else None
+
+    result = subprocess.run(
+        CmdLine,
+        shell=True,
+        stdout=stdout_pipe,
+        stderr=stderr_pipe,
+        text=True,
+        check=False,
+    )
+
+    # Log outputs if we have them
+    if result.stdout:
+        write_log(result.stdout)
+    if result.stderr:
+        write_log(result.stderr, is_error=True)
+
+    if result.returncode == 0:
+        return result.stdout if capture else None
+
+    # Handle non-zero exit
+    if raise_on_error:
+        # Preserve legacy behavior: raise with captured data if available
+        raise subprocess.CalledProcessError(
+            result.returncode, CmdLine, output=result.stdout, stderr=result.stderr
         )
 
-        # Log stdout
-        if result.stdout:
-            log_or_print(result.stdout)
-
-        # Log stderr
-        if result.stderr:
-            log_or_print(result.stderr, is_error=True)
-
-        return result.stdout if capture else None  # Return stdout only if capturing
-
-    except subprocess.CalledProcessError as e:
-        # Log error details
-        if e.stderr:
-            log_or_print(e.stderr, is_error=True)
-        log_or_print(f"code {e.returncode}\n")
-        log_or_print("\n")
-        log_or_print(f"{CmdLine}\n")
-        log_or_print("\n")
-        log_or_print(f"Error code {e.returncode}\n", is_error=True)
-
-        raise  # Re-raise the exception
+    # Caller can inspect this without exceptions
+    return {
+        "returncode": result.returncode,
+        "stdout": result.stdout,
+        "stderr": result.stderr,
+        "cmd": CmdLine,
+    }
 
 
 def safe_read_csv(path, **kwargs):
