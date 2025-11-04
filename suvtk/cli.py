@@ -106,8 +106,7 @@ CONTEXT_SETTINGS = dict(
 def cli():
     """
     The suvtk CLI tool provides various commands to process and submit viral
-    sequences to Genbank, including taxonomy, features, virus information,
-    and more.
+    sequences to Genbank.
     """
 
 
