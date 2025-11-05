@@ -33,13 +33,15 @@ jobs:
           version: "0.8.6"
       # Bump post version only for push events
       - if: github.event_name == 'push'
+        env:
+          GITHUB_TOKEN: ${{ secrets.RELEASE_PAT }}
         name: Bump post version (only on push)
         run: |
           uv version --bump post
           git config user.name  "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add pyproject.toml
-          git commit -m "testpypi: bump version to ${VERSION} [skip ci]"
+          git commit -m "testpypi: bump version [skip ci]"
           git push origin HEAD:${{ github.ref }}
       - name: Build a binary wheel and a source tarball
         run: uv build
