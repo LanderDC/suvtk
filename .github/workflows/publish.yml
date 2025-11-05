@@ -11,9 +11,12 @@ on:
     tags-ignore:
       - 'v*'
 
+permissions:
+  contents: write
+
 jobs:
   build:
-    if: github.repository == 'LanderDC/suvtk'
+    if: github.repository == 'LanderDC/suvtk' && github.actor != 'github-actions[bot]'
     name: Build distribution 
     runs-on: ubuntu-latest
     steps:
@@ -33,6 +36,11 @@ jobs:
         name: Bump post version (only on push)
         run: |
           uv version --bump post
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add pyproject.toml
+          git commit -m "testpypi: bump version to ${VERSION} [skip ci]"
+          git push origin HEAD:${{ github.ref }}
       - name: Build a binary wheel and a source tarball
         run: uv build
       - name: Store the distribution packages
@@ -62,7 +70,7 @@ jobs:
 
   publish-to-testpypi:
     name: Publish to TestPyPI
-    if:  github.repository == 'LanderDC/suvtk' && github.event_name == 'push'
+    if:  github.repository == 'LanderDC/suvtk' && github.event_name == 'push' && github.actor != 'github-actions[bot]'
     needs: build
     runs-on: ubuntu-latest
     environment:
