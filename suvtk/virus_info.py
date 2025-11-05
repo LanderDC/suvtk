@@ -25,8 +25,8 @@ import importlib.resources
 import os
 from pathlib import Path
 
-import click
 import pandas as pd
+import rich_click as click
 import taxopy
 
 from suvtk import utils

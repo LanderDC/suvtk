@@ -18,9 +18,9 @@ import os
 import re
 import shutil
 
-import click
 import pandas as pd
 import psutil
+import rich_click as click
 
 from suvtk import utils, virus_info
 

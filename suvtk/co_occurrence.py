@@ -27,9 +27,9 @@ co_occurrence(input, output, segments, lengths, prevalence, correlation, strict)
 import sys
 from pathlib import Path
 
-import click
 import numpy as np
 import pandas as pd
+import rich_click as click
 
 
 def calculate_proportion(df):

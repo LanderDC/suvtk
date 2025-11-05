@@ -14,8 +14,8 @@ comments(taxonomy, features, miuvig, assembly, checkv, output)
 
 import os
 
-import click
 import pandas as pd
+import rich_click as click
 
 from suvtk import utils
 

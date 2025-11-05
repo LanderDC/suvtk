@@ -19,7 +19,7 @@ table2asn(input, output, src_file, features, template, comments)
 # TODO: add missing required miuvig params from src file? -> comments.py?:  env_broad_scale, env_local_scale, env_medium, investigation_type, project_name, seq_meth
 # TODO: add option to make genbank file -> made by default
 # TODO: add check for required columns (src, comments)
-import click
+import rich_click as click
 
 from suvtk import utils
 

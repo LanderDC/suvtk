@@ -31,9 +31,9 @@ import shutil
 import sys
 
 import Bio.SeqIO
-import click
 import pandas as pd
 import pyrodigal_gv
+import rich_click as click
 import taxopy
 from Bio.SeqIO import write
 

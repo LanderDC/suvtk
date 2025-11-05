@@ -22,8 +22,8 @@ import os
 import subprocess
 import sys
 
-import click
 import pandas as pd
+import rich_click as click
 
 
 # Adapted from https://github.com/rcedgar/palm_annot/blob/77ac88ef7454dd3be9e5cbdb55792ce1ed7db95c/py/palm_annot.py#L121-L132

@@ -30,7 +30,7 @@ Commands
 
 from gettext import gettext as _
 
-import click
+import rich_click as click
 
 from suvtk import (
     co_occurrence,
@@ -44,7 +44,7 @@ from suvtk import (
 )
 
 
-class FullHelpGroup(click.Group):
+class FullHelpGroup(click.RichGroup):
     """
     Custom Click Group to display commands in the order they were added.
 
@@ -56,7 +56,7 @@ class FullHelpGroup(click.Group):
         Formats and displays commands in the correct order.
     """
 
-    def list_commands(self, ctx: click.Context):
+    def list_commands(self, ctx: click.RichContext):
         """
         Return commands in the order they were added.
 
@@ -72,28 +72,13 @@ class FullHelpGroup(click.Group):
         """
         return list(self.commands.keys())
 
-    def format_commands(self, ctx: click.Context, formatter: click.HelpFormatter):
+    def format_commands(self, ctx: click.RichContext, formatter: click.HelpFormatter):
         """
-        Formats and displays commands in the correct order.
-
-        Parameters
-        ----------
-        ctx : click.Context
-            The Click context.
-        formatter : click.HelpFormatter
-            The Click help formatter.
+        Delegate formatting to the parent implementation so rich-click can
+        apply its rich formatting. We keep the custom ordering by overriding
+        list_commands only.
         """
-        commands = [
-            (name, self.get_command(ctx, name))
-            for name in self.list_commands(ctx)
-            if self.get_command(ctx, name) and not self.get_command(ctx, name).hidden
-        ]
-
-        if commands:
-            rows = [(name, cmd.short_help or "") for name, cmd in commands]
-
-            with formatter.section(_("Commands")):
-                formatter.write_dl(rows)
+        return super().format_commands(ctx, formatter)
 
 
 CONTEXT_SETTINGS = dict(

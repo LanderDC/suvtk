@@ -51,7 +51,7 @@ from __future__ import print_function
 
 import sys
 
-import click
+import rich_click as click
 from Bio import SeqIO
 
 

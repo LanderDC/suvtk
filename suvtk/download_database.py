@@ -26,8 +26,8 @@ unpack_tar(archive: str, output_dir: str = None)
 import os
 import tarfile
 
-import click
 import requests
+import rich_click as click
 
 # The Zenodo DOI is fixed
 ZENODO_DOI = "10.5281/zenodo.15374439"
