@@ -46,6 +46,6 @@ CI = "https://github.com/LanderDC/suvtk/actions"
 suvtk = "suvtk.cli:cli"
 
 [project.optional-dependencies]
-test = ["pytest"]
+test = ["pytest", "cli-test-helpers"]
 
 
