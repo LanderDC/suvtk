@@ -52,8 +52,6 @@ class FullHelpGroup(click.RichGroup):
     -------
     list_commands(ctx: click.Context)
         Return commands in the order they were added.
-    format_commands(ctx: click.Context, formatter: click.HelpFormatter)
-        Formats and displays commands in the correct order.
     """
 
     def list_commands(self, ctx: click.RichContext):
@@ -71,14 +69,6 @@ class FullHelpGroup(click.RichGroup):
             List of command names in the order they were added.
         """
         return list(self.commands.keys())
-
-    def format_commands(self, ctx: click.RichContext, formatter: click.HelpFormatter):
-        """
-        Delegate formatting to the parent implementation so rich-click can
-        apply its rich formatting. We keep the custom ordering by overriding
-        list_commands only.
-        """
-        return super().format_commands(ctx, formatter)
 
 
 CONTEXT_SETTINGS = dict(
