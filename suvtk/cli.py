@@ -30,8 +30,7 @@ Commands
 
 from gettext import gettext as _
 
-import click
-from rich_click import RichContext, RichGroup
+import rich_click as click
 
 from suvtk import (
     co_occurrence,
@@ -45,7 +44,7 @@ from suvtk import (
 )
 
 
-class FullHelpGroup(RichGroup):
+class FullHelpGroup(click.RichGroup):
     """
     Custom Click Group to display commands in the order they were added.
 
@@ -55,7 +54,7 @@ class FullHelpGroup(RichGroup):
         Return commands in the order they were added.
     """
 
-    def list_commands(self, ctx: RichContext):
+    def list_commands(self, ctx: click.RichContext):
         """
         Return commands in the order they were added.
 
@@ -78,7 +77,9 @@ CONTEXT_SETTINGS = dict(
 
 
 @click.group(context_settings=CONTEXT_SETTINGS, cls=FullHelpGroup)
-@click.version_option(None, "-v", "--version", message="%(prog)s %(version)s")
+@click.version_option(
+    None, "-v", "--version", message="%(prog)s %(version)s", package_name="suvtk"
+)
 def cli():
     """
     The suvtk CLI tool provides various commands to process and submit viral
