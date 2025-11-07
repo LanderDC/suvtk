@@ -30,7 +30,8 @@ Commands
 
 from gettext import gettext as _
 
-import rich_click as click
+import click
+from rich_click import RichContext, RichGroup
 
 from suvtk import (
     co_occurrence,
@@ -44,7 +45,7 @@ from suvtk import (
 )
 
 
-class FullHelpGroup(click.RichGroup):
+class FullHelpGroup(RichGroup):
     """
     Custom Click Group to display commands in the order they were added.
 
@@ -54,7 +55,7 @@ class FullHelpGroup(click.RichGroup):
         Return commands in the order they were added.
     """
 
-    def list_commands(self, ctx: click.RichContext):
+    def list_commands(self, ctx: RichContext):
         """
         Return commands in the order they were added.
 
