@@ -6,6 +6,9 @@
 [![Tests](https://github.com/LanderDC/suvtk/actions/workflows/test.yml/badge.svg)](https://github.com/LanderDC/suvtk/actions/workflows/test.yml)
 [![License](https://img.shields.io/github/license/LanderDC/suvtk?color=blue)](https://github.com/LanderDC/suvtk/blob/master/LICENSE)
 
+> [!WARNING]
+>    `suvtk` is still under active development. If you encounter any problems, please let me know by creating an [issue](https://github.com/LanderDC/suvtk/issues).
+
 Tool to submit viral sequences to Genbank.
 
 ## Documentation
