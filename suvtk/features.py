@@ -33,6 +33,7 @@ import sys
 import Bio.SeqIO
 import pandas as pd
 import pyrodigal_gv
+import pyrodigal_rv
 import rich_click as click
 import taxopy
 from Bio.SeqIO import write
@@ -415,6 +416,12 @@ def write_feature_entries(file, group):
     help="Do not predict incomplete genes (no stop codon) and only keep genomes that are 'coding complete' (>50% coding capacity). [This can not be turned off for now]",  # TODO: check on pyrodigal to implement fixed start codon
 )
 @click.option(
+    "--phage",
+    required=False,
+    is_flag=True,
+    help="Input sequences are phage genomes (use pyrodigal-gv for ORF prediction).",
+)
+@click.option(
     "--taxonomy",
     required=False,
     type=click.Path(exists=True),
@@ -442,6 +449,7 @@ def features(
     database,
     transl_table,
     coding_complete,
+    phage,
     taxonomy,
     separate_files,
     threads,
@@ -468,32 +476,36 @@ def features(
         sys.exit(1)
 
     # Ensure training set has at least 20,000 bases by duplicating sequences if needed.
-    total_bases = sum(len(rec.seq) for rec in records)
-    training_records = records[:]  # make a shallow copy for training-only duplication
+    # total_bases = sum(len(rec.seq) for rec in records)
+    # training_records = records[:]  # make a shallow copy for training-only duplication
 
-    if total_bases < 20000:
-        click.echo(
-            f"Warning: total sequence length across {len(records)} record(s) is {total_bases} bases (<20000). "
-            "Sequences will be duplicated for training only so the ORF finder has enough data."
-        )
-        # Duplicate the entire set of original records until we exceed 20,000 bases
-        while sum(len(rec.seq) for rec in training_records) < 20000:
-            training_records.extend(records)
-        new_total = sum(len(rec.seq) for rec in training_records)
-        click.echo(
-            f"Training set length after duplication: {new_total} bases ({len(training_records)} records)."
-        )
+    # if total_bases < 20000:
+    #    click.echo(
+    #        f"Warning: total sequence length across {len(records)} record(s) is {total_bases} bases (<20000). "
+    #        "Sequences will be duplicated for training only so the ORF finder has enough data."
+    #    )
+    #    # Duplicate the entire set of original records until we exceed 20,000 bases
+    #    while sum(len(rec.seq) for rec in training_records) < 20000:
+    #        training_records.extend(records)
+    #    new_total = sum(len(rec.seq) for rec in training_records)
+    #    click.echo(
+    #        f"Training set length after duplication: {new_total} bases ({len(training_records)} records)."
+    #    )
 
     # Train ORF finder using the possibly-duplicated training_records.
-    orf_finder = pyrodigal_gv.ViralGeneFinder()
-    training_info = orf_finder.train(
-        *(bytes(seq.seq) for seq in training_records), translation_table=transl_table
-    )
+    if phage:
+        orf_finder1 = pyrodigal_gv.ViralGeneFinder(closed=True)
+    else:
+        orf_finder1 = pyrodigal_rv.ViralGeneFinder(closed=True)
+
+    # training_info = orf_finder.train(
+    #    *(bytes(seq.seq) for seq in training_records), translation_table=transl_table
+    # )
 
     # Initialize ORF finders
-    orf_finder1 = pyrodigal_gv.ViralGeneFinder(
-        meta=False, viral_only=True, closed=True, training_info=training_info
-    )
+    # orf_finder1 = pyrodigal_gv.ViralGeneFinder(
+    #    meta=False, viral_only=True, closed=True, training_info=training_info
+    # )
 
     # Not possible for now because pyrodigal does not support 'closed=[True, False]' yet
     # orf_finder2 = pyrodigal_gv.ViralGeneFinder(
@@ -501,8 +513,8 @@ def features(
     # )
 
     # Load taxonomy database
+    # TODO: check taxonomy and expected translation table from pyrodigal
     if taxonomy:
-        # TODO: Set better database path?
         taxdb = taxopy.TaxDb(
             nodes_dmp=os.path.join(database, "nodes.dmp"),
             names_dmp=os.path.join(database, "names.dmp"),
