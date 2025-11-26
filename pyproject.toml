@@ -16,6 +16,7 @@ dependencies = [
     "pandas>=2.2.3",
     "psutil>=7.1.3",
     "pyrodigal-gv>=0.3.2",
+    "pyrodigal-rv>=0.1.0",
     "requests>=2.32.3",
     "rich-click>=1.9.4",
     "scipy>=1.13.1",
@@ -48,4 +49,20 @@ suvtk = "suvtk.cli:cli"
 [project.optional-dependencies]
 test = ["pytest", "cli-test-helpers"]
 
+[tool.pixi.workspace]
+channels = ["conda-forge", "bioconda"]
+platforms = ["osx-64"]
 
+[tool.pixi.pypi-dependencies]
+suvtk = { path = ".", editable = true }
+
+[tool.pixi.environments]
+default = { solve-group = "default" }
+dev = { features = ["dev"], solve-group = "default" }
+test = { features = ["test"], solve-group = "default" }
+
+[tool.pixi.tasks]
+
+[tool.pixi.dependencies]
+mmseqs2 = ">=18.8cc5c,<19"
+table2asn = ">=1.28.1179,<2"

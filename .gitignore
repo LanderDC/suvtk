@@ -222,3 +222,10 @@ pyrightconfig.json
 
 # Excel files
 *.xlsx
+
+
+
+# pixi environments
+.pixi
+*.egg-info
+pixi.lock
