@@ -398,17 +398,17 @@ def write_feature_entries(file, group):
     type=click.Path(exists=True),
     help="Path to the suvtk database folder.",
 )
-@click.option(
-    "-g",
-    "--translation-table",
-    "transl_table",
-    required=False,
-    type=int,
-    callback=validate_translation_table,
-    default=1,
-    metavar="",
-    help="Translation table to use. Only genetic codes from https://www.ncbi.nlm.nih.gov/Taxonomy/Utils/wprintgc.cgi are allowed (1-6, 9-16, 21-31).",
-)
+# @click.option(
+#    "-g",
+#    "--translation-table",
+#    "transl_table",
+#    required=False,
+#    type=int,
+#    callback=validate_translation_table,
+#    default=1,
+#    metavar="",
+#    help="Translation table to use. Only genetic codes from https://www.ncbi.nlm.nih.gov/Taxonomy/Utils/wprintgc.cgi are allowed (1-6, 9-16, 21-31).",
+# )
 @click.option(
     "--coding-complete",
     required=False,
@@ -447,7 +447,7 @@ def features(
     fasta_file,
     output_path,
     database,
-    transl_table,
+    # transl_table,
     coding_complete,
     phage,
     taxonomy,
@@ -712,7 +712,8 @@ def features(
     with open(os.path.join(output_path, "miuvig_features.tsv"), "w") as file:
         file.write("MIUVIG_parameter\tvalue\n")
         file.write(
-            f"feat_pred\t{feat_pred};{feat_pred_version};-g {transl_table}, default otherwise\n"
+            # f"feat_pred\t{feat_pred};{feat_pred_version};-g {transl_table} -c, default otherwise\n"
+            f"feat_pred\t{feat_pred};{feat_pred_version};-c, default otherwise\n"
         )
         file.write(
             "ref_db\tBFVD;2023_02;https://bfvd.steineggerlab.workers.dev\n"
