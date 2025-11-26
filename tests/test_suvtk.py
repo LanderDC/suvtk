@@ -44,7 +44,7 @@ def test_usage():
     result = runner.invoke(cli)
 
     assert "Usage:" in result.output
-    assert result.exit_code == 0
+    assert result.exit_code == UsageError.exit_code
 
 
 def test_version():
