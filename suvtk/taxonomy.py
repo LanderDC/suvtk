@@ -11,9 +11,7 @@ taxonomy(fasta_file, database, output_path, seqid, threads)
     Main command to assign taxonomy to sequences.
 """
 
-# TODO: save MIUVIG file with pred_genome_type and pred_genome_struc
 # TODO: Change to genomad taxonomy
-# TODO: mmseqs overwrite tmp file (mmseqs fails when command was previously aborted)
 import os
 import re
 import shutil
@@ -111,9 +109,8 @@ def taxonomy(fasta_file, database, output_path, seqid, threads, memlimit):
 
     taxresult_path = os.path.join(output_path, "taxresults")
 
-    # TODO Add RAM restrictions? need at least 30G add split-memory-limit for limited systems
     # TODO Add error handling
-    # TODO removing tmp before running mmseqs might be dangerous
+    # TODO removing tmp before running mmseqs might be dangerous(?)
     if os.path.exists("tmp"):
         shutil.rmtree("tmp")
 
