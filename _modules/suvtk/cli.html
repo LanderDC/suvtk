@@ -7,7 +7,7 @@
         <link rel="prefetch" href="../../_static/logo_dark.svg" as="image">
 
     <!-- Generated with Sphinx 8.2.3 and Furo 2025.09.25 -->
-        <title>suvtk.cli - suvtk 0.1.6</title>
+        <title>suvtk.cli - suvtk 0.1.6.post3</title>
       <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=acfd86a5" />
     <link rel="stylesheet" type="text/css" href="../../_static/styles/furo.css?v=580074bf" />
     <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
@@ -164,7 +164,7 @@
       </label>
     </div>
     <div class="header-center">
-      <a href="../../index.html"><div class="brand">suvtk 0.1.6</div></a>
+      <a href="../../index.html"><div class="brand">suvtk 0.1.6.post3</div></a>
     </div>
     <div class="header-right">
       <div class="theme-toggle-container theme-toggle-header">
@@ -285,7 +285,7 @@
 
 <span class="kn">from</span> <span class="nn">gettext</span> <span class="kn">import</span> <span class="n">gettext</span> <span class="k">as</span> <span class="n">_</span>
 
-<span class="kn">import</span> <span class="nn">click</span>
+<span class="kn">import</span> <span class="nn">rich_click</span> <span class="k">as</span> <span class="nn">click</span>
 
 <span class="kn">from</span> <span class="nn">suvtk</span> <span class="kn">import</span> <span class="p">(</span>
     <span class="n">co_occurrence</span><span class="p">,</span>
@@ -301,7 +301,7 @@
 
 <div class="viewcode-block" id="FullHelpGroup">
 <a class="viewcode-back" href="../../source/suvtk.html#suvtk.cli.FullHelpGroup">[docs]</a>
-<span class="k">class</span> <span class="nc">FullHelpGroup</span><span class="p">(</span><span class="n">click</span><span class="o">.</span><span class="n">Group</span><span class="p">):</span>
+<span class="k">class</span> <span class="nc">FullHelpGroup</span><span class="p">(</span><span class="n">click</span><span class="o">.</span><span class="n">RichGroup</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Custom Click Group to display commands in the order they were added.</span>
 
@@ -309,13 +309,11 @@
 <span class="sd">    -------</span>
 <span class="sd">    list_commands(ctx: click.Context)</span>
 <span class="sd">        Return commands in the order they were added.</span>
-<span class="sd">    format_commands(ctx: click.Context, formatter: click.HelpFormatter)</span>
-<span class="sd">        Formats and displays commands in the correct order.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
 <div class="viewcode-block" id="FullHelpGroup.list_commands">
 <a class="viewcode-back" href="../../source/suvtk.html#suvtk.cli.FullHelpGroup.list_commands">[docs]</a>
-    <span class="k">def</span> <span class="nf">list_commands</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ctx</span><span class="p">:</span> <span class="n">click</span><span class="o">.</span><span class="n">Context</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">list_commands</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ctx</span><span class="p">:</span> <span class="n">click</span><span class="o">.</span><span class="n">RichContext</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Return commands in the order they were added.</span>
 
@@ -330,32 +328,6 @@
 <span class="sd">            List of command names in the order they were added.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">commands</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span></div>
-
-
-<div class="viewcode-block" id="FullHelpGroup.format_commands">
-<a class="viewcode-back" href="../../source/suvtk.html#suvtk.cli.FullHelpGroup.format_commands">[docs]</a>
-    <span class="k">def</span> <span class="nf">format_commands</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ctx</span><span class="p">:</span> <span class="n">click</span><span class="o">.</span><span class="n">Context</span><span class="p">,</span> <span class="n">formatter</span><span class="p">:</span> <span class="n">click</span><span class="o">.</span><span class="n">HelpFormatter</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Formats and displays commands in the correct order.</span>
-
-<span class="sd">        Parameters</span>
-<span class="sd">        ----------</span>
-<span class="sd">        ctx : click.Context</span>
-<span class="sd">            The Click context.</span>
-<span class="sd">        formatter : click.HelpFormatter</span>
-<span class="sd">            The Click help formatter.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">commands</span> <span class="o">=</span> <span class="p">[</span>
-            <span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_command</span><span class="p">(</span><span class="n">ctx</span><span class="p">,</span> <span class="n">name</span><span class="p">))</span>
-            <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">list_commands</span><span class="p">(</span><span class="n">ctx</span><span class="p">)</span>
-            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_command</span><span class="p">(</span><span class="n">ctx</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span> <span class="ow">and</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_command</span><span class="p">(</span><span class="n">ctx</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span><span class="o">.</span><span class="n">hidden</span>
-        <span class="p">]</span>
-
-        <span class="k">if</span> <span class="n">commands</span><span class="p">:</span>
-            <span class="n">rows</span> <span class="o">=</span> <span class="p">[(</span><span class="n">name</span><span class="p">,</span> <span class="n">cmd</span><span class="o">.</span><span class="n">short_help</span> <span class="ow">or</span> <span class="s2">&quot;&quot;</span><span class="p">)</span> <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">cmd</span> <span class="ow">in</span> <span class="n">commands</span><span class="p">]</span>
-
-            <span class="k">with</span> <span class="n">formatter</span><span class="o">.</span><span class="n">section</span><span class="p">(</span><span class="n">_</span><span class="p">(</span><span class="s2">&quot;Commands&quot;</span><span class="p">)):</span>
-                <span class="n">formatter</span><span class="o">.</span><span class="n">write_dl</span><span class="p">(</span><span class="n">rows</span><span class="p">)</span></div>
 </div>
 
 
@@ -366,12 +338,13 @@
 
 
 <span class="nd">@click</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="n">context_settings</span><span class="o">=</span><span class="n">CONTEXT_SETTINGS</span><span class="p">,</span> <span class="bp">cls</span><span class="o">=</span><span class="n">FullHelpGroup</span><span class="p">)</span>
-<span class="nd">@click</span><span class="o">.</span><span class="n">version_option</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="s2">&quot;-v&quot;</span><span class="p">,</span> <span class="s2">&quot;--version&quot;</span><span class="p">,</span> <span class="n">message</span><span class="o">=</span><span class="s2">&quot;</span><span class="si">%(prog)s</span><span class="s2"> </span><span class="si">%(version)s</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nd">@click</span><span class="o">.</span><span class="n">version_option</span><span class="p">(</span>
+    <span class="kc">None</span><span class="p">,</span> <span class="s2">&quot;-v&quot;</span><span class="p">,</span> <span class="s2">&quot;--version&quot;</span><span class="p">,</span> <span class="n">message</span><span class="o">=</span><span class="s2">&quot;</span><span class="si">%(prog)s</span><span class="s2"> </span><span class="si">%(version)s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">package_name</span><span class="o">=</span><span class="s2">&quot;suvtk&quot;</span>
+<span class="p">)</span>
 <span class="k">def</span> <span class="nf">cli</span><span class="p">():</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    The suvtk CLI tool provides various commands to process and submit viral</span>
-<span class="sd">    sequences to Genbank, including taxonomy, features, virus information,</span>
-<span class="sd">    and more.</span>
+<span class="sd">    sequences to Genbank.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
 
@@ -426,7 +399,7 @@
       
     </aside>
   </div>
-</div><script src="../../_static/documentation_options.js?v=79d558ae"></script>
+</div><script src="../../_static/documentation_options.js?v=ac95100c"></script>
     <script src="../../_static/doctools.js?v=9bcbadda"></script>
     <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../_static/scripts/furo.js?v=46bd48cc"></script>

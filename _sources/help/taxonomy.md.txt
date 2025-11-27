@@ -50,7 +50,7 @@ Instead of running the `taxonomy` module, you can provide your own taxonomy to t
 
 ## Optional Parameters
 - **-s, -\\\-identity**: Minimum sequence identity threshold for hits (default: 0.7).
-- **-t, -\\\-threads**: Number of threads to use (default: 4).
+- **-t, -\\\-threads**: Number of threads to use (default: auto).
 
 ## Output
 - `taxonomy.tsv`: Main file with taxonomy assignments for each sequence.

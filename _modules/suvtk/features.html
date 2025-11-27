@@ -7,7 +7,7 @@
         <link rel="prefetch" href="../../_static/logo_dark.svg" as="image">
 
     <!-- Generated with Sphinx 8.2.3 and Furo 2025.09.25 -->
-        <title>suvtk.features - suvtk 0.1.6</title>
+        <title>suvtk.features - suvtk 0.1.6.post3</title>
       <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=acfd86a5" />
     <link rel="stylesheet" type="text/css" href="../../_static/styles/furo.css?v=580074bf" />
     <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
@@ -164,7 +164,7 @@
       </label>
     </div>
     <div class="header-center">
-      <a href="../../index.html"><div class="brand">suvtk 0.1.6</div></a>
+      <a href="../../index.html"><div class="brand">suvtk 0.1.6.post3</div></a>
     </div>
     <div class="header-right">
       <div class="theme-toggle-container theme-toggle-header">
@@ -286,9 +286,10 @@
 <span class="kn">import</span> <span class="nn">sys</span>
 
 <span class="kn">import</span> <span class="nn">Bio.SeqIO</span>
-<span class="kn">import</span> <span class="nn">click</span>
 <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 <span class="kn">import</span> <span class="nn">pyrodigal_gv</span>
+<span class="kn">import</span> <span class="nn">pyrodigal_rv</span>
+<span class="kn">import</span> <span class="nn">rich_click</span> <span class="k">as</span> <span class="nn">click</span>
 <span class="kn">import</span> <span class="nn">taxopy</span>
 <span class="kn">from</span> <span class="nn">Bio.SeqIO</span> <span class="kn">import</span> <span class="n">write</span>
 
@@ -685,22 +686,28 @@
     <span class="nb">type</span><span class="o">=</span><span class="n">click</span><span class="o">.</span><span class="n">Path</span><span class="p">(</span><span class="n">exists</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span>
     <span class="n">help</span><span class="o">=</span><span class="s2">&quot;Path to the suvtk database folder.&quot;</span><span class="p">,</span>
 <span class="p">)</span>
-<span class="nd">@click</span><span class="o">.</span><span class="n">option</span><span class="p">(</span>
-    <span class="s2">&quot;-g&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;--translation-table&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;transl_table&quot;</span><span class="p">,</span>
-    <span class="n">required</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
-    <span class="nb">type</span><span class="o">=</span><span class="nb">int</span><span class="p">,</span>
-    <span class="n">callback</span><span class="o">=</span><span class="n">validate_translation_table</span><span class="p">,</span>
-    <span class="n">default</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
-    <span class="n">metavar</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span>
-    <span class="n">help</span><span class="o">=</span><span class="s2">&quot;Translation table to use. Only genetic codes from https://www.ncbi.nlm.nih.gov/Taxonomy/Utils/wprintgc.cgi are allowed (1-6, 9-16, 21-31).&quot;</span><span class="p">,</span>
-<span class="p">)</span>
+<span class="c1"># @click.option(</span>
+<span class="c1">#    &quot;-g&quot;,</span>
+<span class="c1">#    &quot;--translation-table&quot;,</span>
+<span class="c1">#    &quot;transl_table&quot;,</span>
+<span class="c1">#    required=False,</span>
+<span class="c1">#    type=int,</span>
+<span class="c1">#    callback=validate_translation_table,</span>
+<span class="c1">#    default=1,</span>
+<span class="c1">#    metavar=&quot;&quot;,</span>
+<span class="c1">#    help=&quot;Translation table to use. Only genetic codes from https://www.ncbi.nlm.nih.gov/Taxonomy/Utils/wprintgc.cgi are allowed (1-6, 9-16, 21-31).&quot;,</span>
+<span class="c1"># )</span>
 <span class="nd">@click</span><span class="o">.</span><span class="n">option</span><span class="p">(</span>
     <span class="s2">&quot;--coding-complete&quot;</span><span class="p">,</span>
     <span class="n">required</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
     <span class="n">is_flag</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
     <span class="n">help</span><span class="o">=</span><span class="s2">&quot;Do not predict incomplete genes (no stop codon) and only keep genomes that are &#39;coding complete&#39; (&gt;50</span><span class="si">% c</span><span class="s2">oding capacity). [This can not be turned off for now]&quot;</span><span class="p">,</span>  <span class="c1"># TODO: check on pyrodigal to implement fixed start codon</span>
+<span class="p">)</span>
+<span class="nd">@click</span><span class="o">.</span><span class="n">option</span><span class="p">(</span>
+    <span class="s2">&quot;--phage&quot;</span><span class="p">,</span>
+    <span class="n">required</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="n">is_flag</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">help</span><span class="o">=</span><span class="s2">&quot;Input sequences are phage genomes (use pyrodigal-gv for ORF prediction).&quot;</span><span class="p">,</span>
 <span class="p">)</span>
 <span class="nd">@click</span><span class="o">.</span><span class="n">option</span><span class="p">(</span>
     <span class="s2">&quot;--taxonomy&quot;</span><span class="p">,</span>
@@ -728,8 +735,9 @@
     <span class="n">fasta_file</span><span class="p">,</span>
     <span class="n">output_path</span><span class="p">,</span>
     <span class="n">database</span><span class="p">,</span>
-    <span class="n">transl_table</span><span class="p">,</span>
+    <span class="c1"># transl_table,</span>
     <span class="n">coding_complete</span><span class="p">,</span>
+    <span class="n">phage</span><span class="p">,</span>
     <span class="n">taxonomy</span><span class="p">,</span>
     <span class="n">separate_files</span><span class="p">,</span>
     <span class="n">threads</span><span class="p">,</span>
@@ -756,32 +764,36 @@
         <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
 
     <span class="c1"># Ensure training set has at least 20,000 bases by duplicating sequences if needed.</span>
-    <span class="n">total_bases</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">rec</span><span class="o">.</span><span class="n">seq</span><span class="p">)</span> <span class="k">for</span> <span class="n">rec</span> <span class="ow">in</span> <span class="n">records</span><span class="p">)</span>
-    <span class="n">training_records</span> <span class="o">=</span> <span class="n">records</span><span class="p">[:]</span>  <span class="c1"># make a shallow copy for training-only duplication</span>
+    <span class="c1"># total_bases = sum(len(rec.seq) for rec in records)</span>
+    <span class="c1"># training_records = records[:]  # make a shallow copy for training-only duplication</span>
 
-    <span class="k">if</span> <span class="n">total_bases</span> <span class="o">&lt;</span> <span class="mi">20000</span><span class="p">:</span>
-        <span class="n">click</span><span class="o">.</span><span class="n">echo</span><span class="p">(</span>
-            <span class="sa">f</span><span class="s2">&quot;Warning: total sequence length across </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">records</span><span class="p">)</span><span class="si">}</span><span class="s2"> record(s) is </span><span class="si">{</span><span class="n">total_bases</span><span class="si">}</span><span class="s2"> bases (&lt;20000). &quot;</span>
-            <span class="s2">&quot;Sequences will be duplicated for training only so the ORF finder has enough data.&quot;</span>
-        <span class="p">)</span>
-        <span class="c1"># Duplicate the entire set of original records until we exceed 20,000 bases</span>
-        <span class="k">while</span> <span class="nb">sum</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">rec</span><span class="o">.</span><span class="n">seq</span><span class="p">)</span> <span class="k">for</span> <span class="n">rec</span> <span class="ow">in</span> <span class="n">training_records</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">20000</span><span class="p">:</span>
-            <span class="n">training_records</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">records</span><span class="p">)</span>
-        <span class="n">new_total</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">rec</span><span class="o">.</span><span class="n">seq</span><span class="p">)</span> <span class="k">for</span> <span class="n">rec</span> <span class="ow">in</span> <span class="n">training_records</span><span class="p">)</span>
-        <span class="n">click</span><span class="o">.</span><span class="n">echo</span><span class="p">(</span>
-            <span class="sa">f</span><span class="s2">&quot;Training set length after duplication: </span><span class="si">{</span><span class="n">new_total</span><span class="si">}</span><span class="s2"> bases (</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">training_records</span><span class="p">)</span><span class="si">}</span><span class="s2"> records).&quot;</span>
-        <span class="p">)</span>
+    <span class="c1"># if total_bases &lt; 20000:</span>
+    <span class="c1">#    click.echo(</span>
+    <span class="c1">#        f&quot;Warning: total sequence length across {len(records)} record(s) is {total_bases} bases (&lt;20000). &quot;</span>
+    <span class="c1">#        &quot;Sequences will be duplicated for training only so the ORF finder has enough data.&quot;</span>
+    <span class="c1">#    )</span>
+    <span class="c1">#    # Duplicate the entire set of original records until we exceed 20,000 bases</span>
+    <span class="c1">#    while sum(len(rec.seq) for rec in training_records) &lt; 20000:</span>
+    <span class="c1">#        training_records.extend(records)</span>
+    <span class="c1">#    new_total = sum(len(rec.seq) for rec in training_records)</span>
+    <span class="c1">#    click.echo(</span>
+    <span class="c1">#        f&quot;Training set length after duplication: {new_total} bases ({len(training_records)} records).&quot;</span>
+    <span class="c1">#    )</span>
 
     <span class="c1"># Train ORF finder using the possibly-duplicated training_records.</span>
-    <span class="n">orf_finder</span> <span class="o">=</span> <span class="n">pyrodigal_gv</span><span class="o">.</span><span class="n">ViralGeneFinder</span><span class="p">()</span>
-    <span class="n">training_info</span> <span class="o">=</span> <span class="n">orf_finder</span><span class="o">.</span><span class="n">train</span><span class="p">(</span>
-        <span class="o">*</span><span class="p">(</span><span class="nb">bytes</span><span class="p">(</span><span class="n">seq</span><span class="o">.</span><span class="n">seq</span><span class="p">)</span> <span class="k">for</span> <span class="n">seq</span> <span class="ow">in</span> <span class="n">training_records</span><span class="p">),</span> <span class="n">translation_table</span><span class="o">=</span><span class="n">transl_table</span>
-    <span class="p">)</span>
+    <span class="k">if</span> <span class="n">phage</span><span class="p">:</span>
+        <span class="n">orf_finder1</span> <span class="o">=</span> <span class="n">pyrodigal_gv</span><span class="o">.</span><span class="n">ViralGeneFinder</span><span class="p">(</span><span class="n">closed</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">orf_finder1</span> <span class="o">=</span> <span class="n">pyrodigal_rv</span><span class="o">.</span><span class="n">ViralGeneFinder</span><span class="p">(</span><span class="n">closed</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+    <span class="c1"># training_info = orf_finder.train(</span>
+    <span class="c1">#    *(bytes(seq.seq) for seq in training_records), translation_table=transl_table</span>
+    <span class="c1"># )</span>
 
     <span class="c1"># Initialize ORF finders</span>
-    <span class="n">orf_finder1</span> <span class="o">=</span> <span class="n">pyrodigal_gv</span><span class="o">.</span><span class="n">ViralGeneFinder</span><span class="p">(</span>
-        <span class="n">meta</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">viral_only</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">closed</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">training_info</span><span class="o">=</span><span class="n">training_info</span>
-    <span class="p">)</span>
+    <span class="c1"># orf_finder1 = pyrodigal_gv.ViralGeneFinder(</span>
+    <span class="c1">#    meta=False, viral_only=True, closed=True, training_info=training_info</span>
+    <span class="c1"># )</span>
 
     <span class="c1"># Not possible for now because pyrodigal does not support &#39;closed=[True, False]&#39; yet</span>
     <span class="c1"># orf_finder2 = pyrodigal_gv.ViralGeneFinder(</span>
@@ -789,8 +801,8 @@
     <span class="c1"># )</span>
 
     <span class="c1"># Load taxonomy database</span>
+    <span class="c1"># TODO: check taxonomy and expected translation table from pyrodigal</span>
     <span class="k">if</span> <span class="n">taxonomy</span><span class="p">:</span>
-        <span class="c1"># TODO: Set better database path?</span>
         <span class="n">taxdb</span> <span class="o">=</span> <span class="n">taxopy</span><span class="o">.</span><span class="n">TaxDb</span><span class="p">(</span>
             <span class="n">nodes_dmp</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">database</span><span class="p">,</span> <span class="s2">&quot;nodes.dmp&quot;</span><span class="p">),</span>
             <span class="n">names_dmp</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">database</span><span class="p">,</span> <span class="s2">&quot;names.dmp&quot;</span><span class="p">),</span>
@@ -988,7 +1000,8 @@
     <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">output_path</span><span class="p">,</span> <span class="s2">&quot;miuvig_features.tsv&quot;</span><span class="p">),</span> <span class="s2">&quot;w&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>
         <span class="n">file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;MIUVIG_parameter</span><span class="se">\t</span><span class="s2">value</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
         <span class="n">file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span>
-            <span class="sa">f</span><span class="s2">&quot;feat_pred</span><span class="se">\t</span><span class="si">{</span><span class="n">feat_pred</span><span class="si">}</span><span class="s2">;</span><span class="si">{</span><span class="n">feat_pred_version</span><span class="si">}</span><span class="s2">;-g </span><span class="si">{</span><span class="n">transl_table</span><span class="si">}</span><span class="s2">, default otherwise</span><span class="se">\n</span><span class="s2">&quot;</span>
+            <span class="c1"># f&quot;feat_pred\t{feat_pred};{feat_pred_version};-g {transl_table} -c, default otherwise\n&quot;</span>
+            <span class="sa">f</span><span class="s2">&quot;feat_pred</span><span class="se">\t</span><span class="si">{</span><span class="n">feat_pred</span><span class="si">}</span><span class="s2">;</span><span class="si">{</span><span class="n">feat_pred_version</span><span class="si">}</span><span class="s2">;-c, default otherwise</span><span class="se">\n</span><span class="s2">&quot;</span>
         <span class="p">)</span>
         <span class="n">file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span>
             <span class="s2">&quot;ref_db</span><span class="se">\t</span><span class="s2">BFVD;2023_02;https://bfvd.steineggerlab.workers.dev</span><span class="se">\n</span><span class="s2">&quot;</span>
@@ -1039,7 +1052,7 @@
       
     </aside>
   </div>
-</div><script src="../../_static/documentation_options.js?v=79d558ae"></script>
+</div><script src="../../_static/documentation_options.js?v=ac95100c"></script>
     <script src="../../_static/doctools.js?v=9bcbadda"></script>
     <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../_static/scripts/furo.js?v=46bd48cc"></script>

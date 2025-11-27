@@ -7,7 +7,7 @@
         <link rel="prefetch" href="../../_static/logo_dark.svg" as="image">
 
     <!-- Generated with Sphinx 8.2.3 and Furo 2025.09.25 -->
-        <title>suvtk.utils - suvtk 0.1.6</title>
+        <title>suvtk.utils - suvtk 0.1.6.post3</title>
       <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=acfd86a5" />
     <link rel="stylesheet" type="text/css" href="../../_static/styles/furo.css?v=580074bf" />
     <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
@@ -164,7 +164,7 @@
       </label>
     </div>
     <div class="header-center">
-      <a href="../../index.html"><div class="brand">suvtk 0.1.6</div></a>
+      <a href="../../index.html"><div class="brand">suvtk 0.1.6.post3</div></a>
     </div>
     <div class="header-right">
       <div class="theme-toggle-container theme-toggle-header">
@@ -277,77 +277,110 @@
 <span class="kn">import</span> <span class="nn">subprocess</span>
 <span class="kn">import</span> <span class="nn">sys</span>
 
-<span class="kn">import</span> <span class="nn">click</span>
 <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">rich_click</span> <span class="k">as</span> <span class="nn">click</span>
 
 
 <span class="c1"># Adapted from https://github.com/rcedgar/palm_annot/blob/77ac88ef7454dd3be9e5cbdb55792ce1ed7db95c/py/palm_annot.py#L121-L132</span>
 <div class="viewcode-block" id="Exec">
 <a class="viewcode-back" href="../../source/suvtk.html#suvtk.utils.Exec">[docs]</a>
-<span class="k">def</span> <span class="nf">Exec</span><span class="p">(</span><span class="n">CmdLine</span><span class="p">,</span> <span class="n">fLog</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">capture</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">Exec</span><span class="p">(</span><span class="n">CmdLine</span><span class="p">,</span> <span class="n">fLog</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">capture</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">raise_on_error</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Execute a command line in a shell, logging it to a file if specified.</span>
+<span class="sd">    Execute a shell command with optional logging and output capture.</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
 <span class="sd">    CmdLine : str</span>
-<span class="sd">        The command line to execute.</span>
-<span class="sd">    fLog : file object or None, optional</span>
-<span class="sd">        A file object to log the command and results, or None.</span>
-<span class="sd">    capture : bool, optional</span>
-<span class="sd">        Whether to capture output instead of printing.</span>
+<span class="sd">        The command line string to execute in the shell.</span>
+<span class="sd">    fLog : file-like object, optional</span>
+<span class="sd">        A file object (opened for writing) to which stdout and stderr</span>
+<span class="sd">        will be written. If `None`, no file logging is performed.</span>
+<span class="sd">    capture : bool, default=False</span>
+<span class="sd">        If True, captures stdout and stderr and returns stdout upon success.</span>
+<span class="sd">        If False, outputs are printed directly to the console.</span>
+<span class="sd">    raise_on_error : bool, default=True</span>
+<span class="sd">        If True, raises a `subprocess.CalledProcessError` when the command</span>
+<span class="sd">        exits with a non-zero return code. If False, returns a dictionary</span>
+<span class="sd">        containing the command results instead.</span>
 
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
-<span class="sd">    str or None</span>
-<span class="sd">        The output of the command if captured, else None.</span>
+<span class="sd">    str or None or dict</span>
+<span class="sd">        - If `capture` is True and the command succeeds, returns the captured</span>
+<span class="sd">          stdout as a string.</span>
+<span class="sd">        - If `capture` is False and the command succeeds, returns None.</span>
+<span class="sd">        - If `raise_on_error` is False and the command fails, returns a dict</span>
+<span class="sd">          with keys:</span>
+<span class="sd">            - &#39;returncode&#39; : int</span>
+<span class="sd">                Exit status of the process.</span>
+<span class="sd">            - &#39;stdout&#39; : str or None</span>
+<span class="sd">                Captured standard output, if any.</span>
+<span class="sd">            - &#39;stderr&#39; : str or None</span>
+<span class="sd">                Captured standard error, if any.</span>
+<span class="sd">            - &#39;cmd&#39; : str</span>
+<span class="sd">                The command that was executed.</span>
 
 <span class="sd">    Raises</span>
 <span class="sd">    ------</span>
 <span class="sd">    subprocess.CalledProcessError</span>
-<span class="sd">        If the command execution fails.</span>
+<span class="sd">        If the command returns a non-zero exit code and `raise_on_error`</span>
+<span class="sd">        is True. The exception includes the return code, command, stdout,</span>
+<span class="sd">        and stderr.</span>
+
+<span class="sd">    Notes</span>
+<span class="sd">    -----</span>
+<span class="sd">    - When `capture` is False, stdout and stderr are streamed directly to</span>
+<span class="sd">      the console instead of being captured.</span>
+<span class="sd">    - Both stdout and stderr are written to `fLog` if provided, regardless</span>
+<span class="sd">      of the `capture` setting.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="nf">log_or_print</span><span class="p">(</span><span class="n">message</span><span class="p">,</span> <span class="n">is_error</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Helper to log to file or print to screen, unless capturing.&quot;&quot;&quot;</span>
-        <span class="k">if</span> <span class="ow">not</span> <span class="n">capture</span><span class="p">:</span>  <span class="c1"># Only print if capture is False</span>
-            <span class="k">if</span> <span class="n">fLog</span><span class="p">:</span>
-                <span class="n">fLog</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
-            <span class="k">else</span><span class="p">:</span>
-                <span class="n">output</span> <span class="o">=</span> <span class="n">sys</span><span class="o">.</span><span class="n">stderr</span> <span class="k">if</span> <span class="n">is_error</span> <span class="k">else</span> <span class="n">sys</span><span class="o">.</span><span class="n">stdout</span>
-                <span class="n">output</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">write_log</span><span class="p">(</span><span class="n">message</span><span class="p">,</span> <span class="n">is_error</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+        <span class="c1"># Always write to fLog if provided</span>
+        <span class="k">if</span> <span class="n">fLog</span> <span class="ow">and</span> <span class="n">message</span><span class="p">:</span>
+            <span class="n">fLog</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
 
-    <span class="k">try</span><span class="p">:</span>
-        <span class="c1"># Execute the command</span>
-        <span class="n">result</span> <span class="o">=</span> <span class="n">subprocess</span><span class="o">.</span><span class="n">run</span><span class="p">(</span>
-            <span class="n">CmdLine</span><span class="p">,</span>
-            <span class="n">shell</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
-            <span class="n">capture_output</span><span class="o">=</span><span class="n">capture</span><span class="p">,</span>
-            <span class="n">text</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
-            <span class="n">check</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+        <span class="c1"># Print to console only when not capturing</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">capture</span> <span class="ow">and</span> <span class="n">message</span><span class="p">:</span>
+            <span class="n">stream</span> <span class="o">=</span> <span class="n">sys</span><span class="o">.</span><span class="n">stderr</span> <span class="k">if</span> <span class="n">is_error</span> <span class="k">else</span> <span class="n">sys</span><span class="o">.</span><span class="n">stdout</span>
+            <span class="n">stream</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
+
+    <span class="c1"># Set up pipes explicitly to control capture behavior</span>
+    <span class="n">stdout_pipe</span> <span class="o">=</span> <span class="n">subprocess</span><span class="o">.</span><span class="n">PIPE</span> <span class="k">if</span> <span class="n">capture</span> <span class="k">else</span> <span class="kc">None</span>
+    <span class="n">stderr_pipe</span> <span class="o">=</span> <span class="n">subprocess</span><span class="o">.</span><span class="n">PIPE</span> <span class="k">if</span> <span class="n">capture</span> <span class="k">else</span> <span class="kc">None</span>
+
+    <span class="n">result</span> <span class="o">=</span> <span class="n">subprocess</span><span class="o">.</span><span class="n">run</span><span class="p">(</span>
+        <span class="n">CmdLine</span><span class="p">,</span>
+        <span class="n">shell</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+        <span class="n">stdout</span><span class="o">=</span><span class="n">stdout_pipe</span><span class="p">,</span>
+        <span class="n">stderr</span><span class="o">=</span><span class="n">stderr_pipe</span><span class="p">,</span>
+        <span class="n">text</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+        <span class="n">check</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="p">)</span>
+
+    <span class="c1"># Log outputs if we have them</span>
+    <span class="k">if</span> <span class="n">result</span><span class="o">.</span><span class="n">stdout</span><span class="p">:</span>
+        <span class="n">write_log</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">stdout</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">result</span><span class="o">.</span><span class="n">stderr</span><span class="p">:</span>
+        <span class="n">write_log</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">stderr</span><span class="p">,</span> <span class="n">is_error</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">result</span><span class="o">.</span><span class="n">returncode</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">result</span><span class="o">.</span><span class="n">stdout</span> <span class="k">if</span> <span class="n">capture</span> <span class="k">else</span> <span class="kc">None</span>
+
+    <span class="c1"># Handle non-zero exit</span>
+    <span class="k">if</span> <span class="n">raise_on_error</span><span class="p">:</span>
+        <span class="c1"># Preserve legacy behavior: raise with captured data if available</span>
+        <span class="k">raise</span> <span class="n">subprocess</span><span class="o">.</span><span class="n">CalledProcessError</span><span class="p">(</span>
+            <span class="n">result</span><span class="o">.</span><span class="n">returncode</span><span class="p">,</span> <span class="n">CmdLine</span><span class="p">,</span> <span class="n">output</span><span class="o">=</span><span class="n">result</span><span class="o">.</span><span class="n">stdout</span><span class="p">,</span> <span class="n">stderr</span><span class="o">=</span><span class="n">result</span><span class="o">.</span><span class="n">stderr</span>
         <span class="p">)</span>
 
-        <span class="c1"># Log stdout</span>
-        <span class="k">if</span> <span class="n">result</span><span class="o">.</span><span class="n">stdout</span><span class="p">:</span>
-            <span class="n">log_or_print</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">stdout</span><span class="p">)</span>
-
-        <span class="c1"># Log stderr</span>
-        <span class="k">if</span> <span class="n">result</span><span class="o">.</span><span class="n">stderr</span><span class="p">:</span>
-            <span class="n">log_or_print</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">stderr</span><span class="p">,</span> <span class="n">is_error</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-
-        <span class="k">return</span> <span class="n">result</span><span class="o">.</span><span class="n">stdout</span> <span class="k">if</span> <span class="n">capture</span> <span class="k">else</span> <span class="kc">None</span>  <span class="c1"># Return stdout only if capturing</span>
-
-    <span class="k">except</span> <span class="n">subprocess</span><span class="o">.</span><span class="n">CalledProcessError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-        <span class="c1"># Log error details</span>
-        <span class="k">if</span> <span class="n">e</span><span class="o">.</span><span class="n">stderr</span><span class="p">:</span>
-            <span class="n">log_or_print</span><span class="p">(</span><span class="n">e</span><span class="o">.</span><span class="n">stderr</span><span class="p">,</span> <span class="n">is_error</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-        <span class="n">log_or_print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;code </span><span class="si">{</span><span class="n">e</span><span class="o">.</span><span class="n">returncode</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
-        <span class="n">log_or_print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
-        <span class="n">log_or_print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">CmdLine</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
-        <span class="n">log_or_print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
-        <span class="n">log_or_print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Error code </span><span class="si">{</span><span class="n">e</span><span class="o">.</span><span class="n">returncode</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">is_error</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-
-        <span class="k">raise</span>  <span class="c1"># Re-raise the exception</span></div>
+    <span class="c1"># Caller can inspect this without exceptions</span>
+    <span class="k">return</span> <span class="p">{</span>
+        <span class="s2">&quot;returncode&quot;</span><span class="p">:</span> <span class="n">result</span><span class="o">.</span><span class="n">returncode</span><span class="p">,</span>
+        <span class="s2">&quot;stdout&quot;</span><span class="p">:</span> <span class="n">result</span><span class="o">.</span><span class="n">stdout</span><span class="p">,</span>
+        <span class="s2">&quot;stderr&quot;</span><span class="p">:</span> <span class="n">result</span><span class="o">.</span><span class="n">stderr</span><span class="p">,</span>
+        <span class="s2">&quot;cmd&quot;</span><span class="p">:</span> <span class="n">CmdLine</span><span class="p">,</span>
+    <span class="p">}</span></div>
 
 
 
@@ -450,7 +483,7 @@
       
     </aside>
   </div>
-</div><script src="../../_static/documentation_options.js?v=79d558ae"></script>
+</div><script src="../../_static/documentation_options.js?v=ac95100c"></script>
     <script src="../../_static/doctools.js?v=9bcbadda"></script>
     <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../_static/scripts/furo.js?v=46bd48cc"></script>

@@ -8,7 +8,7 @@
         <link rel="prefetch" href="../_static/logo_dark.svg" as="image">
 
     <!-- Generated with Sphinx 8.2.3 and Furo 2025.09.25 -->
-        <title>suvtk package - suvtk 0.1.6</title>
+        <title>suvtk package - suvtk 0.1.6.post3</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=acfd86a5" />
     <link rel="stylesheet" type="text/css" href="../_static/styles/furo.css?v=580074bf" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
@@ -165,7 +165,7 @@
       </label>
     </div>
     <div class="header-center">
-      <a href="../index.html"><div class="brand">suvtk 0.1.6</div></a>
+      <a href="../index.html"><div class="brand">suvtk 0.1.6.post3</div></a>
     </div>
     <div class="header-right">
       <div class="theme-toggle-container theme-toggle-header">
@@ -305,8 +305,8 @@ feature extraction, structured comment generation, and more.</p>
 </section>
 <dl class="py class">
 <dt class="sig sig-object py" id="suvtk.cli.FullHelpGroup">
-<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">suvtk.cli.</span></span><span class="sig-name descname"><span class="pre">FullHelpGroup</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">commands</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">invoke_without_command</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">no_args_is_help</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">subcommand_metavar</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">chain</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">result_callback</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/suvtk/cli.html#FullHelpGroup"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#suvtk.cli.FullHelpGroup" title="Link to this definition">¶</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Group</span></code></p>
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">suvtk.cli.</span></span><span class="sig-name descname"><span class="pre">FullHelpGroup</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/suvtk/cli.html#FullHelpGroup"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#suvtk.cli.FullHelpGroup" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">RichGroup</span></code></p>
 <p>Custom Click Group to display commands in the order they were added.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="suvtk.cli.FullHelpGroup.list_commands">
@@ -315,28 +315,8 @@ feature extraction, structured comment generation, and more.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="suvtk.cli.FullHelpGroup.format_commands">
-<span class="sig-name descname"><span class="pre">format_commands</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ctx</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">click.Context</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">formatter</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">click.HelpFormatter</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/suvtk/cli.html#FullHelpGroup.format_commands"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#suvtk.cli.FullHelpGroup.format_commands" title="Link to this definition">¶</a></dt>
-<dd><p>Formats and displays commands in the correct order.</p>
-</dd></dl>
-
-<dl class="py method">
 <dt class="sig sig-object py" id="id0">
-<span class="sig-name descname"><span class="pre">format_commands</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ctx</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">formatter</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/suvtk/cli.html#FullHelpGroup.format_commands"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#id0" title="Link to this definition">¶</a></dt>
-<dd><p>Formats and displays commands in the correct order.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>ctx</strong> (<em>click.Context</em>) – The Click context.</p></li>
-<li><p><strong>formatter</strong> (<em>click.HelpFormatter</em>) – The Click help formatter.</p></li>
-</ul>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="id1">
-<span class="sig-name descname"><span class="pre">list_commands</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ctx</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/suvtk/cli.html#FullHelpGroup.list_commands"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#id1" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">list_commands</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ctx</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/suvtk/cli.html#FullHelpGroup.list_commands"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#id0" title="Link to this definition">¶</a></dt>
 <dd><p>Return commands in the order they were added.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -361,8 +341,8 @@ feature extraction, structured comment generation, and more.</p>
 <p>This script identifies co-occurring sequences in an abundance table based on
 prevalence and correlation thresholds. It supports optional segment-specific
 analysis and contig length correction.</p>
-<section id="id2">
-<h4>Functions<a class="headerlink" href="#id2" title="Link to this heading">¶</a></h4>
+<section id="id1">
+<h4>Functions<a class="headerlink" href="#id1" title="Link to this heading">¶</a></h4>
 <dl class="simple">
 <dt>calculate_proportion(df)</dt><dd><p>Calculate the proportion of samples for each contig.</p>
 </dd>
@@ -457,8 +437,8 @@ is the Spearman correlation with the corresponding row in the original DataFrame
 <p>This script generates structured comment files based on MIUVIG standards.
 It validates input files, merges data from multiple sources, and ensures compliance
 with predefined standards for submission to GenBank.</p>
-<section id="id3">
-<h4>Functions<a class="headerlink" href="#id3" title="Link to this heading">¶</a></h4>
+<section id="id2">
+<h4>Functions<a class="headerlink" href="#id2" title="Link to this heading">¶</a></h4>
 <dl class="simple">
 <dt>comments(taxonomy, features, miuvig, assembly, checkv, output)</dt><dd><p>Generate a structured comment file based on MIUVIG standards.</p>
 </dd>
@@ -471,8 +451,8 @@ with predefined standards for submission to GenBank.</p>
 <section id="download-database-py">
 <h3>download_database.py<a class="headerlink" href="#download-database-py" title="Link to this heading">¶</a></h3>
 <p>This script downloads and extracts the suvtk database as a gzipped tar file from Zenodo.</p>
-<section id="id4">
-<h4>Functions<a class="headerlink" href="#id4" title="Link to this heading">¶</a></h4>
+<section id="id3">
+<h4>Functions<a class="headerlink" href="#id3" title="Link to this heading">¶</a></h4>
 <dl class="simple">
 <dt>doi_to_record_id(doi: str) -&gt; str</dt><dd><p>Extract the numeric record ID from a Zenodo DOI.</p>
 </dd>
@@ -541,8 +521,8 @@ with predefined standards for submission to GenBank.</p>
 <p>This script processes input sequences to predict open reading frames (ORFs),
 aligns the predicted protein sequences against a database, and generates feature
 tables for submission to GenBank.</p>
-<section id="id5">
-<h4>Functions<a class="headerlink" href="#id5" title="Link to this heading">¶</a></h4>
+<section id="id4">
+<h4>Functions<a class="headerlink" href="#id4" title="Link to this heading">¶</a></h4>
 <dl class="simple">
 <dt>validate_translation_table(ctx, param, value)</dt><dd><p>Validate the given translation table.</p>
 </dd>
@@ -820,7 +800,7 @@ also save separate files for each unique sequence ID when specified.</p>
 </dd>
 </dl>
 <p class="rubric">Notes</p>
-<p>These files are inputs for table2asn which generates ASN.1 files (<a href="#id6"><span class="problematic" id="id7">*</span></a>.sqn).</p>
+<p>These files are inputs for table2asn which generates ASN.1 files (<a href="#id5"><span class="problematic" id="id6">*</span></a>.sqn).</p>
 </section>
 <section id="development-notes">
 <h3>Development notes<a class="headerlink" href="#development-notes" title="Link to this heading">¶</a></h3>
@@ -839,8 +819,8 @@ Creation: 20 June 2015 - 11 July 2015; the latest edition: 21 October 2019</p>
 <h3>table2asn.py<a class="headerlink" href="#table2asn-py" title="Link to this heading">¶</a></h3>
 <p>This script generates a .sqn submission file for GenBank. It processes source
 and comments files, validates data, and prepares the submission package.</p>
-<section id="id8">
-<h4>Functions<a class="headerlink" href="#id8" title="Link to this heading">¶</a></h4>
+<section id="id7">
+<h4>Functions<a class="headerlink" href="#id7" title="Link to this heading">¶</a></h4>
 <dl class="simple">
 <dt>process_comments(src_file, comments_file)</dt><dd><p>Update the comments file based on the source file.</p>
 </dd>
@@ -889,14 +869,21 @@ and comments files, validates data, and prepares the submission package.</p>
 <h3>taxonomy.py<a class="headerlink" href="#taxonomy-py" title="Link to this heading">¶</a></h3>
 <p>This script assigns taxonomy to sequences using MMseqs2 from the ICTV nr database.
 It generates taxonomy files and integrates with other modules for further processing.</p>
-<section id="id9">
-<h4>Functions<a class="headerlink" href="#id9" title="Link to this heading">¶</a></h4>
+<section id="id8">
+<h4>Functions<a class="headerlink" href="#id8" title="Link to this heading">¶</a></h4>
 <dl class="simple">
 <dt>taxonomy(fasta_file, database, output_path, seqid, threads)</dt><dd><p>Main command to assign taxonomy to sequences.</p>
 </dd>
 </dl>
 </section>
 </section>
+<dl class="py function">
+<dt class="sig sig-object py" id="suvtk.taxonomy.parse_memlimit">
+<span class="sig-prename descclassname"><span class="pre">suvtk.taxonomy.</span></span><span class="sig-name descname"><span class="pre">parse_memlimit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mem_str</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/suvtk/taxonomy.html#parse_memlimit"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#suvtk.taxonomy.parse_memlimit" title="Link to this definition">¶</a></dt>
+<dd><p>Parse memory string like ‘30G’, ‘40000M’, ‘32GB’ into bytes.
+Returns an integer number of bytes.</p>
+</dd></dl>
+
 </section>
 <section id="module-suvtk.utils">
 <span id="suvtk-utils-module"></span><h2>suvtk.utils module<a class="headerlink" href="#module-suvtk.utils" title="Link to this heading">¶</a></h2>
@@ -905,12 +892,12 @@ It generates taxonomy files and integrates with other modules for further proces
 <p>This script provides utility functions for executing shell commands, reading CSV files safely,
 and determining the number of available CPUs. These utilities are used across various modules
 in the project.</p>
-<section id="id10">
-<h4>Functions<a class="headerlink" href="#id10" title="Link to this heading">¶</a></h4>
+<section id="id9">
+<h4>Functions<a class="headerlink" href="#id9" title="Link to this heading">¶</a></h4>
 <dl class="simple">
 <dt>Exec(CmdLine, fLog=None, capture=False)</dt><dd><p>Execute a shell command and optionally log or capture the output.</p>
 </dd>
-<dt>safe_read_csv(path, <a href="#id11"><span class="problematic" id="id12">**</span></a>kwargs)</dt><dd><p>Read a CSV file with ASCII encoding and handle UnicodeDecodeError.</p>
+<dt>safe_read_csv(path, <a href="#id10"><span class="problematic" id="id11">**</span></a>kwargs)</dt><dd><p>Read a CSV file with ASCII encoding and handle UnicodeDecodeError.</p>
 </dd>
 <dt>get_available_cpus()</dt><dd><p>Get the number of available CPUs for the current process.</p>
 </dd>
@@ -919,26 +906,72 @@ in the project.</p>
 </section>
 <dl class="py function">
 <dt class="sig sig-object py" id="suvtk.utils.Exec">
-<span class="sig-prename descclassname"><span class="pre">suvtk.utils.</span></span><span class="sig-name descname"><span class="pre">Exec</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">CmdLine</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fLog</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">capture</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/suvtk/utils.html#Exec"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#suvtk.utils.Exec" title="Link to this definition">¶</a></dt>
-<dd><p>Execute a command line in a shell, logging it to a file if specified.</p>
+<span class="sig-prename descclassname"><span class="pre">suvtk.utils.</span></span><span class="sig-name descname"><span class="pre">Exec</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">CmdLine</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fLog</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">capture</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">raise_on_error</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/suvtk/utils.html#Exec"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#suvtk.utils.Exec" title="Link to this definition">¶</a></dt>
+<dd><p>Execute a shell command with optional logging and output capture.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>CmdLine</strong> (<em>str</em>) – The command line to execute.</p></li>
-<li><p><strong>fLog</strong> (<em>file object</em><em> or </em><em>None</em><em>, </em><em>optional</em>) – A file object to log the command and results, or None.</p></li>
-<li><p><strong>capture</strong> (<em>bool</em><em>, </em><em>optional</em>) – Whether to capture output instead of printing.</p></li>
+<li><p><strong>CmdLine</strong> (<em>str</em>) – The command line string to execute in the shell.</p></li>
+<li><p><strong>fLog</strong> (<em>file-like object</em><em>, </em><em>optional</em>) – A file object (opened for writing) to which stdout and stderr
+will be written. If <cite>None</cite>, no file logging is performed.</p></li>
+<li><p><strong>capture</strong> (<em>bool</em><em>, </em><em>default=False</em>) – If True, captures stdout and stderr and returns stdout upon success.
+If False, outputs are printed directly to the console.</p></li>
+<li><p><strong>raise_on_error</strong> (<em>bool</em><em>, </em><em>default=True</em>) – If True, raises a <cite>subprocess.CalledProcessError</cite> when the command
+exits with a non-zero return code. If False, returns a dictionary
+containing the command results instead.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>The output of the command if captured, else None.</p>
-</dd>
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>str or None</p>
-</dd>
-<dt class="field-even">Raises<span class="colon">:</span></dt>
-<dd class="field-even"><p><strong>subprocess.CalledProcessError</strong> – If the command execution fails.</p>
+<dd class="field-even"><p><ul>
+<li><p>If <cite>capture</cite> is True and the command succeeds, returns the captured
+stdout as a string.</p></li>
+<li><p>If <cite>capture</cite> is False and the command succeeds, returns None.</p></li>
+<li><p>If <cite>raise_on_error</cite> is False and the command fails, returns a dict
+with keys:</p>
+<blockquote>
+<div><ul class="simple">
+<li><dl class="simple">
+<dt>’returncode’<span class="classifier">int</span></dt><dd><p>Exit status of the process.</p>
 </dd>
 </dl>
+</li>
+<li><dl class="simple">
+<dt>’stdout’<span class="classifier">str or None</span></dt><dd><p>Captured standard output, if any.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>’stderr’<span class="classifier">str or None</span></dt><dd><p>Captured standard error, if any.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>’cmd’<span class="classifier">str</span></dt><dd><p>The command that was executed.</p>
+</dd>
+</dl>
+</li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str or None or dict</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>subprocess.CalledProcessError</strong> – If the command returns a non-zero exit code and <cite>raise_on_error</cite>
+    is True. The exception includes the return code, command, stdout,
+    and stderr.</p>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<ul class="simple">
+<li><p>When <cite>capture</cite> is False, stdout and stderr are streamed directly to
+the console instead of being captured.</p></li>
+<li><p>Both stdout and stderr are written to <cite>fLog</cite> if provided, regardless
+of the <cite>capture</cite> setting.</p></li>
+</ul>
 </dd></dl>
 
 <dl class="py function">
@@ -986,8 +1019,8 @@ raises a ClickException showing the offending character.</p>
 <h3>virus_info.py<a class="headerlink" href="#virus-info-py" title="Link to this heading">¶</a></h3>
 <p>This script provides information on potentially segmented viruses based on their taxonomy.
 It also outputs genome type and structure information for MIUVIG structured comments.</p>
-<section id="id13">
-<h4>Functions<a class="headerlink" href="#id13" title="Link to this heading">¶</a></h4>
+<section id="id12">
+<h4>Functions<a class="headerlink" href="#id12" title="Link to this heading">¶</a></h4>
 <dl class="simple">
 <dt>load_segment_db()</dt><dd><p>Load the segmented viruses database.</p>
 </dd>
@@ -1117,16 +1150,14 @@ It also outputs genome type and structure information for MIUVIG structured comm
 </li>
 <li><a class="reference internal" href="#suvtk.cli.FullHelpGroup"><code class="docutils literal notranslate"><span class="pre">FullHelpGroup</span></code></a><ul>
 <li><a class="reference internal" href="#suvtk.cli.FullHelpGroup.list_commands"><code class="docutils literal notranslate"><span class="pre">FullHelpGroup.list_commands()</span></code></a></li>
-<li><a class="reference internal" href="#suvtk.cli.FullHelpGroup.format_commands"><code class="docutils literal notranslate"><span class="pre">FullHelpGroup.format_commands()</span></code></a></li>
-<li><a class="reference internal" href="#id0"><code class="docutils literal notranslate"><span class="pre">FullHelpGroup.format_commands()</span></code></a></li>
-<li><a class="reference internal" href="#id1"><code class="docutils literal notranslate"><span class="pre">FullHelpGroup.list_commands()</span></code></a></li>
+<li><a class="reference internal" href="#id0"><code class="docutils literal notranslate"><span class="pre">FullHelpGroup.list_commands()</span></code></a></li>
 </ul>
 </li>
 </ul>
 </li>
 <li><a class="reference internal" href="#module-suvtk.co_occurrence">suvtk.co_occurrence module</a><ul>
 <li><a class="reference internal" href="#co-occurrence-py">co_occurrence.py</a><ul>
-<li><a class="reference internal" href="#id2">Functions</a></li>
+<li><a class="reference internal" href="#id1">Functions</a></li>
 </ul>
 </li>
 <li><a class="reference internal" href="#suvtk.co_occurrence.calculate_proportion"><code class="docutils literal notranslate"><span class="pre">calculate_proportion()</span></code></a></li>
@@ -1137,14 +1168,14 @@ It also outputs genome type and structure information for MIUVIG structured comm
 </li>
 <li><a class="reference internal" href="#module-suvtk.comments">suvtk.comments module</a><ul>
 <li><a class="reference internal" href="#comments-py">comments.py</a><ul>
-<li><a class="reference internal" href="#id3">Functions</a></li>
+<li><a class="reference internal" href="#id2">Functions</a></li>
 </ul>
 </li>
 </ul>
 </li>
 <li><a class="reference internal" href="#module-suvtk.download_database">suvtk.download_database module</a><ul>
 <li><a class="reference internal" href="#download-database-py">download_database.py</a><ul>
-<li><a class="reference internal" href="#id4">Functions</a></li>
+<li><a class="reference internal" href="#id3">Functions</a></li>
 </ul>
 </li>
 <li><a class="reference internal" href="#suvtk.download_database.doi_to_record_id"><code class="docutils literal notranslate"><span class="pre">doi_to_record_id()</span></code></a></li>
@@ -1156,7 +1187,7 @@ It also outputs genome type and structure information for MIUVIG structured comm
 </li>
 <li><a class="reference internal" href="#module-suvtk.features">suvtk.features module</a><ul>
 <li><a class="reference internal" href="#features-py">features.py</a><ul>
-<li><a class="reference internal" href="#id5">Functions</a></li>
+<li><a class="reference internal" href="#id4">Functions</a></li>
 </ul>
 </li>
 <li><a class="reference internal" href="#suvtk.features.calculate_coding_capacity"><code class="docutils literal notranslate"><span class="pre">calculate_coding_capacity()</span></code></a></li>
@@ -1180,7 +1211,7 @@ It also outputs genome type and structure information for MIUVIG structured comm
 </li>
 <li><a class="reference internal" href="#module-suvtk.table2asn">suvtk.table2asn module</a><ul>
 <li><a class="reference internal" href="#table2asn-py">table2asn.py</a><ul>
-<li><a class="reference internal" href="#id8">Functions</a></li>
+<li><a class="reference internal" href="#id7">Functions</a></li>
 </ul>
 </li>
 <li><a class="reference internal" href="#suvtk.table2asn.process_comments"><code class="docutils literal notranslate"><span class="pre">process_comments()</span></code></a></li>
@@ -1188,14 +1219,15 @@ It also outputs genome type and structure information for MIUVIG structured comm
 </li>
 <li><a class="reference internal" href="#module-suvtk.taxonomy">suvtk.taxonomy module</a><ul>
 <li><a class="reference internal" href="#taxonomy-py">taxonomy.py</a><ul>
-<li><a class="reference internal" href="#id9">Functions</a></li>
+<li><a class="reference internal" href="#id8">Functions</a></li>
 </ul>
 </li>
+<li><a class="reference internal" href="#suvtk.taxonomy.parse_memlimit"><code class="docutils literal notranslate"><span class="pre">parse_memlimit()</span></code></a></li>
 </ul>
 </li>
 <li><a class="reference internal" href="#module-suvtk.utils">suvtk.utils module</a><ul>
 <li><a class="reference internal" href="#utils-py">utils.py</a><ul>
-<li><a class="reference internal" href="#id10">Functions</a></li>
+<li><a class="reference internal" href="#id9">Functions</a></li>
 </ul>
 </li>
 <li><a class="reference internal" href="#suvtk.utils.Exec"><code class="docutils literal notranslate"><span class="pre">Exec()</span></code></a></li>
@@ -1205,7 +1237,7 @@ It also outputs genome type and structure information for MIUVIG structured comm
 </li>
 <li><a class="reference internal" href="#module-suvtk.virus_info">suvtk.virus_info module</a><ul>
 <li><a class="reference internal" href="#virus-info-py">virus_info.py</a><ul>
-<li><a class="reference internal" href="#id13">Functions</a></li>
+<li><a class="reference internal" href="#id12">Functions</a></li>
 </ul>
 </li>
 <li><a class="reference internal" href="#suvtk.virus_info.load_genome_type_db"><code class="docutils literal notranslate"><span class="pre">load_genome_type_db()</span></code></a></li>
@@ -1225,7 +1257,7 @@ It also outputs genome type and structure information for MIUVIG structured comm
       
     </aside>
   </div>
-</div><script src="../_static/documentation_options.js?v=79d558ae"></script>
+</div><script src="../_static/documentation_options.js?v=ac95100c"></script>
     <script src="../_static/doctools.js?v=9bcbadda"></script>
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/scripts/furo.js?v=46bd48cc"></script>

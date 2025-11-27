@@ -8,7 +8,7 @@
         <link rel="prefetch" href="../_static/logo_dark.svg" as="image">
 
     <!-- Generated with Sphinx 8.2.3 and Furo 2025.09.25 -->
-        <title>features - suvtk 0.1.6</title>
+        <title>features - suvtk 0.1.6.post3</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=acfd86a5" />
     <link rel="stylesheet" type="text/css" href="../_static/styles/furo.css?v=580074bf" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
@@ -165,7 +165,7 @@
       </label>
     </div>
     <div class="header-center">
-      <a href="../index.html"><div class="brand">suvtk 0.1.6</div></a>
+      <a href="../index.html"><div class="brand">suvtk 0.1.6.post3</div></a>
     </div>
     <div class="header-right">
       <div class="theme-toggle-container theme-toggle-header">
@@ -264,7 +264,8 @@
 <hr class="docutils" />
 <section id="overview">
 <h2>Overview<a class="headerlink" href="#overview" title="Link to this heading">¶</a></h2>
-<p>This command creates an <a href="https://www.ncbi.nlm.nih.gov/WebSub/html/help/feature-table.html" target="_blank">NCBI feature table</a> by predicting open reading frames (ORFs) from an input FASTA file with <a href="https://github.com/althonos/pyrodigal-gv" target="_blank"><code class="docutils literal notranslate"><span class="pre">pyrodigal-gv</span></code></a>. Subsequently, the ORFs get annotated by aligning the protein translations to the <a href="https://bfvd.steineggerlab.workers.dev/" target="_blank">Big Fantastic Virus Database</a> with <code class="docutils literal notranslate"><span class="pre">mmseqs2</span></code> and selecting the protein name of the top hit.</p>
+<p>This command creates an <a href="https://www.ncbi.nlm.nih.gov/WebSub/html/help/feature-table.html" target="_blank">NCBI feature table</a> by predicting open reading frames (ORFs) from an input FASTA file with <a href="https://github.com/LanderDC/pyrodigal-rv" target="_blank"><code class="docutils literal notranslate"><span class="pre">pyrodigal-rv</span></code></a>. If you want to annotate phage sequences, you can specify this with the <code class="docutils literal notranslate"><span class="pre">--phage</span></code> option which will use <a href="https://github.com/althonos/pyrodigal-gv" target="_blank"><code class="docutils literal notranslate"><span class="pre">pyrodigal-gv</span></code></a> for ORF prediction. However, it is recommended to do feature annotation of your phages with <a href="https://github.com/gbouras13/pharokka" target="_blank"><code class="docutils literal notranslate"><span class="pre">pharokka</span></code></a> and <a href="https://github.com/gbouras13/phold" target="_blank"><code class="docutils literal notranslate"><span class="pre">phold</span></code></a>.</p>
+<p>Subsequently, the ORFs get annotated by aligning the protein translations to the <a href="https://bfvd.steineggerlab.workers.dev/" target="_blank">Big Fantastic Virus Database</a> with <code class="docutils literal notranslate"><span class="pre">mmseqs2</span></code> and selecting the protein name of the top hit.</p>
 <details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3" open="open">
 <summary class="sd-summary-title sd-card-header">
 <span class="sd-summary-text">Example</span><span class="sd-summary-state-marker sd-summary-chevron-right"><svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-right" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"></path></svg></span></summary><div class="sd-summary-content sd-card-body docutils">
@@ -315,12 +316,15 @@
 </section>
 <section id="optional-parameters">
 <h2>Optional Parameters<a class="headerlink" href="#optional-parameters" title="Link to this heading">¶</a></h2>
+<!---
+- **-g, -\\\-translation-table**: Translation table (default: 1). Valid codes: 1–6, 9–16, 21–31.
+--->
 <ul class="simple">
-<li><p><strong>-g, --translation-table</strong>: Translation table (default: 1). Valid codes: 1–6, 9–16, 21–31.</p></li>
 <li><p><strong>--coding-complete</strong>: Flag to keep only genomes with &gt;50% coding capacity.</p></li>
+<li><p><strong>--phage</strong>: Input sequences are phage genomes (use <code class="docutils literal notranslate"><span class="pre">pyrodigal-gv</span></code> for ORF prediction).</p></li>
 <li><p><strong>--taxonomy</strong>: Taxonomy file for adjusting sequence orientation (particularly for ssRNA(-) viruses).</p></li>
 <li><p><strong>--separate-files</strong>: Flag to save feature tables into separate files rather than one combined file.</p></li>
-<li><p><strong>-t, --threads</strong>: Number of threads to use (default: 4).</p></li>
+<li><p><strong>-t, --threads</strong>: Number of threads to use (default: auto).</p></li>
 </ul>
 <div style="margin-top: 2em;"></div>
 <div class="warning admonition">
@@ -341,7 +345,7 @@
 </section>
 <section id="example-usage">
 <h2>Example Usage<a class="headerlink" href="#example-usage" title="Link to this heading">¶</a></h2>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>suvtk features -i sequences.fasta -o output_dir -d /path/to/database -g 1 --coding-complete --taxonomy taxonomy.tsv -t 4
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>suvtk features -i sequences.fasta -o output_dir -d /path/to/database --coding-complete --taxonomy taxonomy.tsv -t 4
 </pre></div>
 </div>
 </section>
@@ -426,7 +430,7 @@
       
     </aside>
   </div>
-</div><script src="../_static/documentation_options.js?v=79d558ae"></script>
+</div><script src="../_static/documentation_options.js?v=ac95100c"></script>
     <script src="../_static/doctools.js?v=9bcbadda"></script>
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/scripts/furo.js?v=46bd48cc"></script>
