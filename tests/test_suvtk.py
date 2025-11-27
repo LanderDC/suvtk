@@ -21,7 +21,7 @@ def test_main_module():
     import_module("suvtk.__main__")
 
 
-def test_runas_module():
+def test_run_as_module():
     """
     Can this package be run as a Python module?
     """
