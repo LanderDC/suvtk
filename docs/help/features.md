@@ -49,12 +49,14 @@ Additionally, if a taxonomy file is provided, `suvtk features` will reorient the
 - **-d, -\\\-database**: Path to the suvtk database folder. *(Required)*
 
 ## Optional Parameters
+<!---
 - **-g, -\\\-translation-table**: Translation table (default: 1). Valid codes: 1–6, 9–16, 21–31.
+--->
 - **-\\\-coding-complete**: Flag to keep only genomes with >50% coding capacity.
 - **-\\\-phage**: Input sequences are phage genomes (use `pyrodigal-gv` for ORF prediction).
 - **-\\\-taxonomy**: Taxonomy file for adjusting sequence orientation (particularly for ssRNA(-) viruses).
 - **-\\\-separate-files**: Flag to save feature tables into separate files rather than one combined file.
-- **-t, -\\\-threads**: Number of threads to use (default: 4).
+- **-t, -\\\-threads**: Number of threads to use (default: auto).
 
 <div style="margin-top: 2em;"></div>
 
@@ -73,4 +75,4 @@ For now only coding complete sequences (>50% coding capacity) will have predicte
 
 ## Example Usage
 ```none
-suvtk features -i sequences.fasta -o output_dir -d /path/to/database -g 1 --coding-complete --taxonomy taxonomy.tsv -t 4
+suvtk features -i sequences.fasta -o output_dir -d /path/to/database --coding-complete --taxonomy taxonomy.tsv -t 4
