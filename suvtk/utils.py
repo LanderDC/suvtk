@@ -128,15 +128,15 @@ def Exec(CmdLine, fLog=None, capture=False, raise_on_error=True):
 
 def safe_read_csv(path, **kwargs):
     """
-    Reads a CSV file using ASCII encoding. If a UnicodeDecodeError occurs,
-    raises a ClickException showing the offending character.
+    Reads a CSV file that must contain only ASCII characters. The file is
+    validated in binary mode and then parsed with pandas using UTF-8 encoding.
 
     Parameters
     ----------
     path : str
         Path to the CSV file.
     **kwargs : dict
-        Additional arguments to pass to `pandas.read_csv`.
+        Additional arguments to pass to pandas.read_csv`.
 
     Returns
     -------
@@ -148,19 +148,33 @@ def safe_read_csv(path, **kwargs):
     click.ClickException
         If the file contains non-ASCII characters.
     """
-    try:
-        return pd.read_csv(path, encoding="ascii", **kwargs)
-    except UnicodeDecodeError as e:
-        offending_bytes = e.object[e.start : e.end]
-        # Try decoding using UTF-8 to show the offending character
-        try:
-            offending_char = offending_bytes.decode("utf-8")
-        except Exception:
-            offending_char = repr(offending_bytes)
-        raise click.ClickException(
-            f"Only ASCII characters are allowed in file '{path}'. "
-            f"Offending character: {offending_char}. Error: {str(e)}"
-        )
+    read_kwargs = dict(kwargs)
+    path_str = str(path)
+
+    with open(path, "rb") as buffer:
+        offset = 0
+        for chunk in iter(lambda: buffer.read(4096), b""):
+            try:
+                chunk.decode("ascii")
+            except UnicodeDecodeError as e:
+                offending_bytes = chunk[e.start : e.end]
+                try:
+                    offending_char = offending_bytes.decode("utf-8")
+                except Exception:
+                    offending_char = repr(offending_bytes)
+                byte_offset = offset + e.start
+                raise click.ClickException(
+                    f"Only ASCII characters are allowed in file '{path_str}'. "
+                    f"Offending character: {offending_char} at byte offset {byte_offset}. "
+                    f"Error: {str(e)}"
+                ) from e
+            offset += len(chunk)
+
+    user_encoding = read_kwargs.get("encoding")
+    read_kwargs["encoding"] = (
+        user_encoding if user_encoding and user_encoding.lower() != "ascii" else "utf-8"
+    )
+    return pd.read_csv(path, **read_kwargs)
 
 
 # Copied from https://github.com/EricDeveaud/genomad/blob/030ab6434654435ce75243347c97be6f40ea175b/genomad/cli.py#L250-L257
