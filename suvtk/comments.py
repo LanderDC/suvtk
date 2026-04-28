@@ -151,7 +151,7 @@ def comments(taxonomy, features, miuvig, assembly, checkv, output):
     Generate a structured comment file based on MIUVIG standards.
     """
     # Read the taxonomy file.
-    taxonomy_df = utils.safe_read_csv(taxonomy, sep="\t")
+    taxonomy_df = pd.read_csv(taxonomy, sep="\t")
 
     # Early check of taxonomy file columns (these come from taxonomy file itself)
     # Check pred_genome_type
@@ -177,18 +177,18 @@ def comments(taxonomy, features, miuvig, assembly, checkv, output):
 
     # Read the features and miuvig files (key/value format) into dictionaries.
     features_dict = (
-        utils.safe_read_csv(features, sep="\t")
+        pd.read_csv(features, sep="\t")
         .set_index("MIUVIG_parameter")["value"]
         .to_dict()
     )
     miuvig_dict = (
-        utils.safe_read_csv(miuvig, sep="\t")
+        pd.read_csv(miuvig, sep="\t")
         .set_index("MIUVIG_parameter")["value"]
         .to_dict()
     )
 
     assembly_dict = (
-        utils.safe_read_csv(assembly, sep="\t")
+        pd.read_csv(assembly, sep="\t")
         .set_index("Assembly_parameter")["value"]
         .to_dict()
     )
@@ -247,7 +247,7 @@ def comments(taxonomy, features, miuvig, assembly, checkv, output):
 
     # Add merged parameters as new constant columns to the taxonomy DataFrame.
     if checkv:
-        checkv_df = utils.safe_read_csv(checkv, sep="\t")
+        checkv_df = pd.read_csv(checkv, sep="\t")
         checkv_df = checkv_df[
             ["contig_id", "miuvig_quality", "completeness", "provirus"]
         ]

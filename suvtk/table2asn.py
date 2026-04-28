@@ -48,8 +48,8 @@ def process_comments(src_file, comments_file):
     None
     """
     click.echo("Reading source and comments files...")
-    src_df = utils.safe_read_csv(src_file, sep="\t")
-    comments_df = utils.safe_read_csv(comments_file, sep="\t")
+    src_df = pd.read_csv(src_file, sep="\t")
+    comments_df = pd.read_csv(comments_file, sep="\t")
 
     # Insert extra columns into comments_df after the first column 'StructuredCommentPrefix'
     prefix_col = "StructuredCommentPrefix"

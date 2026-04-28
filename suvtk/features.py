@@ -520,7 +520,7 @@ def features(
             names_dmp=os.path.join(database, "names.dmp"),
         )
 
-        taxonomy_data = utils.safe_read_csv(taxonomy, sep="\t")
+        taxonomy_data = pd.read_csv(taxonomy, sep="\t")
 
     # Define output paths
     prot_path = os.path.join(output_path, "proteins.faa")
@@ -627,7 +627,7 @@ def features(
     aligner = "MMseqs2"
     aligner_version = utils.Exec("mmseqs version", capture=True).strip()
 
-    m8 = utils.safe_read_csv(
+    m8 = pd.read_csv(
         m8_path,
         sep="\t",
         header=None,
@@ -659,7 +659,7 @@ def features(
     m8_top = select_top_structure(m8)
 
     # TODO find better solution for protein names?
-    names_df = utils.safe_read_csv(
+    names_df = pd.read_csv(
         os.path.join(database, "bfvd_uniprot_names.tsv"), sep="\t"
     )
 
@@ -669,7 +669,7 @@ def features(
     )
 
     # TODO find better solution for protein metadata?
-    meta_df = utils.safe_read_csv(
+    meta_df = pd.read_csv(
         os.path.join(database, "bfvd_metadata.tsv"), sep="\t", header=None
     )
 

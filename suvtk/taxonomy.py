@@ -143,7 +143,7 @@ def taxonomy(fasta_file, database, output_path, seqid, threads, memlimit):
 
     shutil.rmtree("tmp")
 
-    taxonomy = utils.safe_read_csv(f"{taxresult_path}_lca.tsv", sep="\t", header=None)
+    taxonomy = pd.read_csv(f"{taxresult_path}_lca.tsv", sep="\t", header=None)
     taxonomy.rename(
         {
             0: "query",
@@ -160,7 +160,7 @@ def taxonomy(fasta_file, database, output_path, seqid, threads, memlimit):
         inplace=True,
     )
 
-    tophit = utils.safe_read_csv(f"{taxresult_path}_tophit_aln", sep="\t", header=None)
+    tophit = pd.read_csv(f"{taxresult_path}_tophit_aln", sep="\t", header=None)
     tophit.rename(
         {
             0: "query",
